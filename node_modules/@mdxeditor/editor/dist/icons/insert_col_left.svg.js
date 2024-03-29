@@ -1,0 +1,7 @@
+import * as React from "react";
+const SvgInsertColLeft = (props) => /* @__PURE__ */ React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: 20, height: 20, fill: "currentColor", viewBox: "0 0 20 20", ...props }, /* @__PURE__ */ React.createElement("mask", { id: "a", width: 20, height: 20, x: 0, y: 0, maskUnits: "userSpaceOnUse", style: {
+  maskType: "alpha"
+} }, /* @__PURE__ */ React.createElement("path", { d: "M0 20h20v20H0z", transform: "rotate(-90 0 20)" })), /* @__PURE__ */ React.createElement("g", { mask: "url(#a)" }, /* @__PURE__ */ React.createElement("path", { d: "M15.75 4.5H13v2.75h-1.5V4.5H8.75V3h2.75V.25H13V3h2.75v1.5ZM13 17H5V3h2.25v1.5H6.5v11h5V8.75H13V17Z" })));
+export {
+  SvgInsertColLeft as default
+};

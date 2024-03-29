@@ -1,0 +1,7 @@
+import * as React from "react";
+const SvgAdmonition = (props) => /* @__PURE__ */ React.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React.createElement("mask", { id: "mask0_403_47", style: {
+  maskType: "alpha"
+}, maskUnits: "userSpaceOnUse", x: 0, y: 0, width: 24, height: 24 }, /* @__PURE__ */ React.createElement("rect", { width: 24, height: 24, fill: "#D9D9D9" })), /* @__PURE__ */ React.createElement("g", { mask: "url(#mask0_403_47)" }, /* @__PURE__ */ React.createElement("path", { d: "M11 6.625H13V13.375H11V6.625ZM12 16C11.7166 16 11.4791 15.9042 11.2875 15.7125C11.0958 15.5208 11 15.2833 11 15C11 14.7167 11.0958 14.4792 11.2875 14.2875C11.4791 14.0958 11.7166 14 12 14C12.2833 14 12.5208 14.0958 12.7125 14.2875C12.9041 14.4792 13 14.7167 13 15C13 15.2833 12.9041 15.5208 12.7125 15.7125C12.5208 15.9042 12.2833 16 12 16ZM12 22.8L1.19995 12L12 1.2L22.8 12L12 22.8ZM12 20L20 12L12 4L3.99995 12L12 20Z", fill: "currentColor" })));
+export {
+  SvgAdmonition as default
+};

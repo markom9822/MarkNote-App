@@ -1,0 +1,7 @@
+import * as React from "react";
+const SvgFrameSource = (props) => /* @__PURE__ */ React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: 24, height: 24, fill: "currentColor", viewBox: "0 0 24 24", ...props }, /* @__PURE__ */ React.createElement("mask", { id: "a", width: 24, height: 24, x: 0, y: 0, maskUnits: "userSpaceOnUse", style: {
+  maskType: "alpha"
+} }, /* @__PURE__ */ React.createElement("path", { d: "M0 0h24v24H0z" })), /* @__PURE__ */ React.createElement("g", { mask: "url(#a)" }, /* @__PURE__ */ React.createElement("path", { d: "M3 21v-6h2v4h4v2H3Zm12 0v-2h4v-4h2v6h-6Zm-6.4-5.4L5 12l3.6-3.6L10 9.825 7.825 12 10 14.175 8.6 15.6Zm6.8 0L14 14.175 16.175 12 14 9.825 15.4 8.4 19 12l-3.6 3.6ZM3 9V3h6v2H5v4H3Zm16 0V5h-4V3h6v6h-2Z" })));
+export {
+  SvgFrameSource as default
+};

@@ -1,0 +1,30 @@
+{
+   "name": "unidiff",
+   "version": "1.0.4",
+   "description": "diff with unified diff format handling",
+   "main": "index.js",
+   "dependencies": {
+      "diff": "^5.1.0"
+   },
+   "devDependencies": {
+      "tape": "^5.6.3",
+      "test-kit": "^2.8.7"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/mvoss9000/unidiff.git"
+   },
+   "scripts": {
+      "test": "tape test.js",
+      "cov": "tap --coverage-report=html test.js"
+   },
+   "files": [
+      "index.js",
+      "hunk.js"
+   ],
+   "keywords": [
+      "example"
+   ],
+   "author": "Matthew Voss",
+   "license": "MIT"
+}

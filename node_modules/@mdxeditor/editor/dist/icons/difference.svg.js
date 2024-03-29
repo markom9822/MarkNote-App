@@ -1,0 +1,7 @@
+import * as React from "react";
+const SvgDifference = (props) => /* @__PURE__ */ React.createElement("svg", { width: 25, height: 24, viewBox: "0 0 25 24", fill: "none", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React.createElement("mask", { id: "mask0_318_257", style: {
+  maskType: "alpha"
+}, maskUnits: "userSpaceOnUse", x: 0, y: 0, width: 25, height: 24 }, /* @__PURE__ */ React.createElement("rect", { x: 0.929688, width: 24, height: 24, fill: "#D9D9D9" })), /* @__PURE__ */ React.createElement("g", { mask: "url(#mask0_318_257)" }, /* @__PURE__ */ React.createElement("path", { d: "M12.4297 13H14.4297V11H16.4297V9H14.4297V7H12.4297V9H10.4297V11H12.4297V13ZM10.4297 17H16.4297V15H10.4297V17ZM5.92969 21V3H14.9297L20.9297 9V21H5.92969ZM7.92969 19H18.9297V10L13.9297 5H7.92969V19Z", fill: "currentColor" })));
+export {
+  SvgDifference as default
+};

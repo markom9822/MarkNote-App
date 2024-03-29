@@ -1,0 +1,7 @@
+import * as React from "react";
+const SvgFormatUnderlined = (props) => /* @__PURE__ */ React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: 24, height: 24, fill: "currentColor", viewBox: "0 0 24 24", ...props }, /* @__PURE__ */ React.createElement("mask", { id: "a", width: 24, height: 24, x: 0, y: 0, maskUnits: "userSpaceOnUse", style: {
+  maskType: "alpha"
+} }, /* @__PURE__ */ React.createElement("path", { d: "M0 0h24v24H0z" })), /* @__PURE__ */ React.createElement("g", { mask: "url(#a)" }, /* @__PURE__ */ React.createElement("path", { d: "M5 21v-2h14v2H5Zm7-4c-1.683 0-2.992-.525-3.925-1.575-.933-1.05-1.4-2.442-1.4-4.175V3H9.25v8.4c0 .933.233 1.692.7 2.275.467.583 1.15.875 2.05.875.9 0 1.583-.292 2.05-.875.467-.583.7-1.342.7-2.275V3h2.575v8.25c0 1.733-.467 3.125-1.4 4.175C14.992 16.475 13.683 17 12 17Z" })));
+export {
+  SvgFormatUnderlined as default
+};

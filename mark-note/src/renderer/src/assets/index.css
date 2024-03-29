@@ -1,0 +1,40 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base{
+    #root {
+        @apply h-full;
+    }
+
+    html, 
+    body {
+        @apply h-full;
+
+        @apply select-none;
+
+        @apply bg-transparent;
+
+        @apply font-mono antialiased text-white;
+
+        @apply overflow-hidden;
+    }
+
+    ::-webkit-scrollbar{
+        @apply w-2;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-[#555] rounded-md;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+}
