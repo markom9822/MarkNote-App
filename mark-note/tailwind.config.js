@@ -16,6 +16,12 @@ module.exports = {
               'code::after': {
                 content: 'none'
               },
+              'ul > li:has(input[type="checkbox"])': {
+                listStyle: 'none',
+              },
+              'ul > li > input[type="checkbox"]:first-child': {
+                margin: '0 16px 0 -32px !important',
+              },
               code: {
                 color: theme('colors.slate.500'),
                 backgroundColor: theme('colors.stone.100'),
@@ -24,6 +30,15 @@ module.exports = {
                 paddingRight: theme('spacing[1.5]'),
                 paddingTop: theme('spacing.1'),
                 paddingBottom: theme('spacing.1'),
+              },
+              pre: {
+                backgroundColor: theme('colors.stone.900'),
+              },
+              'blockquote p:first-of-type::before': { 
+                content: 'none' 
+              },
+              'blockquote p:first-of-type::after': { 
+                content: 'none'
               },
             }
           }
