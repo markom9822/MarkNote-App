@@ -44,9 +44,9 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
   };
 
     
-  return <ReactMarkdown className={`font-roboto outline-none min-h-screen max-w-none text-lg px-8 py-5 caret-yellow-500 prose prose-invert
+  return <ReactMarkdown className={`font-mono outline-none min-h-screen max-w-none text-lg px-8 py-5 caret-yellow-500 prose prose-invert
   prose-p:my-3 prose-p:leading-relaxed prose-headings:my-4 prose-blockquote:my-4 prose-ul:my-2 prose-li:my-0 prose-code:px-1
-   prose-code:text-white`}
+   prose-code:text-white prose-inline-code:rounded prose-inline-code:bg-gray-500`}
   
   remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, underlinePlugin]} rehypePlugins={[rehypeKatex]}>{props.markdownContent}</ReactMarkdown>
 }

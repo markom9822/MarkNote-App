@@ -56,8 +56,6 @@ export const MarkdownEditor = ({
         
     }, [view])
 
-
-
     const handleChange = useCallback(
         state => onChange(state.doc.toString()),
         [onChange]
