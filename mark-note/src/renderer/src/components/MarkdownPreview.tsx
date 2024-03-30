@@ -4,6 +4,9 @@ import remarkGfm from "remark-gfm"
 import remarkGemoji from 'remark-gemoji'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import rehypeRaw from 'rehype-raw';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import 'katex/dist/katex.min.css'
 import 'github-markdown-css/github-markdown.css'
@@ -45,8 +48,29 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
 
     
   return <ReactMarkdown className={`font-mono outline-none min-h-screen max-w-none text-lg px-8 py-5 caret-yellow-500 prose prose-invert
-  prose-p:my-3 prose-p:leading-relaxed prose-headings:my-4 prose-blockquote:my-4 prose-ul:my-2 prose-li:my-0 prose-code:px-1
-   prose-code:text-white prose-inline-code:rounded prose-inline-code:bg-gray-500`}
+  prose-p:my-3 prose-p:leading-relaxed prose-headings:my-4 prose-blockquote:my-4 prose-blockquote:bg-gray-800 prose-blockquote:bg-opacity-30 prose-blockquote:border-gray-500
+  prose-ul:my-2 prose-li:my-0 prose-li:marker:text-stone-300
+  prose-a:text-blue-300 hover:prose-a:text-blue-500
+  prose-th:bg-gray-800 prose-th:text-white prose-th:p-2 prose-td:p-2 prose-table:bg-gray-700
+  prose-code:px-1 prose-code:text-white prose-inline-code:rounded prose-inline-code:bg-gray-500`}
   
-  remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, underlinePlugin]} rehypePlugins={[rehypeKatex]}>{props.markdownContent}</ReactMarkdown>
+  remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, underlinePlugin]} 
+  rehypePlugins={[rehypeKatex, rehypeRaw]}
+  components={{
+    code({ node, inline, className, children, ...props }: any) {
+      const match = /language-(\w+)/.exec(className || '');
+
+      return !inline && match ? (
+        <SyntaxHighlighter style={dracula} PreTag="div" language={match[1]} {...props}>
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+  }}
+  >
+  {props.markdownContent}</ReactMarkdown>
 }

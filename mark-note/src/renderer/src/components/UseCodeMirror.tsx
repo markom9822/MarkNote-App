@@ -6,6 +6,8 @@ import { defaultKeymap } from '@codemirror/commands'
 import { lineNumbers, highlightActiveLine, highlightActiveLineGutter } from '@codemirror/view'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
+import { python } from '@codemirror/lang-python';
+import { cpp } from '@codemirror/lang-cpp';
 import { languages } from '@codemirror/language-data'
 import { useMarkdownEditor } from "@renderer/hooks/useMarkdownEditor"
 
@@ -58,6 +60,8 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         lineNumbers(),
         highlightActiveLineGutter(),
         highlightActiveLine(),
+        python(),
+        cpp(),
         markdown({
             base: markdownLanguage,
             codeLanguages: languages,

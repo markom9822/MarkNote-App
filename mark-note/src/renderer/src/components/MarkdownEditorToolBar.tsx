@@ -14,7 +14,7 @@ import { IoIosCheckboxOutline, IoIosLink } from "react-icons/io";
 import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { ButtonTooltip } from "./Button"
-
+import { TfiMore } from "react-icons/tfi";
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
     editorView: EditorView | null | undefined;
@@ -77,6 +77,10 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         
         <ButtonTooltip message="Emoji">
             <EmojiButton editorView={editorView}/>
+        </ButtonTooltip>
+
+        <ButtonTooltip message="More options">
+            <MoreOptionsButton editorView={editorView}/>
         </ButtonTooltip>
     </div>
    ) 
@@ -324,3 +328,18 @@ export const EmojiButton = ({editorView, ...props}: ToolBarButtonProps) => {
         </ToolBarButton>
     )
 }
+
+export const MoreOptionsButton = ({editorView, ...props}: ToolBarButtonProps) => {
+
+    const handleMoreOptions = async () => {
+    
+
+    }
+
+    return (
+        <ToolBarButton editorView={editorView} onClick={handleMoreOptions} {...props}>
+            <TfiMore className="w-4 h-4 text-zinc-100"/>
+        </ToolBarButton>
+    )
+}
+
