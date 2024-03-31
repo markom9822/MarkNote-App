@@ -1,23 +1,72 @@
 import React, { useRef, useEffect, useState } from 'react'
 
-import { Compartment, EditorState } from '@codemirror/state'
+import { Compartment, EditorState, Extension } from '@codemirror/state'
 import { EditorView, keymap } from '@codemirror/view'
 import { defaultKeymap } from '@codemirror/commands'
 import { lineNumbers, highlightActiveLine, highlightActiveLineGutter } from '@codemirror/view'
 import { oneDark } from '@codemirror/theme-one-dark'
-import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
+import { markdown, markdownLanguage} from '@codemirror/lang-markdown'
 import { python } from '@codemirror/lang-python';
 import { cpp } from '@codemirror/lang-cpp';
 import { languages } from '@codemirror/language-data'
 import { useMarkdownEditor } from "@renderer/hooks/useMarkdownEditor"
+import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
+import { Tag, tags, styleTags } from '@lezer/highlight';
+import { MarkdownConfig } from '@lezer/markdown';
+
 
 
 export const transparentTheme = EditorView.theme({
     '&': {
         backgroundColor: 'transparent !important',
-        height: '100%'
-    }
+        height: '100%',
+    },
+    '.cm-content': {
+        fontSize: '16px'
+    },
 })
+
+const customTags = {
+    headingMark: Tag.define(),
+  };
+  
+const MarkStylingExtension: MarkdownConfig = {
+    props: [
+      styleTags({
+        HeadingMark: customTags.headingMark,
+      }),
+    ],
+  };
+  
+  const highlightStyle = HighlightStyle.define([
+    {
+        tag: tags.heading1,
+        fontSize: '2.1em',
+        fontWeight: '700',
+    },
+    {
+        tag: tags.heading2,
+        fontSize: '1.8em',
+        fontWeight: '700',
+    },
+    {
+        tag: tags.heading3,
+        fontSize: '1.5em',
+        fontWeight: '700',
+    },
+    {
+        tag: tags.heading4,
+        fontSize: '1.2em',
+        fontWeight: '700',
+    },
+    {
+        tag: tags.quote,
+        fontWeight: '700',
+        background: 'black'
+    },
+
+  ]);
+
 
 type EditorProps = {
     setView: (view: EditorView | null) => void;
@@ -60,12 +109,16 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         lineNumbers(),
         highlightActiveLineGutter(),
         highlightActiveLine(),
-        python(),
-        cpp(),
+        //python(),
+        //cpp(),
         markdown({
             base: markdownLanguage,
             codeLanguages: languages,
-          }),
+            extensions: [MarkStylingExtension]
+        }),
+        syntaxHighlighting(
+            highlightStyle
+        ),
         oneDark,
         transparentTheme,
         EditorView.updateListener.of(update => {
