@@ -51,7 +51,7 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
   prose-p:my-3 prose-p:leading-relaxed prose-headings:my-4 prose-blockquote:my-4 prose-blockquote:bg-gray-800 prose-blockquote:bg-opacity-30 prose-blockquote:border-gray-500
   prose-ul:my-2 prose-li:my-0 prose-li:marker:text-stone-300
   prose-a:text-blue-300 hover:prose-a:text-blue-500
-  prose-th:bg-gray-800 prose-th:text-white prose-th:p-2 prose-td:p-2 prose-table:bg-gray-700
+  prose-th:bg-zinc-500 prose-th:text-white prose-td:text-white prose-th:text-center prose-th:p-2 prose-td:p-2 prose-table:bg-zinc-800 prose-td:border prose-th:border
   prose-code:px-1 prose-code:text-white prose-inline-code:rounded prose-inline-code:bg-gray-500`}
   
   remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, underlinePlugin]} 

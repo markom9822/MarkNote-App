@@ -38,6 +38,7 @@ module.exports = {
               'blockquote p:first-of-type::after': { 
                 content: 'none'
               },
+            
             }
           }
         }
