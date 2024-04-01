@@ -1,3 +1,4 @@
+import { Dropdown } from "@renderer/components/Utilities/Dropdown"
 
 export const ThemesSettingOption = () => {
 
@@ -21,35 +22,21 @@ export const ThemesSettingOption = () => {
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate">UI Theme</h2>
                 <span>This styles the buttons, side bar and other common components</span>
-                {ThemeDropdown(uiThemeOptions)}
+                {Dropdown(uiThemeOptions)}
             </div>
 
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate">Editor Theme</h2>
                 <span>This styles the text inside the editor</span>
-                {ThemeDropdown(editorThemeOptions)}
+                {Dropdown(editorThemeOptions)}
             </div>
 
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate">Preview Theme</h2>
                 <span>This styles the Markdown output</span>
-                {ThemeDropdown(previewThemeOptions)}
+                {Dropdown(previewThemeOptions)}
             </div>
             
-        </div>
-    )
-}
-
-function ThemeDropdown(options) {
-
-    return (
-        <div>
-            <select className="bg-gray-500 border border-gray-800 text-gray-50 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                {options.map(option => (
-                    <option value={option.value}>{option.label}</option>
-                ))}
-
-            </select>
         </div>
     )
 }

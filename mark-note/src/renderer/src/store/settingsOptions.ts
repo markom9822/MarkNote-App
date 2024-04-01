@@ -4,6 +4,7 @@ import {unwrap} from 'jotai/utils'
 import { LuPaintbrush } from "react-icons/lu";
 import { FaChalkboardTeacher, FaLaptopCode } from "react-icons/fa";
 import { MdOutlineDisabledByDefault } from "react-icons/md";
+import { MdOutlinePreview } from "react-icons/md";
 import { ThemesSettingOption} from '@/components/SettingsPopUp/Options/ThemesSettingOption'
 
  
@@ -17,9 +18,15 @@ const settingsOptions = [{
     icon: LuPaintbrush,
   }, {
     id: 2,
-    title: 'Editing',
+    title: 'Editor',
     icon: FaLaptopCode,
-  }];
+  },
+  {
+    id: 3,
+    title: 'Preview',
+    icon: MdOutlinePreview,
+  }
+];
 
 
 const loadSettingsOptions = async () => {

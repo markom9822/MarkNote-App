@@ -28,11 +28,9 @@ module.exports = {
                 borderRadius: theme('borderRadius.DEFAULT'),
                 paddingLeft: theme('spacing[1.5]'),
                 paddingRight: theme('spacing[1.5]'),
-                paddingTop: theme('spacing.1'),
-                paddingBottom: theme('spacing.1'),
               },
               pre: {
-                backgroundColor: theme('colors.stone.900'),
+                // codeblock
               },
               'blockquote p:first-of-type::before': { 
                 content: 'none' 

@@ -1,29 +1,87 @@
 import React, { useRef, useEffect, useState } from 'react'
 
 import { Compartment, EditorState, Extension } from '@codemirror/state'
-import { EditorView, keymap } from '@codemirror/view'
+import { EditorView, keymap, Decoration, DecorationSet } from '@codemirror/view'
 import { defaultKeymap } from '@codemirror/commands'
 import { lineNumbers, highlightActiveLine, highlightActiveLineGutter } from '@codemirror/view'
-import { oneDark } from '@codemirror/theme-one-dark'
 import { markdown, markdownLanguage} from '@codemirror/lang-markdown'
-import { python } from '@codemirror/lang-python';
-import { cpp } from '@codemirror/lang-cpp';
 import { languages } from '@codemirror/language-data'
 import { useMarkdownEditor } from "@renderer/hooks/useMarkdownEditor"
-import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
+import { HighlightStyle, syntaxHighlighting, bracketMatching, syntaxTree } from '@codemirror/language';
 import { Tag, tags, styleTags } from '@lezer/highlight';
-import { MarkdownConfig } from '@lezer/markdown';
+import { MarkdownConfig, MarkdownExtension } from '@lezer/markdown';
+import { RangeSetBuilder, StateField } from "@codemirror/state";
+
+import { basicDark } from '@renderer/utils/themes/DarkTheme'
 
 
+const codeBlockMarker = Decoration.line({ class: "cm-codeblock" });
+
+const CodeBlockField = StateField.define<DecorationSet>({
+    create(state) {
+      const builder = new RangeSetBuilder<Decoration>();
+      syntaxTree(state).iterate({
+        enter(node) {
+          if (node.type.is("FencedCode")) {
+            const firstLine = state.doc.lineAt(node.from).number;
+            const lastLine = state.doc.lineAt(node.to).number;
+            for (let i = firstLine; i <= lastLine; i++) {
+              builder.add(
+                state.doc.line(i).from,
+                state.doc.line(i).from,
+                codeBlockMarker
+              );
+            }
+          }
+        },
+      });
+      return builder.finish();
+    },
+    update(decorations, tr) {
+      const builder = new RangeSetBuilder<Decoration>();
+      decorations = decorations.map(tr.changes);
+      syntaxTree(tr.state).iterate({
+        enter(node) {
+          if (node.type.is("FencedCode")) {
+            const firstLine = tr.state.doc.lineAt(node.from).number;
+            const lastLine = tr.state.doc.lineAt(node.to).number;
+            for (let i = firstLine; i <= lastLine; i++) {
+              builder.add(
+                tr.state.doc.line(i).from,
+                tr.state.doc.line(i).from,
+                codeBlockMarker
+              );
+            }
+          }
+        },
+      });
+      return builder.finish();
+    },
+    provide(field) {
+      return EditorView.decorations.from(field);
+    },
+  });
+  
+  export default CodeBlockField;
 
 export const transparentTheme = EditorView.theme({
     '&': {
         backgroundColor: 'transparent !important',
         height: '100%',
+        //font:"'JetBrains Mono', monospace",
     },
     '.cm-content': {
-        fontSize: '16px'
+        fontSize: '15px',
     },
+    ".cm-line.cm-codeblock": {
+        backgroundColor: "#1f1e1e",
+        color: "#fff",
+    },
+    ".cm-line.cm-activeLine.cm-codeblock": {
+        backgroundColor: "#4a4848",
+        color: "#fff",
+    },
+    
 })
 
 const customTags = {
@@ -42,28 +100,34 @@ const MarkStylingExtension: MarkdownConfig = {
     {
         tag: tags.heading1,
         fontSize: '2.1em',
-        fontWeight: '700',
+        fontWeight: 'bold',
     },
     {
         tag: tags.heading2,
         fontSize: '1.8em',
-        fontWeight: '700',
+        fontWeight: 'bold',
     },
     {
         tag: tags.heading3,
         fontSize: '1.5em',
-        fontWeight: '700',
+        fontWeight: 'bold',
     },
     {
         tag: tags.heading4,
         fontSize: '1.2em',
-        fontWeight: '700',
+        fontWeight: 'bold',
     },
     {
         tag: tags.quote,
-        fontWeight: '700',
-        background: 'black'
     },
+    {
+        tag: tags.monospace,
+        color: '#b6b8ba',
+        background: '#282829',
+        borderRadius: '3px',
+        padding: '1px'
+    },
+
 
   ]);
 
@@ -109,18 +173,19 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         lineNumbers(),
         highlightActiveLineGutter(),
         highlightActiveLine(),
-        //python(),
-        //cpp(),
+        bracketMatching(),
         markdown({
             base: markdownLanguage,
             codeLanguages: languages,
+            addKeymap: true,
             extensions: [MarkStylingExtension]
         }),
         syntaxHighlighting(
             highlightStyle
         ),
-        oneDark,
+        CodeBlockField,
         transparentTheme,
+        basicDark,
         EditorView.updateListener.of(update => {
             if (update.changes) {
                setDoc(update.state.doc.toString())

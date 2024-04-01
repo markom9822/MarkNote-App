@@ -1,4 +1,4 @@
-import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, Editor} from "@/components";
+import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar} from "@/components";
 import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
@@ -14,7 +14,6 @@ const App = () => {
   const [markdownDoc, setMarkdown] = useState<string>('');
   const [showSettings, setShowSettings] = useState(false)
 
-
   const handleSettingsOnClose = () => setShowSettings(false)
 
   const handleDocChange = useCallback(newDoc => {
@@ -29,6 +28,7 @@ const App = () => {
   return (
     <>
     <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings}/>
+
       <RootLayout>
         <Sidebar className="bg-zinc-900/80">
           <ActionButtonsRow className="flex justify-between mt-1"/>
@@ -37,8 +37,7 @@ const App = () => {
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
-          <FloatingNoteTitle className="pt-2"/>
-          <MarkdownEditorToolBar editorView={mardownEditor?.view} className="pt-2"/>
+          <MarkdownEditorToolBar editorView={mardownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <div>{mardownEditor?.editor}</div>
         </Content>
 

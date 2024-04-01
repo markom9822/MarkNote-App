@@ -14,4 +14,6 @@ export * from './SettingsPopUp/SettingOptionView'
 export * from './SettingsPopUp/Options/ThemesSettingOption'
 export * from './SettingsPopUp/Options/GeneralSettingOption'
 export * from './SettingsPopUp/Options/EditorSettingOption'
-
+export * from './SettingsPopUp/Options/PreviewSettingOption'
+export * from './PreviewOptionsPopUp/PreviewOptionsPopUp'
+export * from './Utilities/Dropdown'

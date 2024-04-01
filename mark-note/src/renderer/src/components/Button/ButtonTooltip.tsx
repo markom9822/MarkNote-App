@@ -11,7 +11,7 @@ export const ButtonTooltip = ({message, className, children, ...props}: ButtonTo
     return (
     <div className={twMerge('group relative flex justify-center', className)}>
         {children}
-        <span className={twMerge('absolute bottom-6 scale-0 transition-all rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100', className)}>{message}</span>
+        <span className={twMerge('absolute top-6 scale-0 transition-all rounded bg-zinc-700 p-2 text-xs text-white group-hover:scale-100', className)}>{message}</span>
     </div>
     )
 }

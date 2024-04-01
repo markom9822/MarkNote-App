@@ -3,6 +3,7 @@ import { useSettingsList } from "@renderer/hooks/useSettingsList"
 import { ThemesSettingOption } from './Options/ThemesSettingOption'
 import { GeneralSettingOption } from './Options/GeneralSettingOption'
 import { EditorSettingOption } from './Options/EditorSettingOption'
+import { PreviewSettingOption } from './Options/PreviewSettingOption'
 
 export type SettingsContentProps = ComponentProps<'ul'> & {
     onSelect?: () => void
@@ -29,6 +30,12 @@ export const SettingsContentView = ({onSelect, className, ...props}: SettingsCon
           title: 'Editor',
           content: (
             <EditorSettingOption />
+          ),
+        },
+        {
+          title: 'Preview',
+          content: (
+            <PreviewSettingOption />
           ),
         }
       ];
