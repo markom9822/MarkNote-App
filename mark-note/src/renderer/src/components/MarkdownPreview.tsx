@@ -13,12 +13,18 @@ import 'github-markdown-css/github-markdown.css'
 
 import React from "react"
 import { visit } from "unist-util-visit";
+import { selectedNoteIndexAtom } from '@renderer/store'
+import { useAtomValue } from 'jotai'
 
 export type MarkdownPreviewProps = {
     markdownContent: string
 }
 
 export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
+
+  // if no note selected then dont show preview
+  const selectedNoteIndex = useAtomValue(selectedNoteIndexAtom)
+  if(selectedNoteIndex == null) return
 
   // custom underline plugin
   const underlinePlugin = () => {
