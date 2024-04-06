@@ -6,6 +6,7 @@ export const ActionButtonsRow = ({...props}: ComponentProps<'div'>) => {
     return (
         <div {...props}>
             <NewNoteButton />
+            <strong>All Notes</strong>
             <DeleteNoteButton />
         </div>
     )

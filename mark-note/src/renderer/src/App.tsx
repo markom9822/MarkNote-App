@@ -1,7 +1,8 @@
-import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar} from "@/components";
+import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar} from "@/components";
 import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
+import { NoteInfo } from "@shared/models";
 
 const App = () => {
 
@@ -22,7 +23,7 @@ const App = () => {
 
   const mardownEditor = MarkdownEditor({
     onChange: handleDocChange,
-    editable: !showSettings
+    editable: !showSettings,
   })
 
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Sidebar className="bg-zinc-900/80">
           <ActionButtonsRow className="flex justify-between mt-1"/>
           <SettingsButton onClick={() => setShowSettings(true)}/>
+          <NotesSearchBar/>
           <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 

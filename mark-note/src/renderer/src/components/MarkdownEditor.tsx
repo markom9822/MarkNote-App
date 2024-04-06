@@ -2,21 +2,24 @@ import React, { useRef, useEffect, useState, useCallback, Component } from 'reac
 import { EditorView } from "@codemirror/view";
 import { CodeMirrorEditor } from './UseCodeMirror'
 import { useMarkdownEditor } from "@renderer/hooks/useMarkdownEditor"
-import { useSetAtom } from "jotai"
-import { saveNoteAtom } from "@renderer/store"
-
+import { useSetAtom, useAtomValue } from "jotai"
+import { saveNoteAtom, selectedNoteAtom, notesAtom } from "@renderer/store"
+import { useNotesList } from '@renderer/hooks/useNotesList';
+import { NoteInfo } from '@shared/models';
 
 export type MarkdownEditorProps = {
     onChange: (doc: string) => void;
-    editable: boolean
+    editable: boolean,
 }
 
 export const MarkdownEditor = ({
     onChange,
-    editable
+    editable,
 }: MarkdownEditorProps) => {
 
-    const {selectedNote, saveEditorView} = useMarkdownEditor()
+    const {saveEditorView} = useMarkdownEditor()
+    const selectedNote = useAtomValue(selectedNoteAtom)
+    const notes = useAtomValue(notesAtom)
 
     const [view, setView] = useState<EditorView | null>(null);
     const [doc, setDoc] = useState<string | null>('');
@@ -70,3 +73,4 @@ export const MarkdownEditor = ({
         view
     }
 }
+

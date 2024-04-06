@@ -66,7 +66,7 @@ const CodeBlockField = StateField.define<DecorationSet>({
 
 export const transparentTheme = EditorView.theme({
     '&': {
-        backgroundColor: 'transparent !important',
+        backgroundColor: "#3b3939",
         height: '100%',
         //font:"'JetBrains Mono', monospace",
     },
@@ -74,7 +74,7 @@ export const transparentTheme = EditorView.theme({
         fontSize: '15px',
     },
     ".cm-line.cm-codeblock": {
-        backgroundColor: "#1f1e1e",
+        backgroundColor: "#2e2d2d",
         color: "#fff",
     },
     ".cm-line.cm-activeLine.cm-codeblock": {
