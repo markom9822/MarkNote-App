@@ -34,7 +34,7 @@ const App = () => {
         <Sidebar className="bg-zinc-900/80">
           <ActionButtonsRow className="flex justify-between mt-1"/>
           <SettingsButton onClick={() => setShowSettings(true)}/>
-          <NotesSearchBar/>
+          <NotesSearchBar className="px-2"/>
           <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 

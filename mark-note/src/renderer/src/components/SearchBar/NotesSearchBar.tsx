@@ -14,8 +14,8 @@ export const NotesSearchBar = ({onSelect, onChange, ...props}: NoteSearchBarProp
 
     return (
         <div {...props}>
-    <input type="search" id="notes-search" className="w-full p-2 ps-3 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" 
-    placeholder="Search Notes" onChange={event => setQuery(event.target.value)} onKeyUp={handleNotesFiltered(query)} onClick={handleNotesSelect(null)}/>
+    <input type="search" id="notes-search" className="w-full p-2 ps-3 text-sm text-zinc-300 border border-zinc-600 rounded-md bg-zinc-600 focus:outline-none" 
+    placeholder="Search" onChange={event => setQuery(event.target.value)} onKeyUp={handleNotesFiltered(query)} onClick={handleNotesSelect(null)}/>
     </div>
     )
 }

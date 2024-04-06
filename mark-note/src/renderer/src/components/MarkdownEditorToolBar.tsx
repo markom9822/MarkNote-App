@@ -3,6 +3,7 @@ import { useAtomValue } from "jotai"
 import { ComponentProps } from "react"
 import { twMerge } from "tailwind-merge"
 import { EditorView} from '@codemirror/view'
+import {useState} from 'react'
 
 import { PiHash } from "react-icons/pi";
 import { TbBold, TbItalic } from "react-icons/tb";
@@ -15,6 +16,7 @@ import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { ButtonTooltip } from "./Button"
 import { TfiMore } from "react-icons/tfi";
+import { LinkFormatPopUpModal } from "@/components";
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
     editorView: EditorView | null | undefined;
@@ -22,6 +24,8 @@ export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
 
 export const MarkdownEditorToolBar = ({editorView, className, ...props}: MarkdownEditorToolbarProps) => {
     const selectedNote = useAtomValue(selectedNoteAtom)
+    const [showLinkFormat, setShowLinkFormat] = useState(false)
+    const handleLinkFormatOnClose = () => setShowLinkFormat(false)
 
     if(!selectedNote) return null
 
@@ -68,7 +72,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         </ButtonTooltip>
         
         <ButtonTooltip message="Link">
-            <LinkButton editorView={editorView}/>
+            <LinkButton editorView={editorView} onClick={() => setShowLinkFormat(true)}/>
         </ButtonTooltip>
 
         <ButtonTooltip message="Image">
@@ -82,6 +86,8 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         <ButtonTooltip message="More options">
             <MoreOptionsButton editorView={editorView}/>
         </ButtonTooltip>
+
+        <LinkFormatPopUpModal onClose={handleLinkFormatOnClose} visible={showLinkFormat}/>
     </div>
    ) 
 }
