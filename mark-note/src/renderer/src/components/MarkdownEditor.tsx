@@ -3,7 +3,7 @@ import { EditorView } from "@codemirror/view";
 import { CodeMirrorEditor } from './UseCodeMirror'
 import { useMarkdownEditor } from "@renderer/hooks/useMarkdownEditor"
 import { useSetAtom, useAtomValue } from "jotai"
-import { saveNoteAtom, selectedNoteAtom, notesAtom } from "@renderer/store"
+import { saveNoteAtom, selectedNoteAtom, allNotesAtom } from "@renderer/store"
 import { useNotesList } from '@renderer/hooks/useNotesList';
 import { NoteInfo } from '@shared/models';
 
@@ -19,7 +19,7 @@ export const MarkdownEditor = ({
 
     const {saveEditorView} = useMarkdownEditor()
     const selectedNote = useAtomValue(selectedNoteAtom)
-    const notes = useAtomValue(notesAtom)
+    const notes = useAtomValue(allNotesAtom)
 
     const [view, setView] = useState<EditorView | null>(null);
     const [doc, setDoc] = useState<string | null>('');

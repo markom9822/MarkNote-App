@@ -4,20 +4,22 @@ import { notesMock } from "@/store/mocks";
 import {unwrap} from 'jotai/utils'
 
 const loadNotes = async () => {
-    const notes = await window.context.getNotes()
+    const allNotes = await window.context.getNotes()
 
     // sort notes by most recently edited
-    return notes.sort((a,b) => b.lastEditTime - a.lastEditTime)
+    return allNotes.sort((a,b) => b.lastEditTime - a.lastEditTime)
 }
 
-const notesAtomAsync = atom<NoteInfo[] | Promise<NoteInfo[]>>(loadNotes())
+const allNotesAtomAsync = atom<NoteInfo[] | Promise<NoteInfo[]>>(loadNotes())
 
-export const notesAtom = unwrap(notesAtomAsync, (prev) => prev)
+export const allNotesAtom = unwrap(allNotesAtomAsync, (prev) => prev)
 
 export const selectedNoteIndexAtom = atom<number | null>(null)
 
+export const filteredNotesAtom = atom<NoteInfo[] | null>(await loadNotes())
+
 const selectedNoteAtomAsync = atom(async (get) => {
-    const notes = get(notesAtom)
+    const notes = get(allNotesAtom)
     const selectedNoteIndex = get(selectedNoteIndexAtom)
 
     if (selectedNoteIndex == null || !notes) return null
@@ -39,7 +41,7 @@ export const selectedNoteAtom = unwrap(selectedNoteAtomAsync, (prev) => prev ?? 
 })
 
 export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent) => {
-    const notes = get(notesAtom)
+    const notes = get(allNotesAtom)
     const selectedNote = get(selectedNoteAtom)
 
     if(!selectedNote || !notes) return
@@ -49,7 +51,7 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 
     // update the saved note's last edit time
     set(
-        notesAtom,
+        allNotesAtom,
         notes.map((note) => {
             // this is the note that we want to update
             if(note.title == selectedNote.title) {
@@ -64,7 +66,7 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 })
 
 export const createEmptyNoteAtom = atom(null, async (get,set) =>  {
-    const notes = get(notesAtom)
+    const notes = get(allNotesAtom)
 
     if(!notes) return
 
@@ -77,13 +79,13 @@ export const createEmptyNoteAtom = atom(null, async (get,set) =>  {
         lastEditTime: Date.now()
     }
 
-    set(notesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)])
+    set(allNotesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)])
 
     set(selectedNoteIndexAtom, 0)
 })
 
 export const deleteNoteAtom = atom(null, async (get,set) => {
-    const notes = get(notesAtom)
+    const notes = get(allNotesAtom)
     const selectedNote = get(selectedNoteAtom)
 
     if(!selectedNote || !notes) return
@@ -94,7 +96,7 @@ export const deleteNoteAtom = atom(null, async (get,set) => {
 
     // filter out deleted note
     set(
-        notesAtom, 
+        allNotesAtom, 
         notes.filter((note) => note.title !== selectedNote.title)
     )
 
