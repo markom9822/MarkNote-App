@@ -25,7 +25,26 @@ export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
 export const MarkdownEditorToolBar = ({editorView, className, ...props}: MarkdownEditorToolbarProps) => {
     const selectedNote = useAtomValue(selectedNoteAtom)
     const [showLinkFormat, setShowLinkFormat] = useState(false)
+
     const handleLinkFormatOnClose = () => setShowLinkFormat(false)
+
+    const handleClickLinkInsert = () => {
+        if(editorView == null) return 
+        if(editorView == undefined) return
+        if(linkFormatPopUpModal?.linkTitle == undefined) return
+        if(linkFormatPopUpModal?.linkAddress == undefined) return
+
+        const linkTitleString = "[" + linkFormatPopUpModal?.linkTitle.toString() + "]";
+        const linkAddressString = "(" + linkFormatPopUpModal?.linkAddress.toString() + ")";
+
+        InsertTextInEditor(linkTitleString + linkAddressString, editorView, false)
+    }
+
+    const linkFormatPopUpModal = LinkFormatPopUpModal({
+        onClose: handleLinkFormatOnClose,
+        onClickInsert: handleClickLinkInsert,
+        visible: showLinkFormat
+    })
 
     if(!selectedNote) return null
 
@@ -60,7 +79,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         </ButtonTooltip>
         
         <ButtonTooltip message="Ordered List">
-            <OrderdListButton editorView={editorView}/>
+            <OrderedListButton editorView={editorView}/>
         </ButtonTooltip>
         
         <ButtonTooltip message="Checkbox">
@@ -70,6 +89,10 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         <ButtonTooltip message="Quotation">
             <QuoteButton editorView={editorView}/>
         </ButtonTooltip>
+
+        <div>
+            {linkFormatPopUpModal?.linkPopUp}
+        </div>
         
         <ButtonTooltip message="Link">
             <LinkButton editorView={editorView} onClick={() => setShowLinkFormat(true)}/>
@@ -87,7 +110,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
             <MoreOptionsButton editorView={editorView}/>
         </ButtonTooltip>
 
-        <LinkFormatPopUpModal onClose={handleLinkFormatOnClose} visible={showLinkFormat}/>
+        
     </div>
    ) 
 }
@@ -247,7 +270,7 @@ export const UnorderdListButton = ({editorView, ...props}: ToolBarButtonProps) =
     )
 }
 
-export const OrderdListButton = ({editorView, ...props}: ToolBarButtonProps) => {
+export const OrderedListButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     const handleCreateOrderedList = async () => {
         if(editorView == null) return 
@@ -297,11 +320,8 @@ export const QuoteButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
 export const LinkButton = ({...props}: ToolBarButtonProps) => {
 
-    const handleCreateLink = async () => {
-    }
-
     return (
-        <ToolBarButton onClick={handleCreateLink} {...props}>
+        <ToolBarButton {...props}>
             <IoIosLink className="w-4 h-4 text-zinc-100"/>
         </ToolBarButton>
     )
