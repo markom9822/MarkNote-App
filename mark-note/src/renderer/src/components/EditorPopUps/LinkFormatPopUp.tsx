@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
-import { MdClose } from "react-icons/md";
 import { ComponentProps, useState} from "react"
+import { IoIosLink } from "react-icons/io";
 
 export type LinkFormatPopUpModalProps = {
     onClose: () => void;
@@ -37,8 +37,9 @@ export const LinkFormatPopUpModal  = ({
         <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white">
                 <div className="bg-zinc-600 rounded-lg px-2 py-1 flex flex-col gap-5 mx-4 px-5">
-                    <div>
-                        Insert a link
+                    <div className='flex flex-row gap-3'>
+                        <IoIosLink className="w-4 h-4 text-zinc-100"/>
+                        <div>Insert a link</div>
                     </div>
                     <FormInputField label='Link title' placeholder='Link title' setInputText={setLinkTitle}/>
                     <FormInputField label='Link address' placeholder='https://' setInputText={setLinkAddress}/>
@@ -51,7 +52,6 @@ export const LinkFormatPopUpModal  = ({
             
         </div>, document.body 
     )
-
 
     return {
         linkPopUp,

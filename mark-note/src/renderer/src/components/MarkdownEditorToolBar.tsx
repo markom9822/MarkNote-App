@@ -17,6 +17,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { ButtonTooltip } from "./Button"
 import { TfiMore } from "react-icons/tfi";
 import { LinkFormatPopUpModal } from "@/components";
+import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
     editorView: EditorView | null | undefined;

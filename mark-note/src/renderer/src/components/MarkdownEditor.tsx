@@ -9,11 +9,13 @@ import { NoteInfo } from '@shared/models';
 
 export type MarkdownEditorProps = {
     onChange: (doc: string) => void;
+    onPastedLink: () => void;
     editable: boolean,
 }
 
 export const MarkdownEditor = ({
     onChange,
+    onPastedLink,
     editable,
 }: MarkdownEditorProps) => {
 
@@ -66,7 +68,8 @@ export const MarkdownEditor = ({
 
     if(!selectedNote) return null
 
-    const editor = <CodeMirrorEditor setView={setView} setDoc={setDoc} onChange={setChange} onDocChange={handleChange} intitialCode={selectedNote.content} editable={editable}/>
+    const editor = <CodeMirrorEditor setView={setView} setDoc={setDoc} onChange={setChange} onDocChange={handleChange} onPastedLink={onPastedLink}
+     intitialCode={selectedNote.content} editable={editable}/>
     
     return {
         editor,

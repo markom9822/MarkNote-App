@@ -3,6 +3,7 @@ import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
 import { NoteInfo } from "@shared/models";
+import { OnPasteLinkFormatPopUpModal } from "./components/EditorPopUps/OnPasteLinkFormatPopUp";
 
 const App = () => {
 
@@ -14,21 +15,35 @@ const App = () => {
 
   const [markdownDoc, setMarkdown] = useState<string>('');
   const [showSettings, setShowSettings] = useState(false)
-
+  const [showOnPasteLinkFormat, setShowOnPasteLinkFormat] = useState(false)
+  
   const handleSettingsOnClose = () => setShowSettings(false)
-
+  
   const handleDocChange = useCallback(newDoc => {
     setMarkdown(newDoc)
   }, [])
-
+  
+  const handlePastedLink = () => {
+    setShowOnPasteLinkFormat(true)
+  }
+  
   const mardownEditor = MarkdownEditor({
     onChange: handleDocChange,
+    onPastedLink: handlePastedLink,
     editable: !showSettings,
   })
+  
+  const handleOnPasteLinkFormatOnClose = () => setShowOnPasteLinkFormat(false)
+
+  const handleClickLinkCreate = () => {
+      
+  }
+
 
   return (
     <>
     <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings}/>
+    <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} onClickCreate={handleClickLinkCreate} visible={showOnPasteLinkFormat} />
 
       <RootLayout>
         <Sidebar className="bg-zinc-900/80">

@@ -136,7 +136,8 @@ type EditorProps = {
     setView: (view: EditorView | null) => void;
     setDoc: (doc: string | null) => void;
     onChange: (hasChanged: boolean | null) => void;
-    onDocChange?: (state: EditorState) => void
+    onDocChange?: (state: EditorState) => void;
+    onPastedLink: () => void;
     intitialCode: string;
     editable: boolean;
     children?: never;
@@ -147,6 +148,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     setDoc,
     onChange,
     onDocChange,
+    onPastedLink,
     intitialCode: doc,
     editable,
 }) => {
@@ -161,6 +163,21 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
             effects: isEditable.reconfigure(EditorView.editable.of(canEdit))
           })
     }
+
+    const eventHandlers = EditorView.domEventHandlers({
+      paste(event, view) {
+        var pastedText = event.clipboardData?.getData('Text');
+
+        // check if link
+        var regex = /https?:\/\/[^\s]+/g;
+        if(pastedText !== undefined)
+        if(pastedText.match(regex))
+        {
+          onPastedLink()
+        }
+        
+      }
+    })
 
   useEffect(() => {
 
@@ -186,6 +203,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         CodeBlockField,
         transparentTheme,
         basicDark,
+        eventHandlers,
         EditorView.updateListener.of(update => {
             if (update.changes) {
                setDoc(update.state.doc.toString())
