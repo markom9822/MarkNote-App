@@ -9,7 +9,7 @@ import { NoteInfo } from '@shared/models';
 
 export type MarkdownEditorProps = {
     onChange: (doc: string) => void;
-    onPastedLink: () => void;
+    onPastedLink: (pastedText: string) => void;
     editable: boolean,
 }
 

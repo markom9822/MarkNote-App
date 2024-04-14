@@ -137,7 +137,7 @@ type EditorProps = {
     setDoc: (doc: string | null) => void;
     onChange: (hasChanged: boolean | null) => void;
     onDocChange?: (state: EditorState) => void;
-    onPastedLink: () => void;
+    onPastedLink: (pastedText: string) => void;
     intitialCode: string;
     editable: boolean;
     children?: never;
@@ -173,7 +173,8 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         if(pastedText !== undefined)
         if(pastedText.match(regex))
         {
-          onPastedLink()
+          onPastedLink(pastedText)
+          event.preventDefault()
         }
         
       }

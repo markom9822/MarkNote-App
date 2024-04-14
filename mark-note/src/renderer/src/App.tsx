@@ -16,6 +16,7 @@ const App = () => {
   const [markdownDoc, setMarkdown] = useState<string>('');
   const [showSettings, setShowSettings] = useState(false)
   const [showOnPasteLinkFormat, setShowOnPasteLinkFormat] = useState(false)
+  const [pastedLinkText, setPastedLinkText] = useState('')
   
   const handleSettingsOnClose = () => setShowSettings(false)
   
@@ -23,11 +24,12 @@ const App = () => {
     setMarkdown(newDoc)
   }, [])
   
-  const handlePastedLink = () => {
+  const handlePastedLink = (pastedText: string) => {
     setShowOnPasteLinkFormat(true)
+    setPastedLinkText(pastedText)
   }
-  
-  const mardownEditor = MarkdownEditor({
+
+  const markdownEditor = MarkdownEditor({
     onChange: handleDocChange,
     onPastedLink: handlePastedLink,
     editable: !showSettings,
@@ -35,15 +37,11 @@ const App = () => {
   
   const handleOnPasteLinkFormatOnClose = () => setShowOnPasteLinkFormat(false)
 
-  const handleClickLinkCreate = () => {
-      
-  }
-
 
   return (
     <>
     <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings}/>
-    <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} onClickCreate={handleClickLinkCreate} visible={showOnPasteLinkFormat} />
+    <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} visible={showOnPasteLinkFormat} pastedText={pastedLinkText} editorView={markdownEditor?.view} />
 
       <RootLayout>
         <Sidebar className="bg-zinc-900/80">
@@ -54,8 +52,8 @@ const App = () => {
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
-          <MarkdownEditorToolBar editorView={mardownEditor?.view} className="sticky top-0 z-10 pt-2"/>
-          <div>{mardownEditor?.editor}</div>
+          <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
+          <div>{markdownEditor?.editor}</div>
         </Content>
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
