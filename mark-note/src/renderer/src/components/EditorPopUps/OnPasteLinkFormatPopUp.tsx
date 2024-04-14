@@ -23,15 +23,18 @@ export const OnPasteLinkFormatPopUpModal  = ({
     const formatList = [
         {
           id: 'option1',
-          label: pastedText,
+          title: 'Plain URL',
+          formatting: pastedText,
         },
         {
           id: 'option2',
-          label: "[](" + pastedText + ")",
+          title: 'With empty title',
+          formatting: "[](" + pastedText + ")",
         },
         {
           id: 'option3',
-          label: "<" + pastedText + ">",
+          title: 'With angle brackets',
+          formatting: "<" + pastedText + ">",
         },
     ];
 
@@ -46,7 +49,7 @@ export const OnPasteLinkFormatPopUpModal  = ({
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor(chosenFormat.label, editorView, false)
+        InsertTextInEditor(chosenFormat.formatting, editorView, false)
 
         onClose()
 
@@ -98,30 +101,39 @@ export const RadioButtonForm = ({
     return (
         <ul className="grid grid-rows-3 gap-x-5 m-5">
         <div className="relative flex items-center justify-center">
+            <p>
+                {formatList[0].title}
+            </p>
             <input type="radio" value="option1" id='option1' 
                 checked={selectedRadio == 'option1'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
             <label htmlFor='option1' className="cursor-pointer bg-zinc-100 rounded-xl text-black p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-black">
-                {formatList[0].label}
+                {formatList[0].formatting}
             </label>
         </div>
         <div className="relative flex items-center justify-center">
+            <p>
+                {formatList[1].title}
+            </p>
             <input type="radio" value="option2" id='option2' 
                 checked={selectedRadio == 'option2'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
             <label htmlFor='option2' className="cursor-pointer bg-zinc-100 rounded-xl text-black p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-black">
-                {formatList[1].label}
+                {formatList[1].formatting}
             </label>
         </div>
         <div className="relative flex items-center justify-center">
+            <p>
+                {formatList[2].title}
+            </p>
             <input type="radio" value="option3" id='option3' 
                 checked={selectedRadio == 'option3'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
             <label htmlFor='option3' className="cursor-pointer bg-zinc-100 rounded-xl text-black p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-black">
-                {formatList[2].label}
+                {formatList[2].formatting}
             </label>
         </div>
         </ul>
