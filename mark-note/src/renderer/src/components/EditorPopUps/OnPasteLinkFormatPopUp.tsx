@@ -3,7 +3,6 @@ import { ComponentProps, useState} from "react"
 import { IoIosLink } from "react-icons/io";
 import { EditorView} from '@codemirror/view'
 import { InsertTextInEditor } from '../MarkdownEditorToolBar';
-import getTitleAtUrl from 'get-title-at-url';
 
 export type OnPasteLinkFormatPopUpModalProps = {
     onClose: () => void;

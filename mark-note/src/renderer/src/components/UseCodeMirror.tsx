@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 
 import { Compartment, EditorState, Extension } from '@codemirror/state'
-import { EditorView, keymap, Decoration, DecorationSet } from '@codemirror/view'
+import { EditorView, keymap, Decoration, DecorationSet, MatchDecorator, ViewPlugin, ViewUpdate, WidgetType} from '@codemirror/view'
 import { defaultKeymap } from '@codemirror/commands'
 import { lineNumbers, highlightActiveLine, highlightActiveLineGutter } from '@codemirror/view'
 import { markdown, markdownLanguage} from '@codemirror/lang-markdown'
@@ -13,6 +13,8 @@ import { MarkdownConfig, MarkdownExtension } from '@lezer/markdown';
 import { RangeSetBuilder, StateField } from "@codemirror/state";
 
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
+import test from 'node:test'
+import { getEmojiFromText } from '@renderer/store/emojisDatabase'
 
 
 const codeBlockMarker = Decoration.line({ class: "cm-codeblock" });
@@ -63,6 +65,50 @@ const CodeBlockField = StateField.define<DecorationSet>({
   });
   
   export default CodeBlockField;
+
+  const handleGetEmojiFromText = (text: string) => {
+    const emojiText = getEmojiFromText(text)
+    if(emojiText == null) return ""
+    return emojiText
+
+  }
+
+  class PlaceholderWidget extends WidgetType {
+    constructor(readonly text: string) { super() }
+  
+    toDOM() {
+      let wrap = document.createElement("span")
+      wrap.setAttribute("aria-hidden", "true")
+      wrap.className = "cm-test-text"
+      wrap.innerText = handleGetEmojiFromText(this.text);
+      return wrap
+    }
+  
+    ignoreEvent() { return false }
+  }
+
+  const placeholderMatcher = new MatchDecorator({
+    regexp: /\:(\w+)\:/g,
+    decoration: match => Decoration.replace({
+      widget: new PlaceholderWidget(match[1]),
+    })
+  })
+
+  const placeholders = ViewPlugin.fromClass(class {
+    placeholders: DecorationSet
+    constructor(view: EditorView) {
+      this.placeholders = placeholderMatcher.createDeco(view)
+    }
+    update(update: ViewUpdate) {
+      this.placeholders = placeholderMatcher.updateDeco(update, this.placeholders)
+    }
+  }, {
+    decorations: instance => instance.placeholders,
+    provide: plugin => EditorView.atomicRanges.of(view => {
+      return view.plugin(plugin)?.placeholders || Decoration.none
+    })
+  })
+
 
 export const transparentTheme = EditorView.theme({
     '&': {
@@ -175,9 +221,8 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         {
           onPastedLink(pastedText)
           event.preventDefault()
-        }
-        
-      }
+        } 
+      },
     })
 
   useEffect(() => {
@@ -201,6 +246,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         syntaxHighlighting(
             highlightStyle
         ),
+        placeholders,
         CodeBlockField,
         transparentTheme,
         basicDark,
