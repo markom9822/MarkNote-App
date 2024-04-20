@@ -3,6 +3,7 @@ import { ComponentProps, useState} from "react"
 import { IoIosLink } from "react-icons/io";
 import { EditorView} from '@codemirror/view'
 import { InsertTextInEditor } from '../MarkdownEditorToolBar';
+import getTitleAtUrl from 'get-title-at-url';
 
 export type OnPasteLinkFormatPopUpModalProps = {
     onClose: () => void;
@@ -100,7 +101,7 @@ export const RadioButtonForm = ({
 
     return (
         <ul className="grid grid-rows-3 gap-x-5 m-5">
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex flex-col items-center justify-center">
             <p>
                 {formatList[0].title}
             </p>
@@ -108,11 +109,12 @@ export const RadioButtonForm = ({
                 checked={selectedRadio == 'option1'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
-            <label htmlFor='option1' className="cursor-pointer bg-zinc-100 rounded-xl text-black p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-black">
+            <label htmlFor='option1' className="w-96 cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
+            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-cyan-600">
                 {formatList[0].formatting}
             </label>
         </div>
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex flex-col items-center justify-center">
             <p>
                 {formatList[1].title}
             </p>
@@ -120,11 +122,12 @@ export const RadioButtonForm = ({
                 checked={selectedRadio == 'option2'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
-            <label htmlFor='option2' className="cursor-pointer bg-zinc-100 rounded-xl text-black p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-black">
+            <label htmlFor='option2' className="w-96 cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
+            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-cyan-600">
                 {formatList[1].formatting}
             </label>
         </div>
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex flex-col items-center justify-center">
             <p>
                 {formatList[2].title}
             </p>
@@ -132,7 +135,8 @@ export const RadioButtonForm = ({
                 checked={selectedRadio == 'option3'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
-            <label htmlFor='option3' className="cursor-pointer bg-zinc-100 rounded-xl text-black p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-black">
+            <label htmlFor='option3' className="w-96 cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
+            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-cyan-600">
                 {formatList[2].formatting}
             </label>
         </div>
