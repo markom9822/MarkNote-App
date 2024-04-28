@@ -16,7 +16,7 @@ import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { ButtonTooltip } from "./Button"
 import { TfiMore } from "react-icons/tfi";
-import { LinkFormatPopUpModal } from "@/components";
+import { EmojiPicker, LinkFormatPopUpModal } from "@/components";
 import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
@@ -26,6 +26,9 @@ export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
 export const MarkdownEditorToolBar = ({editorView, className, ...props}: MarkdownEditorToolbarProps) => {
     const selectedNote = useAtomValue(selectedNoteAtom)
     const [showLinkFormat, setShowLinkFormat] = useState(false)
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+
+    const handleEmojiPickerOnClose = () => setShowEmojiPicker(false)
 
     const handleLinkFormatOnClose = () => setShowLinkFormat(false)
 
@@ -104,14 +107,13 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         </ButtonTooltip>
         
         <ButtonTooltip message="Emoji">
-            <EmojiButton editorView={editorView}/>
+            <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
         </ButtonTooltip>
 
         <ButtonTooltip message="More options">
             <MoreOptionsButton editorView={editorView}/>
         </ButtonTooltip>
 
-        
     </div>
    ) 
 }
@@ -340,19 +342,34 @@ export const ImageButton = ({...props}: ToolBarButtonProps) => {
     )
 }
 
-export const EmojiButton = ({editorView, ...props}: ToolBarButtonProps) => {
+export type EmojiButtonProps = ComponentProps<'button'> & {
+    editorView: EditorView | null | undefined;
+    emojiPickerOpen: boolean,
+    handleClickEmojiButton: () => void,
+}
 
-    const handleCreateEmoji = async () => {
-        if(editorView == null) return 
-        if(editorView == undefined) return
+export const EmojiButton = ({emojiPickerOpen, handleClickEmojiButton, ...props}: EmojiButtonProps) => {
 
-        InsertTextInEditor("::", editorView, true)
+    const handleCreateEmoji = () => {
+
+        //InsertTextInEditor("::", editorView, true)
     }
 
     return (
-        <ToolBarButton editorView={editorView} onClick={handleCreateEmoji} {...props}>
-            <BsEmojiSmile className="w-4 h-4 text-zinc-100"/>
-        </ToolBarButton>
+        <div className="relative flex flex-col">
+            <div>
+                <ToolBarButton onClick={handleClickEmojiButton} {...props}>
+                    <BsEmojiSmile className="w-4 h-4 text-zinc-100"/>
+                </ToolBarButton>
+            </div>
+            {emojiPickerOpen && (
+                <div className="absolute right-0 w-32 bg-zinc-500 top-8 rounded-lg">
+                    <div>
+                        <EmojiPicker />
+                    </div>     
+                </div>
+            )}
+        </div>
     )
 }
 

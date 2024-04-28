@@ -89,6 +89,9 @@ const emojiList = [
   {name: 'runner',emoji: '🏃'},
   {name: 'couple',emoji: '👫'},
   {name: 'family',emoji: '👪'},
+  {name: 'dancer',emoji: '💃'},
+  {name: 'dancers',emoji: '👯'},
+  {name: '',emoji: ''},
   {name: '',emoji: ''},
 
 ];
@@ -104,4 +107,8 @@ export const getEmojiFromText = (text: string) => {
     {
         return ''
     }
+}
+
+export const filterEmojiByName = (name: string) => {
+
 }
