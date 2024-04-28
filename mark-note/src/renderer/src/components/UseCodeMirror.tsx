@@ -11,6 +11,8 @@ import { HighlightStyle, syntaxHighlighting, bracketMatching, syntaxTree } from 
 import { Tag, tags, styleTags } from '@lezer/highlight';
 import { MarkdownConfig, MarkdownExtension } from '@lezer/markdown';
 import { RangeSetBuilder, StateField } from "@codemirror/state";
+import {CompletionContext, autocompletion} from "@codemirror/autocomplete"
+import { javascriptLanguage, javascript } from '@codemirror/lang-javascript';
 
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
 import test from 'node:test'
