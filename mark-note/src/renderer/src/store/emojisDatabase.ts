@@ -105,7 +105,7 @@ export const getEmojiFromText = (text: string) => {
     }
     else
     {
-        return ''
+        return '🔳'
     }
 }
 

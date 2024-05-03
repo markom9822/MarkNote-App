@@ -18,6 +18,39 @@ import { basicDark } from '@renderer/utils/themes/DarkTheme'
 import test from 'node:test'
 import { getEmojiFromText } from '@renderer/store/emojisDatabase'
 
+const emojiList = [
+  {name: 'smile', emoji: '😄'}, 
+  {name: 'laughing', emoji: '😆'},
+  {name: 'blush', emoji: '😊'},
+  {name: 'smiley', emoji: '😃'}
+]
+
+// emoji autocomplete
+const tagOptions = emojiList.map(emojiItem => ({
+  label: ":" + emojiItem.name + ":",
+  displayLabel: emojiItem.emoji + emojiItem.name,
+}))
+
+function completeEmoji(context: CompletionContext) {
+  let nodeBefore = syntaxTree(context.state).resolveInner(context.pos, -1)
+
+  //if (nodeBefore.name != "BlockComment" ||
+      //context.state.sliceDoc(nodeBefore.from, nodeBefore.from + 3) != "/**")
+    //return null
+
+  let textBefore = context.state.sliceDoc(nodeBefore.from, context.pos)
+  let tagBefore = /:\w*$/.exec(textBefore)
+  if (!tagBefore && !context.explicit) return null
+  return {
+    from: tagBefore ? nodeBefore.from + tagBefore.index : context.pos,
+    options: tagOptions,
+    validFor: /^(:\w*)?$/
+  }
+}
+
+const emojiAutoCompletion = markdownLanguage.data.of({
+  autocomplete: completeEmoji,
+});
 
 const codeBlockMarker = Decoration.line({ class: "cm-codeblock" });
 
@@ -249,6 +282,10 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
             highlightStyle
         ),
         placeholders,
+        emojiAutoCompletion,
+        autocompletion({
+          closeOnBlur: false,
+        }),
         CodeBlockField,
         transparentTheme,
         basicDark,
@@ -271,6 +308,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         parent: containerRef.current,
         extensions: []
     })
+
     setView(view)
     view.contentDOM.blur()    
 
