@@ -28,8 +28,6 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
     const [showLinkFormat, setShowLinkFormat] = useState(false)
     const [showEmojiPicker, setShowEmojiPicker] = useState(false)
 
-    const handleEmojiPickerOnClose = () => setShowEmojiPicker(false)
-
     const handleLinkFormatOnClose = () => setShowLinkFormat(false)
 
     const handleClickLinkInsert = () => {
@@ -363,7 +361,7 @@ export const EmojiButton = ({emojiPickerOpen, handleClickEmojiButton, ...props}:
                 </ToolBarButton>
             </div>
             {emojiPickerOpen && (
-                <div className="absolute right-0 w-32 bg-zinc-500 top-8 rounded-lg">
+                <div className="absolute right-0 w-36 h-36 bg-zinc-500 top-8 rounded-lg overflow-auto">
                     <div>
                         <EmojiPicker />
                     </div>     
