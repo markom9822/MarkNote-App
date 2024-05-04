@@ -346,24 +346,26 @@ export type EmojiButtonProps = ComponentProps<'button'> & {
     handleClickEmojiButton: () => void,
 }
 
-export const EmojiButton = ({emojiPickerOpen, handleClickEmojiButton, ...props}: EmojiButtonProps) => {
+export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton, ...props}: EmojiButtonProps) => {
 
-    const handleCreateEmoji = () => {
+    const handleCreateEmoji = (pickedEmojiName: string) => {
+        if(editorView == null) return 
+        if(editorView == undefined) return
 
-        //InsertTextInEditor("::", editorView, true)
+        InsertTextInEditor(':' + pickedEmojiName + ':', editorView, false)
     }
 
     return (
         <div className="relative flex flex-col">
             <div>
-                <ToolBarButton onClick={handleClickEmojiButton} {...props}>
+                <ToolBarButton editorView={editorView} onClick={handleClickEmojiButton} {...props}>
                     <BsEmojiSmile className="w-4 h-4 text-zinc-100"/>
                 </ToolBarButton>
             </div>
             {emojiPickerOpen && (
                 <div className="absolute right-0 w-36 h-36 bg-zinc-500 top-8 rounded-lg overflow-auto">
                     <div>
-                        <EmojiPicker />
+                        <EmojiPicker handlePickedEmoji={handleCreateEmoji} />
                     </div>     
                 </div>
             )}
