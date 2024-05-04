@@ -105,8 +105,12 @@ export const getEmojiFromText = (text: string) => {
     }
     else
     {
-        return '🔳'
+        return text
     }
+}
+
+export const getEmojiList = () => {
+    return(emojiList)
 }
 
 export const filterEmojiByName = (name: string) => {

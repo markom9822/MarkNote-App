@@ -12,18 +12,11 @@ import { Tag, tags, styleTags } from '@lezer/highlight';
 import { MarkdownConfig, MarkdownExtension } from '@lezer/markdown';
 import { RangeSetBuilder, StateField } from "@codemirror/state";
 import {CompletionContext, autocompletion} from "@codemirror/autocomplete"
-import { javascriptLanguage, javascript } from '@codemirror/lang-javascript';
 
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
-import test from 'node:test'
-import { getEmojiFromText } from '@renderer/store/emojisDatabase'
+import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
 
-const emojiList = [
-  {name: 'smile', emoji: '😄'}, 
-  {name: 'laughing', emoji: '😆'},
-  {name: 'blush', emoji: '😊'},
-  {name: 'smiley', emoji: '😃'}
-]
+const emojiList = getEmojiList()
 
 // emoji autocomplete
 const tagOptions = emojiList.map(emojiItem => ({
@@ -34,13 +27,10 @@ const tagOptions = emojiList.map(emojiItem => ({
 function completeEmoji(context: CompletionContext) {
   let nodeBefore = syntaxTree(context.state).resolveInner(context.pos, -1)
 
-  //if (nodeBefore.name != "BlockComment" ||
-      //context.state.sliceDoc(nodeBefore.from, nodeBefore.from + 3) != "/**")
-    //return null
-
   let textBefore = context.state.sliceDoc(nodeBefore.from, context.pos)
   let tagBefore = /:\w*$/.exec(textBefore)
   if (!tagBefore && !context.explicit) return null
+
   return {
     from: tagBefore ? nodeBefore.from + tagBefore.index : context.pos,
     options: tagOptions,
@@ -162,6 +152,9 @@ export const transparentTheme = EditorView.theme({
         backgroundColor: "#4a4848",
         color: "#fff",
     },
+    '.cm-tooltip': {
+      backgroundColor: "#292828",
+  },
     
 })
 
