@@ -16,8 +16,12 @@ import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { ButtonTooltip } from "./Button"
 import { TfiMore } from "react-icons/tfi";
-import { EmojiPicker, LinkFormatPopUpModal } from "@/components";
+import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton } from "@/components";
 import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
+import { FaRegFaceSmile, FaBurger, FaRegBuilding } from "react-icons/fa6";
+import { FaMountain } from "react-icons/fa";
+import { MdOutlineEmojiSymbols } from "react-icons/md";
+
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
     editorView: EditorView | null | undefined;
@@ -104,9 +108,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
             <ImageButton editorView={editorView}/>
         </ButtonTooltip>
         
-        <ButtonTooltip message="Emoji">
-            <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
-        </ButtonTooltip>
+        <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
 
         <ButtonTooltip message="More options">
             <MoreOptionsButton editorView={editorView}/>
@@ -347,12 +349,18 @@ export type EmojiButtonProps = ComponentProps<'button'> & {
 }
 
 export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton, ...props}: EmojiButtonProps) => {
+    const [emojiType, setEmojiType] = useState('');
 
     const handleCreateEmoji = (pickedEmojiName: string) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
         InsertTextInEditor(':' + pickedEmojiName + ':', editorView, false)
+    }
+
+    const handleEmojiFilterChange = (changeEvent) => {
+        setEmojiType(changeEvent.currentTarget.value)
+        console.info(changeEvent.currentTarget.value)
     }
 
     return (
@@ -364,8 +372,15 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
             </div>
             {emojiPickerOpen && (
                 <div className="absolute right-0 w-36 h-36 bg-zinc-500 top-8 rounded-lg overflow-auto">
-                    <div>
-                        <EmojiPicker handlePickedEmoji={handleCreateEmoji} />
+                    <div className="divide-zinc-400 divide-y-2">
+                        <div className="flex flex-row justify-center space-x-0.5 ">
+                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'people'} value='people'><FaRegFaceSmile /></EmojiFilterButton>
+                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'nature'} value='nature'><FaMountain /></EmojiFilterButton>
+                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'objects'} value='objects'><FaBurger /></EmojiFilterButton>
+                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'places'} value='places'><FaRegBuilding /></EmojiFilterButton>
+                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'symbols'} value='symbols'><MdOutlineEmojiSymbols /></EmojiFilterButton>
+                        </div>
+                        <EmojiPicker handlePickedEmoji={handleCreateEmoji} selectedType={emojiType} />
                     </div>     
                 </div>
             )}
