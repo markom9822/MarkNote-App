@@ -21,11 +21,11 @@ export const SettingsPopUpModal = (props) => {
     
 
     return createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center z-20">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white">
                 <button onClick={props.onClose} className="place-self-end"><MdClose size={24}/></button>
                 <div className="bg-zinc-600 rounded-lg px-2 py-1 flex flex-row gap-5 mx-4">
-                    <SettingsSidebar className="bg-zinc-900">
+                    <SettingsSidebar className="bg-zinc-900 rounded-lg">
                         <SettingsOptionsViewList className = "mt-3 space-y-1"/> 
                     </SettingsSidebar>
 
