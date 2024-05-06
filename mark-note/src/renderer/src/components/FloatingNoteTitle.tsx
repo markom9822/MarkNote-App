@@ -12,7 +12,6 @@ export const FloatingNoteTitle = ({className, ...props}: ComponentProps<'div'>) 
 
    return (
     <div className={twMerge('flex justify-between mx-4', className)} {...props}>
-        <span className = "text-gray-300">{selectedNote.title}</span>
         <div className="">
             <PreviewOptionsDropdown />
         </div>

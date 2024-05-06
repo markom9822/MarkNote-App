@@ -349,7 +349,7 @@ export type EmojiButtonProps = ComponentProps<'button'> & {
 }
 
 export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton, ...props}: EmojiButtonProps) => {
-    const [emojiType, setEmojiType] = useState('');
+    const [emojiType, setEmojiType] = useState('people');
 
     const handleCreateEmoji = (pickedEmojiName: string) => {
         if(editorView == null) return 

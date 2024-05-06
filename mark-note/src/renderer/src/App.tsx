@@ -1,4 +1,4 @@
-import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar} from "@/components";
+import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar, EditorTitleBar} from "@/components";
 import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
@@ -52,6 +52,7 @@ const App = () => {
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
+          <EditorTitleBar />
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <div>{markdownEditor?.editor}</div>
         </Content>
