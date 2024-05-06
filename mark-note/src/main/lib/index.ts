@@ -1,8 +1,8 @@
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from "@shared/constants"
 import { NoteInfo } from "@shared/models"
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote } from "@shared/types"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote } from "@shared/types"
 import { app, dialog } from "electron"
-import { readdir, stat, readFile, remove } from "fs-extra"
+import { readdir, stat, readFile, remove, rename } from "fs-extra"
 import { ensureDir, writeFile } from "fs-extra"
 import { homedir } from "os"
 import path from 'path'
@@ -59,6 +59,13 @@ export const writeNote: WriteNote = async (filename, content) => {
 
     console.info(`Writing note ${filename}`)
     return writeFile(`${rootDir}/${filename}.md`, content, {encoding: fileEncoding}) 
+}
+
+export const renameNote: RenameNote = async (filename, newTitle) => {
+    const rootDir = getRootDir()
+
+    console.info(`Renaming note ${filename}`)
+    return rename(`${rootDir}/${filename}.md`, `${rootDir}/${newTitle}.md`)
 }
 
 export const createNote: CreateNote = async () => {

@@ -40,6 +40,31 @@ export const selectedNoteAtom = unwrap(selectedNoteAtomAsync, (prev) => prev ?? 
     lastEditTime: Date.now()
 })
 
+export const renameNoteAtom = atom(null, async (get, set, newTitle: string) => {
+    const notes = get(allNotesAtom)
+    const selectedNote = get(selectedNoteAtom)
+
+    if(!selectedNote || !notes) return
+
+    // save on disk
+    await window.context.renameNote(selectedNote.title, newTitle)
+
+    set(
+        filteredNotesAtom,
+        notes.map((note) => {
+            // this is the note that we want to update
+            if(note.title == selectedNote.title) {
+                return {
+                    ...note,
+                    title: newTitle
+                }
+            }
+            return note
+        })
+    )
+
+})
+
 export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent) => {
     const notes = get(allNotesAtom)
     const selectedNote = get(selectedNoteAtom)
@@ -51,7 +76,7 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 
     // update the saved note's last edit time
     set(
-        allNotesAtom,
+        filteredNotesAtom,
         notes.map((note) => {
             // this is the note that we want to update
             if(note.title == selectedNote.title) {
