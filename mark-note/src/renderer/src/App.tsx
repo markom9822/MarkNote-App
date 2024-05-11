@@ -51,13 +51,13 @@ const App = () => {
           <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 
-        <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
+        <Content ref={contentContainerRef} className="border-l bg-zinc-800 border-l-white/20">
           <EditorTitleBar/>
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <div>{markdownEditor?.editor}</div>
         </Content>
 
-        <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
+        <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20">
           <FloatingNoteTitle className="pt-2"/>
           <MarkdownPreview markdownContent={markdownDoc}/>
         </Content>

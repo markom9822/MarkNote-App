@@ -5,7 +5,8 @@ import remarkGemoji from 'remark-gemoji'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw';
-import remarkMark from 'remark-mark'
+import remarkGithubAlerts from "remark-github-alerts";
+
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import 'katex/dist/katex.min.css'

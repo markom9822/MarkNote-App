@@ -3,6 +3,7 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { ComponentProps, useState } from "react"
 import { twMerge } from "tailwind-merge"
 import { formatDateFromMs} from '@renderer/utils'
+import { NoteStatusDropdown } from "./NoteStatusDropdown"
 
 
 export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => {
@@ -52,8 +53,11 @@ export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => 
                 </div> 
             )}
         </div>
-        <div>
-            <span className="inline-block mb-2 text-xs font-light text-left text-gray-400">{date}</span>
+        <div className="flex space-x-3 items-center">
+            <NoteStatusDropdown  />
+            <div>
+                <span className="inline-block text-xs font-light text-left text-zinc-400">{date}</span>
+            </div>
         </div>
     </div>
    ) 

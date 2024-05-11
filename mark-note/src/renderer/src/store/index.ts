@@ -37,7 +37,8 @@ const selectedNoteAtomAsync = atom(async (get) => {
 export const selectedNoteAtom = unwrap(selectedNoteAtomAsync, (prev) => prev ?? {
     title: '',
     content: '',
-    lastEditTime: Date.now()
+    lastEditTime: Date.now(),
+    status: 'Active',
 })
 
 export const renameNoteAtom = atom(null, async (get, set, newTitle: string) => {
@@ -101,7 +102,8 @@ export const createEmptyNoteAtom = atom(null, async (get,set) =>  {
 
     const newNote: NoteInfo = {
         title,
-        lastEditTime: Date.now()
+        lastEditTime: Date.now(),
+        status: 'Active'
     }
 
     set(allNotesAtom, [newNote, ...notes.filter((note) => note.title !== newNote.title)])

@@ -44,7 +44,8 @@ export const getNoteInfoFromFilename = async (filename: string): Promise<NoteInf
 
     return {
         title: filename.replace(/\.md$/, ''), 
-        lastEditTime: fileStats.mtimeMs
+        lastEditTime: fileStats.mtimeMs,
+        status: 'Active',
     }
 }
 

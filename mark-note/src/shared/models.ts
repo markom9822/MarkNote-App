@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 export type NoteInfo = {
     title: string,
     lastEditTime: number,
+    status: string,
 }
 
 export type NoteContent = string
