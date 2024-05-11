@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Dropdown } from "@renderer/components/Utilities/Dropdown"
+import { Checkbox } from "@renderer/components/Utilities/Checkbox"
+
 
 export const EditorSettingOption = () => {
     const [checkedLineNum, setCheckedLineNum] = useState(true);
@@ -22,10 +25,15 @@ export const EditorSettingOption = () => {
       setCheckedWrapping(!checkedWrapping);
     };
 
+    const editorFontOptions = [
+      {label: "Monospace", value: 1},
+      {label: "Sans Serif", value: 2}
+  ]
+
     return (
         <div className="editor">
-            <h2 className="mb-2 font-bold truncate text-xl">Editor Settings</h2>
-
+            <h2 className="mb-2 font-bold truncate text-xl">Interface</h2>
+            <hr></hr>
             <div className="my-2">
                 <Checkbox
                 label="Line numbers"
@@ -66,15 +74,21 @@ export const EditorSettingOption = () => {
                   Wrap longer lines in the editor.
                 </p>
             </div>
+            <h2 className="mb-2 font-bold truncate text-xl">Text Appearance</h2>
+            <hr></hr>
+            <div className="my-2">
+              <p>Font Size</p>
+              <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
+            </div>
+            <div className="my-2">
+              <p>Font Weight</p>
+              <span className="text-xs text-zinc-300">Weight of the font used in the editor</span>
+            </div>
+            <div className="my-2">
+              <p>Font Family</p>
+              <span className="text-xs text-zinc-300">The font used in the Markdown editor</span>
+                {Dropdown(editorFontOptions)}
+            </div>
         </div> 
         )
 }
-
-const Checkbox = ({ label, value, onChange }) => {
-    return (
-      <div className="flex flex-row">
-        <input type="checkbox" checked={value} onChange={onChange} />
-        <p className="pl-3">{label}</p>
-      </div>
-    );
-  };

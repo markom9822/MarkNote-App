@@ -52,7 +52,7 @@ const App = () => {
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900/50 border-l-white/20">
-          <EditorTitleBar />
+          <EditorTitleBar/>
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <div>{markdownEditor?.editor}</div>
         </Content>

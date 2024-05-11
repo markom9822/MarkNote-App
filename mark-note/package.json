@@ -58,6 +58,8 @@
     "remark-emoji": "^4.0.1",
     "remark-gemoji": "^8.0.0",
     "remark-gfm": "^4.0.0",
+    "remark-mark": "^0.0.0",
+    "remark-mark-highlight": "^0.1.0",
     "remark-math": "^6.0.0",
     "remark-parse": "^11.0.0",
     "remark-react": "9.0.0",

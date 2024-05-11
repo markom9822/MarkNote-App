@@ -7004,6 +7004,16 @@ remark-gfm@^4.0.0:
     remark-stringify "^11.0.0"
     unified "^11.0.0"
 
+remark-mark-highlight@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/remark-mark-highlight/-/remark-mark-highlight-0.1.0.tgz#9a359d6808b8cbf9ed01e46799d69e3cf3bb637f"
+  integrity sha512-jy8IruVlIzZYDRcFkhN7HLfcyHnNfcvZJW4qHv2Ri1akULFyWvlE2onlM0Nx5L2xLsPV9HKnIVgkN3LAZLWcqA==
+
+remark-mark@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/remark-mark/-/remark-mark-0.0.0.tgz#081a38a0ed1339cafce742591d6814e067f7ba58"
+  integrity sha512-B3ssahH0EcrGFf4nn5LFs2UgDNG5imLsm/iuDAojSYeIYC04iAtnZFG6IuIpbUPKzeP9fE2AUzTElgb43oLZJw==
+
 remark-math@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/remark-math/-/remark-math-6.0.0.tgz#0acdf74675f1c195fea6efffa78582f7ed7fc0d7"

@@ -21,19 +21,22 @@ export const ThemesSettingOption = () => {
         <div>
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate text-lg">UI Theme</h2>
-                <span>This styles the buttons, side bar and other common components</span>
+                <hr></hr>
+                <span className="text-xs text-zinc-300">This styles the buttons, side bar and other common components</span>
                 {Dropdown(uiThemeOptions)}
             </div>
 
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate text-lg">Editor Theme</h2>
-                <span>This styles the text inside the editor</span>
+                <hr></hr>
+                <span className="text-xs text-zinc-300">This styles the text inside the editor</span>
                 {Dropdown(editorThemeOptions)}
             </div>
 
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate text-lg">Preview Theme</h2>
-                <span>This styles the Markdown output</span>
+                <hr></hr>
+                <span className="text-xs text-zinc-300">This styles the Markdown output</span>
                 {Dropdown(previewThemeOptions)}
             </div>
             
