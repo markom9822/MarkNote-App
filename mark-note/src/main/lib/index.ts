@@ -1,9 +1,9 @@
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from "@shared/constants"
 import { NoteInfo } from "@shared/models"
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote } from "@shared/types"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus } from "@shared/types"
 import { app, dialog } from "electron"
 import { readdir, stat, readFile, remove, rename } from "fs-extra"
-import { ensureDir, writeFile } from "fs-extra"
+import { ensureDir, writeFile, existsSync, mkdirSync} from "fs-extra"
 import { homedir } from "os"
 import path from 'path'
 import { isEmpty } from 'lodash'
@@ -40,12 +40,28 @@ export const getNotes: GetNotes = async () => {
 }
 
 export const getNoteInfoFromFilename = async (filename: string): Promise<NoteInfo> => {
-    const fileStats = await stat(`${getRootDir()}/${filename}`)
+    const rootDir = getRootDir()
+
+    const fileStats = await stat(`${rootDir}/${filename}`)
+
+    var noteStatus = '';
+
+    await readFile(`${rootDir}\\NotesInfoJSON.json`, { encoding: fileEncoding}) 
+        .then(jsonData => { 
+                let json = JSON.parse(jsonData);
+                json.map((noteJSON) => {
+                    // this is the note that we want to update
+                    if(noteJSON.title == filename.replace(/\.md$/, '')) {
+                        noteStatus = noteJSON.status
+                    } 
+                })
+        }
+    )
 
     return {
         title: filename.replace(/\.md$/, ''), 
         lastEditTime: fileStats.mtimeMs,
-        status: 'Active',
+        status: noteStatus
     }
 }
 
@@ -68,6 +84,28 @@ export const renameNote: RenameNote = async (filename, newTitle) => {
     console.info(`Renaming note ${filename}`)
     return rename(`${rootDir}/${filename}.md`, `${rootDir}/${newTitle}.md`)
 }
+
+export const setNoteStatus: SetNoteStatus = async (filename, newStatus) => {
+    const rootDir = getRootDir()
+
+    console.info(`Settting status of note ${filename}`)
+    readFile(`${rootDir}\\NotesInfoJSON.json`, { encoding: fileEncoding}) 
+        .then(jsonData => { 
+                let json = JSON.parse(jsonData);
+                json.map((noteJSON, index) => {
+                    // this is the note that we want to update
+                    if(noteJSON.title == filename.replace(/\.md$/, '')) {
+                        json[index].status = newStatus
+                    } 
+                })
+
+                writeFile(`${rootDir}\\NotesInfoJSON.json`, JSON.stringify(json), {encoding: fileEncoding})
+                        .then(  () => { console.log('Append Success'); })
+                        .catch(err => { console.log("Append Failed: " + err);});
+        })
+        .catch(err => { console.log("Read Error: " +err);});
+}
+
 
 export const createNote: CreateNote = async () => {
     const rootDir = getRootDir()
@@ -107,9 +145,20 @@ export const createNote: CreateNote = async () => {
     console.info(`Creating note: ${filePath}`)
 
     await writeFile(filePath, '')
+    
+    // store note data in json
+    readFile(`${rootDir}\\NotesInfoJSON.json`, { encoding: fileEncoding}) 
+        .then(jsonData => { 
+                let json = JSON.parse(jsonData);
+                json.push({title: filename, status: "Active"});
+
+                writeFile(`${rootDir}\\NotesInfoJSON.json`, JSON.stringify(json), {encoding: fileEncoding})
+                        .then(  () => { console.log('Append Success'); })
+                        .catch(err => { console.log("Append Failed: " + err);});
+        })
+        .catch(err => { console.log("Read Error: " +err);});
 
     return filename
-
 }
 
 export const deleteNote: DeleteNote = async (filename) => {

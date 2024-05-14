@@ -38,17 +38,31 @@ export const selectedNoteAtom = unwrap(selectedNoteAtomAsync, (prev) => prev ?? 
     title: '',
     content: '',
     lastEditTime: Date.now(),
-    status: 'Active',
+    status: '',
 })
 
 export const renameNoteAtom = atom(null, async (get, set, newTitle: string) => {
     const notes = get(allNotesAtom)
     const selectedNote = get(selectedNoteAtom)
-
+    
     if(!selectedNote || !notes) return
-
+    
     // save on disk
     await window.context.renameNote(selectedNote.title, newTitle)
+
+    set(
+        allNotesAtom,
+        notes.map((note) => {
+            // this is the note that we want to update
+            if(note.title == selectedNote.title) {
+                return {
+                    ...note,
+                    title: newTitle
+                }
+            }
+            return note
+        })
+    )
 
     set(
         filteredNotesAtom,
@@ -77,6 +91,20 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
 
     // update the saved note's last edit time
     set(
+        allNotesAtom,
+        notes.map((note) => {
+            // this is the note that we want to update
+            if(note.title == selectedNote.title) {
+                return {
+                    ...note,
+                    lastEditTime: Date.now()
+                }
+            }
+            return note
+        })
+    )
+
+    set(
         filteredNotesAtom,
         notes.map((note) => {
             // this is the note that we want to update
@@ -84,6 +112,45 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
                 return {
                     ...note,
                     lastEditTime: Date.now()
+                }
+            }
+            return note
+        })
+    )
+})
+
+export const setNoteStatusAtom = atom(null, async (get, set, newStatus: string) => {
+    const notes = get(allNotesAtom)
+    const selectedNote = get(selectedNoteAtom)
+
+    if(!selectedNote || !notes) return
+
+    // save on disk
+    await window.context.setNoteStatus(selectedNote.title, newStatus)
+
+    // update the saved note's last edit time
+    set(
+        allNotesAtom,
+        notes.map((note) => {
+            // this is the note that we want to update
+            if(note.title == selectedNote.title) {
+                return {
+                    ...note,
+                    status: newStatus
+                }
+            }
+            return note
+        })
+    )
+
+    set(
+        filteredNotesAtom,
+        notes.map((note) => {
+            // this is the note that we want to update
+            if(note.title == selectedNote.title) {
+                return {
+                    ...note,
+                    status: newStatus
                 }
             }
             return note

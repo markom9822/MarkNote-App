@@ -1,6 +1,6 @@
-import { createNote, deleteNote, getNotes, readNote, renameNote, writeNote } from '@/lib'
+import { createNote, deleteNote, getNotes, readNote, renameNote, setNoteStatus, writeNote } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { CreateNote, DeleteNote, GetNotes, ReadNote, RenameNote, WriteNote } from '@shared/types'
+import { CreateNote, DeleteNote, GetNotes, ReadNote, RenameNote, SetNoteStatus, WriteNote } from '@shared/types'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/MarkNoteLogoV1.png?asset'
@@ -64,6 +64,7 @@ app.whenReady().then(() => {
   ipcMain.handle('readNote', (_, ...args: Parameters<ReadNote>) => readNote(...args))
   ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args))
   ipcMain.handle('renameNote', (_, ...args: Parameters<RenameNote>) => renameNote(...args))
+  ipcMain.handle('setNoteStatus', (_, ...args: Parameters<SetNoteStatus>) => setNoteStatus(...args))
   ipcMain.handle('createNote', (_, ...args: Parameters<CreateNote>) => createNote(...args))
   ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
 
