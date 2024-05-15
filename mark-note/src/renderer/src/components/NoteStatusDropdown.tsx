@@ -1,10 +1,9 @@
 import { ComponentProps, useState, useEffect } from "react"
 import { twMerge } from "tailwind-merge"
-import { FaRegCircle, FaRegCircleDot, FaRegCirclePause, FaRegCircleCheck, FaRegCircleXmark } from "react-icons/fa6";
+import { FaRegCircleDot, FaRegCirclePause, FaRegCircleCheck, FaRegCircleXmark } from "react-icons/fa6";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
 import { useSetAtom, useAtomValue } from "jotai"
 import { setNoteStatusAtom, selectedNoteAtom} from "@renderer/store"
-import { useNotesList } from '@/hooks/useNotesList'
 
 
 export const NoteStatusDropdown = (props) => {

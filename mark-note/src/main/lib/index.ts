@@ -3,7 +3,7 @@ import { NoteInfo } from "@shared/models"
 import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus } from "@shared/types"
 import { app, dialog } from "electron"
 import { readdir, stat, readFile, remove, rename } from "fs-extra"
-import { ensureDir, writeFile, existsSync, mkdirSync} from "fs-extra"
+import { ensureDir, writeFile} from "fs-extra"
 import { homedir } from "os"
 import path from 'path'
 import { isEmpty } from 'lodash'

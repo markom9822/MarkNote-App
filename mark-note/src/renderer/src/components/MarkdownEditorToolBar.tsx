@@ -160,6 +160,68 @@ export const InsertTextInEditor = (text: string, view: EditorView, cursorInCentr
     }
 }
 
+export const InsertTextAroundInEditor = (text: string, view: EditorView, cursorInCentre: boolean) => {
+    const cursor = view.state.selection.main.head;
+    const selectionFrom = view.state.selection.main.from;
+    const selectionTo = view.state.selection.main.to;
+
+    const selectedText = view.state.sliceDoc(selectionFrom, selectionTo);
+
+    console.info(`Selected Text: ${selectedText}`)
+
+    let anchorPos = 0;
+    if(cursorInCentre)
+    {
+        anchorPos = cursor + (text.length*0.5);
+    }
+    else{
+        anchorPos = cursor + text.length;
+    }
+
+    var transaction;
+
+    if(selectedText !== "")
+    {
+        console.info("Text Selected")
+
+        const textToInsert = text.substring(0, text.length/2) + selectedText + text.substring(text.length/2, text.length)
+
+        transaction = view.state.update({
+            changes: {
+            from: cursor - selectedText.length,
+            to: cursor,
+            insert: textToInsert,
+            },
+            // the next 2 lines will set the appropriate cursor position after inserting the new text.
+            
+            selection: { anchor: anchorPos},
+            scrollIntoView: true,
+        });
+    }
+    else
+    {
+        console.info("No Text Selected")
+
+        transaction = view.state.update({
+            changes: {
+            from: cursor,
+            insert: text,
+            },
+            // the next 2 lines will set the appropriate cursor position after inserting the new text.
+            
+            selection: { anchor: anchorPos},
+            scrollIntoView: true,
+        });
+
+    }
+
+    view.focus();
+
+    if (transaction) {
+        view.dispatch(transaction);
+    }
+}
+
 export const HeadingButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     const handleCreateHeading = async () => {
@@ -183,7 +245,7 @@ export const BoldedButton = ({editorView, ...props}: ToolBarButtonProps) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("****", editorView, true)
+        InsertTextAroundInEditor("****", editorView, true)
     }
 
     return (
@@ -199,7 +261,7 @@ export const ItalicButton = ({editorView, ...props}: ToolBarButtonProps) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("**", editorView, true)
+        InsertTextAroundInEditor("**", editorView, true)
     }
 
     return (
@@ -215,7 +277,7 @@ export const StrikethroughButton = ({editorView, ...props}: ToolBarButtonProps) 
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("~~~~", editorView, true)
+        InsertTextAroundInEditor("~~~~", editorView, true)
     }
 
     return (
@@ -231,7 +293,7 @@ export const UnderlineButton = ({editorView, ...props}: ToolBarButtonProps) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("____", editorView, true)
+        InsertTextAroundInEditor("____", editorView, true)
     }
 
     return (

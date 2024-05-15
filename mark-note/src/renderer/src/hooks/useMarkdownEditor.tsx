@@ -1,4 +1,4 @@
-import React, { useRef, useState} from 'react'
+import { useRef, useState} from 'react'
 import { MDXEditorMethods } from "@mdxeditor/editor"
 import { saveNoteAtom, selectedNoteAtom } from "@renderer/store"
 import { NoteContent } from "@shared/models"
