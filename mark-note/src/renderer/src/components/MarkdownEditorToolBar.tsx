@@ -55,7 +55,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
     if(!selectedNote) return null
 
    return (
-    <div className={twMerge('flex justify-center flex-row bg-zinc-700/90', className)} {...props}>
+    <div className={twMerge('flex justify-center flex-row bg-zinc-800', className)} {...props}>
         <ButtonTooltip message="Heading">
             <HeadingButton editorView={editorView} /> 
         </ButtonTooltip>

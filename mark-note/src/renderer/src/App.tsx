@@ -48,11 +48,13 @@ const App = () => {
           <ActionButtonsRow className="flex justify-between mt-1"/>
           <SettingsButton onClick={() => setShowSettings(true)}/>
           <NotesSearchBar className="px-2"/>
+          <hr className="h-px my-3 bg-zinc-700 border-0 " />
           <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-800 border-l-white/20">
           <EditorTitleBar/>
+          <hr className="h-px bg-zinc-700 border-0 " />
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <div>{markdownEditor?.editor}</div>
         </Content>

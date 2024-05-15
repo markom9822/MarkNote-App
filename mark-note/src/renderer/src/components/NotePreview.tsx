@@ -27,9 +27,9 @@ export const NotePreview = ({
 
     const chosenElement = findArrayElementByTitle(statusOptions, status)
 
-    return( <div className={cn('cursor-pointer px-2.5 py-3 rounded-md transition-colors duration-75', 
+    return( <div className={cn('cursor-pointer px-2.5 py-3 transition-colors duration-75', 
     {
-        'bg-zinc-400/75': isActive,
+        'bg-zinc-900 border-r-4 border-indigo-500': isActive,
         'hover:bg-zinc-500/75 text-zinc-300': !isActive,
     },
     className
@@ -41,7 +41,6 @@ export const NotePreview = ({
             <h3 className="font-bold truncate">{title}</h3>
         </div>
         <span className="inline-block w-full mb-2 text-xs font-light text-left">{date}</span>
-        <p>{status}</p>
     </div>
     )
 }

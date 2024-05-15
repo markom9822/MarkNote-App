@@ -91,8 +91,6 @@ export const NoteStatusDropdown = (props) => {
 
     const chosenElement = findArrayElementByTitle(statusOptions, chosenStatus)
 
-    //if(!selectedNote) return null
-
     return (
         <div className="relative flex flex-col">
             <div className="">
