@@ -28,6 +28,12 @@ export const getNotes: GetNotes = async () => {
     if(isEmpty(notes)) {
         console.info('No notes found, creating welcome note')
 
+        const json = [{title: welcomeNoteFilename.replace(/\.md$/, ''), status: "Active"}];
+
+        await writeFile(`${rootDir}\\NotesInfoJSON.json`, JSON.stringify(json), {encoding: fileEncoding})
+            .then(  () => { console.log('Append Success'); })
+            .catch(err => { console.log("Append Failed: " + err);});
+
         const content = await readFile(welcomeNoteFile, {encoding: fileEncoding})
 
         // create welcome note
@@ -88,7 +94,7 @@ export const renameNote: RenameNote = async (filename, newTitle) => {
 export const setNoteStatus: SetNoteStatus = async (filename, newStatus) => {
     const rootDir = getRootDir()
 
-    console.info(`Settting status of note ${filename}`)
+    console.info(`Setting status of note ${filename}`)
     readFile(`${rootDir}\\NotesInfoJSON.json`, { encoding: fileEncoding}) 
         .then(jsonData => { 
                 let json = JSON.parse(jsonData);
@@ -181,6 +187,21 @@ export const deleteNote: DeleteNote = async (filename) => {
 
     console.info(`Deleting note: ${filename}`)
     await remove(`${rootDir}\\${filename}.md`)
+
+    // remove note data in json
+    readFile(`${rootDir}\\NotesInfoJSON.json`, { encoding: fileEncoding}) 
+        .then(jsonData => { 
+                let json = JSON.parse(jsonData);
+                //json.push({title: filename, status: "Active"});
+                const newJSON = json.filter((item) => item.title !== filename);
+
+                writeFile(`${rootDir}\\NotesInfoJSON.json`, JSON.stringify(newJSON), {encoding: fileEncoding})
+                        .then(  () => { console.log('Append Success'); })
+                        .catch(err => { console.log("Append Failed: " + err);});
+        })
+        .catch(err => { console.log("Read Error: " +err);});
+
+
     return true
 }
 

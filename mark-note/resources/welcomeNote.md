@@ -1,4 +1,4 @@
-## Welcome to NoteMark 👋🏻
+## Welcome to MarkNote 👋🏻
 
 MarkNote is a simple **note-taking app** that uses **Markdown** syntax to format your notes.
 
@@ -13,7 +13,7 @@ This is an _italic_ text.
 
 ## Headings
 
-Here are all the heading formats currently supported by **_NoteMark_**:
+Here are all the heading formats currently supported by **_MarkNote_**:
 
 # Heading 1
 
@@ -45,10 +45,23 @@ Here we have a numbered list:
 
 ### Code blocks
 
-Only `inline code` is currently supported!
+You can write code inline `inline code` and in a code block:
 
-Code block snippets using the following syntax _\`\`\`js\`\`\`_ are **_not supported_** yet!
+```
+function test() {
+  console.log("Hello World!");
+}
+```
+
+Syntax highlighting is also supported if you provide the language:
+
+```python
+x = 5
+y = "John"
+print(x)
+print(y)
+```
 
 ### Links
 
-Links are **_not supported_** yet!
+There are good examples of markdown on [GitHub Pages](https://pages.github.com/).
