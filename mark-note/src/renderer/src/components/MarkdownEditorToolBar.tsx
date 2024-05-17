@@ -16,7 +16,7 @@ import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { ButtonTooltip } from "./Button"
 import { TfiMore } from "react-icons/tfi";
-import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton } from "@/components";
+import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton, HeadingHelperButton } from "@/components";
 import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
 import { FaRegFaceSmile, FaBurger, FaRegBuilding } from "react-icons/fa6";
 import { FaMountain } from "react-icons/fa";
@@ -31,6 +31,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
     const selectedNote = useAtomValue(selectedNoteAtom)
     const [showLinkFormat, setShowLinkFormat] = useState(false)
     const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+    const [showHeadingHelper, setShowHeadingHelper] = useState(false)
 
     const handleLinkFormatOnClose = () => setShowLinkFormat(false)
 
@@ -56,60 +57,25 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
 
    return (
     <div className={twMerge('flex justify-center flex-row bg-zinc-800', className)} {...props}>
-        <ButtonTooltip message="Heading">
-            <HeadingButton editorView={editorView} /> 
-        </ButtonTooltip>
 
-        <ButtonTooltip message="Bold">
-            <BoldedButton editorView={editorView}/>
-        </ButtonTooltip>
-
-        <ButtonTooltip message="Italic">
-            <ItalicButton editorView={editorView}/>
-        </ButtonTooltip>
-
-        <ButtonTooltip message="Strikethrough">
-            <StrikethroughButton editorView={editorView}/>
-        </ButtonTooltip>
-
-        <ButtonTooltip message="Underline">
-            <UnderlineButton editorView={editorView}/>
-        </ButtonTooltip>
-
-        <ButtonTooltip message="Code">
-            <CodeSegmentButton editorView={editorView}/>
-        </ButtonTooltip>
-
-        <ButtonTooltip message="Unordered List">
-            <UnorderdListButton editorView={editorView}/>
-        </ButtonTooltip>
-        
-        <ButtonTooltip message="Ordered List">
-            <OrderedListButton editorView={editorView}/>
-        </ButtonTooltip>
-        
-        <ButtonTooltip message="Checkbox">
-            <CheckBoxButton editorView={editorView}/>
-        </ButtonTooltip>
-        
-        <ButtonTooltip message="Quotation">
-            <QuoteButton editorView={editorView}/>
-        </ButtonTooltip>
+        <HeadingButton editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} handlePickedHeading={() => setShowHeadingHelper(false)} headingHelperOpen={showHeadingHelper} /> 
+        <BoldedButton editorView={editorView}/>
+        <ItalicButton editorView={editorView}/>
+        <StrikethroughButton editorView={editorView}/>
+        <UnderlineButton editorView={editorView}/>
+        <CodeSegmentButton editorView={editorView}/>
+        <UnorderdListButton editorView={editorView}/>
+        <OrderedListButton editorView={editorView}/>
+        <CheckBoxButton editorView={editorView}/>
+        <QuoteButton editorView={editorView}/>
 
         <div>
             {linkFormatPopUpModal?.linkPopUp}
         </div>
         
-        <ButtonTooltip message="Link">
-            <LinkButton editorView={editorView} onClick={() => setShowLinkFormat(true)}/>
-        </ButtonTooltip>
-
-        <ButtonTooltip message="Image">
-            <ImageButton editorView={editorView}/>
-        </ButtonTooltip>
-        
+        <LinkButton editorView={editorView} onClick={() => setShowLinkFormat(true)}/>
+        <ImageButton editorView={editorView}/>
         <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
-
         <ButtonTooltip message="More options">
             <MoreOptionsButton editorView={editorView}/>
         </ButtonTooltip>
@@ -222,20 +188,108 @@ export const InsertTextAroundInEditor = (text: string, view: EditorView, cursorI
     }
 }
 
-export const HeadingButton = ({editorView, ...props}: ToolBarButtonProps) => {
+export const InsertTextAtStartInEditor = (text: string, view: EditorView, cursorInCentre: boolean) => {
+    const cursor = view.state.selection.main.head;
+    const selectionFrom = view.state.selection.main.from;
+    const selectionTo = view.state.selection.main.to;
 
-    const handleCreateHeading = async () => {
+    const selectedText = view.state.sliceDoc(selectionFrom, selectionTo);
 
+    console.info(`Selected Text: ${selectedText}`)
+
+    let anchorPos = 0;
+    if(cursorInCentre)
+    {
+        anchorPos = cursor + (text.length*0.5);
+    }
+    else{
+        anchorPos = cursor + text.length;
+    }
+
+    var transaction;
+
+    if(selectedText !== "")
+    {
+        console.info("Text Selected")
+
+        const textToInsert = text + selectedText
+        transaction = view.state.update({
+            changes: {
+            from: cursor - selectedText.length,
+            to: cursor,
+            insert: textToInsert,
+            },
+            // the next 2 lines will set the appropriate cursor position after inserting the new text.
+            
+            selection: { anchor: anchorPos},
+            scrollIntoView: true,
+        });
+    }
+    else
+    {
+        console.info("No Text Selected")
+
+        transaction = view.state.update({
+            changes: {
+            from: cursor,
+            insert: text,
+            },
+            // the next 2 lines will set the appropriate cursor position after inserting the new text.
+            
+            selection: { anchor: anchorPos},
+            scrollIntoView: true,
+        });
+
+    }
+
+    view.focus();
+
+    if (transaction) {
+        view.dispatch(transaction);
+    }
+}
+
+export type HeadingButtonProps = ComponentProps<'button'> & {
+    editorView: EditorView | null | undefined;
+    headingHelperOpen: boolean,
+    handleClickHeaderButton: () => void,
+    handlePickedHeading: () => void,
+}
+
+export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderButton, handlePickedHeading, ...props}: HeadingButtonProps) => {
+
+    const handleCreateHeading = (pickedHeading: string) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("# ", editorView, false)
+        InsertTextAtStartInEditor(pickedHeading, editorView, false)
+    }
+
+    const handleClickHeadingHelper = (changeEvent) => {
+        handleCreateHeading(changeEvent.currentTarget.value)
+        handlePickedHeading()
     }
 
     return (
-        <ToolBarButton editorView={editorView} onClick={handleCreateHeading} {...props}>
-            <PiHash className="w-4 h-4 text-zinc-100"/>
-        </ToolBarButton>
+        <div className="relative flex flex-col">
+            <div>
+                <ToolBarButton editorView={editorView} onClick={handleClickHeaderButton} {...props}>
+                    <PiHash className="w-4 h-4 text-zinc-100"/>
+                </ToolBarButton>
+                </div>
+                {headingHelperOpen && (
+                <div className="absolute w-12 bg-zinc-900 top-7 rounded-lg overflow-auto">
+                    <div className="divide-zinc-400 divide-y-2">
+                        <div className="flex flex-col justify-center space-x-0.5 ">
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="# ">#</HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="## ">##</HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="### ">###</HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="#### ">####</HeadingHelperButton>
+                        </div>
+                </div>     
+            </div>
+        )}
+    </div>
     )
 }
 
@@ -325,7 +379,7 @@ export const UnorderdListButton = ({editorView, ...props}: ToolBarButtonProps) =
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("- ", editorView, false)
+        InsertTextAtStartInEditor("- ", editorView, false)
     }
 
     return (
@@ -341,7 +395,7 @@ export const OrderedListButton = ({editorView, ...props}: ToolBarButtonProps) =>
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("1. ", editorView, false)
+        InsertTextAtStartInEditor("1. ", editorView, false)
     }
 
     return (
@@ -357,7 +411,7 @@ export const CheckBoxButton = ({editorView, ...props}: ToolBarButtonProps) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("- [ ] ", editorView, false)
+        InsertTextAtStartInEditor("- [ ] ", editorView, false)
     }
 
     return (
@@ -373,7 +427,7 @@ export const QuoteButton = ({editorView, ...props}: ToolBarButtonProps) => {
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("> ", editorView, false)
+        InsertTextAtStartInEditor("> ", editorView, false)
     }
 
     return (
@@ -422,7 +476,6 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
 
     const handleEmojiFilterChange = (changeEvent) => {
         setEmojiType(changeEvent.currentTarget.value)
-        console.info(changeEvent.currentTarget.value)
     }
 
     return (
@@ -433,7 +486,7 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
                 </ToolBarButton>
             </div>
             {emojiPickerOpen && (
-                <div className="absolute right-0 w-36 h-36 bg-zinc-500 top-8 rounded-lg overflow-auto">
+                <div className="absolute right-0 w-36 h-36 bg-zinc-900 top-8 rounded-lg overflow-auto">
                     <div className="divide-zinc-400 divide-y-2">
                         <div className="flex flex-row justify-center space-x-0.5 ">
                             <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'people'} value='people'><FaRegFaceSmile /></EmojiFilterButton>
