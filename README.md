@@ -11,7 +11,7 @@ This is a markdown based note taking app developed using:
 
 You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time.
 
-![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/49caa2a9-1cdc-4c4b-b94d-6eaae7d52fe6)
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/0a37b707-c621-411a-ad7c-4db4914a4b7c)
 
 The Markdown editor supports:
 - Github flavoured markdown
