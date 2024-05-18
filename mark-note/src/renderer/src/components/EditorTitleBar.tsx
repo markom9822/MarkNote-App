@@ -55,9 +55,6 @@ export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => 
         </div>
         <div className="flex space-x-3 items-center">
             <NoteStatusDropdown />
-            <div>
-                <span className="inline-block text-xs font-light text-left text-zinc-400">{date}</span>
-            </div>
         </div>
     </div>
    ) 

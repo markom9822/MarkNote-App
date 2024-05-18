@@ -1,4 +1,5 @@
-import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar, EditorTitleBar} from "@/components";
+import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, 
+  Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar, EditorTitleBar, EditorTopBar, NewNoteButton} from "@/components";
 import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
@@ -45,14 +46,18 @@ const App = () => {
 
       <RootLayout>
         <Sidebar className="bg-zinc-900/80">
-          <ActionButtonsRow className="flex justify-between mt-1"/>
-          <SettingsButton onClick={() => setShowSettings(true)}/>
+          <div className="flex justify-between my-2">
+            <SettingsButton onClick={() => setShowSettings(true)}/>
+            <p className="text-lg">All Notes</p>
+            <NewNoteButton />
+          </div>
           <NotesSearchBar className="px-2"/>
           <hr className="h-px my-3 bg-zinc-700 border-0 " />
           <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-800 border-l-white/20">
+          <EditorTopBar />
           <EditorTitleBar/>
           <hr className="h-px bg-zinc-700 border-0 " />
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
