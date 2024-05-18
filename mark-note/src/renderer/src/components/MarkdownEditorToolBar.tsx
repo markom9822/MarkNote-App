@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge"
 import { EditorView} from '@codemirror/view'
 import {useState} from 'react'
 
-import { PiHash } from "react-icons/pi";
+import { LuHeading, LuHeading1, LuHeading2, LuHeading3, LuHeading4 } from "react-icons/lu";
 import { TbBold, TbItalic } from "react-icons/tb";
 import { RiStrikethrough, RiUnderline } from "react-icons/ri";
 import { IoCode } from "react-icons/io5";
@@ -56,7 +56,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
     if(!selectedNote) return null
 
    return (
-    <div className={twMerge('flex justify-center flex-row bg-zinc-800', className)} {...props}>
+    <div className={twMerge('flex flex-row bg-zinc-800', className)} {...props}>
 
         <HeadingButton editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} handlePickedHeading={() => setShowHeadingHelper(false)} headingHelperOpen={showHeadingHelper} /> 
         <BoldedButton editorView={editorView}/>
@@ -274,17 +274,17 @@ export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderB
         <div className="relative flex flex-col">
             <div>
                 <ToolBarButton editorView={editorView} onClick={handleClickHeaderButton} {...props}>
-                    <PiHash className="w-4 h-4 text-zinc-100"/>
+                    <LuHeading className="w-4 h-4 text-zinc-100"/>
                 </ToolBarButton>
                 </div>
                 {headingHelperOpen && (
-                <div className="absolute w-12 bg-zinc-900 top-7 rounded-lg overflow-auto">
+                <div className="absolute bg-zinc-900 top-7 rounded-lg overflow-auto">
                     <div className="divide-zinc-400 divide-y-2">
                         <div className="flex flex-col justify-center space-x-0.5 ">
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="# ">#</HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="## ">##</HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="### ">###</HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="#### ">####</HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="# "><LuHeading1 className="w-[1.6rem] h-[1.6rem]"/></HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="## "><LuHeading2 className="w-[1.4rem] h-[1.4rem]"/></HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="### "><LuHeading3 className="w-[1.2rem] h-[1.2rem]"/></HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="#### "><LuHeading4 className="w-[1rem] h-[1rem]"/></HeadingHelperButton>
                         </div>
                 </div>     
             </div>

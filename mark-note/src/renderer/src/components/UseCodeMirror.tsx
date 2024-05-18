@@ -12,6 +12,7 @@ import { Tag, tags, styleTags } from '@lezer/highlight';
 import { MarkdownConfig, MarkdownExtension } from '@lezer/markdown';
 import { RangeSetBuilder, StateField } from "@codemirror/state";
 import {CompletionContext, autocompletion} from "@codemirror/autocomplete"
+import { history, historyKeymap } from '@codemirror/commands'
 
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
@@ -260,11 +261,12 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     const startState = EditorState.create({
     doc: doc,
     extensions: [
-        keymap.of(defaultKeymap),
+        [keymap.of(defaultKeymap), [keymap.of(historyKeymap)]],
         lineNumbers(),
         highlightActiveLineGutter(),
         highlightActiveLine(),
         bracketMatching(),
+        history(),
         markdown({
             base: markdownLanguage,
             codeLanguages: languages,

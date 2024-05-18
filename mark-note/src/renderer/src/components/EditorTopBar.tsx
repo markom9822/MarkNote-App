@@ -4,8 +4,8 @@ import { ComponentProps, useState } from "react"
 import { twMerge } from "tailwind-merge"
 import { formatDateFromMs, cn} from '@renderer/utils'
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { MdOutlineTimer } from "react-icons/md";
 import { DeleteNoteButton} from "@/components"
-
 
 
 export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
@@ -46,6 +46,7 @@ export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
                     <button onClick={handleClickRightArrow} className="my-2"><RiArrowRightSLine className="w-5 h-5"/></button>
                 </EditorNavButton>
             </div>
+            <MdOutlineTimer className="w-3.5 h-3.5 text-zinc-200" />
             <p className="text-xs font-light text-left text-zinc-400">{date}</p> 
             <DeleteNoteButton className="absolute right-0"/> 
         </div>
