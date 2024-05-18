@@ -1,5 +1,7 @@
 import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, 
-  Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar, EditorTitleBar, EditorTopBar, NewNoteButton} from "@/components";
+  Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar, EditorTitleBar, EditorTopBar, NewNoteButton,
+  Editor,
+  Preview} from "@/components";
 import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
@@ -59,14 +61,18 @@ const App = () => {
         <Content ref={contentContainerRef} className="border-l bg-zinc-800 border-l-white/20">
           <EditorTopBar />
           <EditorTitleBar/>
-          <hr className="h-px bg-zinc-700 border-0 " />
+          <hr className="h-px bg-zinc-700 border-0" />
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
-          <div>{markdownEditor?.editor}</div>
+          <Editor className="h-[calc(100vh-150px)]">
+            <div>{markdownEditor?.editor}</div>
+          </Editor>
         </Content>
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20">
           <FloatingNoteTitle className="pt-2"/>
-          <MarkdownPreview markdownContent={markdownDoc}/>
+          <Preview className="h-screen">
+            <MarkdownPreview markdownContent={markdownDoc}/>
+          </Preview>
         </Content>
 
       </RootLayout>

@@ -36,7 +36,7 @@ export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
     }
 
    return (
-    <div className={twMerge('', className)} {...props}>
+    <div className={twMerge('relative', className)} {...props}>
         <div className="flex space-x-1 items-center">
             <div className="flex space-x-3 mx-3">
                 <EditorNavButton isActive={selectedNoteIndex !== filteredNotes.length-1}>
@@ -47,7 +47,7 @@ export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
                 </EditorNavButton>
             </div>
             <p className="text-xs font-light text-left text-zinc-400">{date}</p> 
-            <DeleteNoteButton/> 
+            <DeleteNoteButton className="absolute right-0"/> 
         </div>
     </div>
    ) 

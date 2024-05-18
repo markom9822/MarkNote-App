@@ -137,7 +137,7 @@ const CodeBlockField = StateField.define<DecorationSet>({
 
 export const transparentTheme = EditorView.theme({
     '&': {
-        backgroundColor: "#3b3939",
+        backgroundColor: "#27272A",
         height: '100%',
         //font:"'JetBrains Mono', monospace",
     },
@@ -145,7 +145,7 @@ export const transparentTheme = EditorView.theme({
         fontSize: '15px',
     },
     ".cm-line.cm-codeblock": {
-        backgroundColor: "#2e2d2d",
+        backgroundColor: "#18181b",
         color: "#fff",
     },
     ".cm-line.cm-activeLine.cm-codeblock": {
@@ -197,7 +197,7 @@ const MarkStylingExtension: MarkdownConfig = {
     {
         tag: tags.monospace,
         color: '#b6b8ba',
-        background: '#282829',
+        background: '#18181b',
         borderRadius: '3px',
         padding: '1px'
     },
