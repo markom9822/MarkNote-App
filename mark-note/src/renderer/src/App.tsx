@@ -68,9 +68,9 @@ const App = () => {
           </Editor>
         </Content>
 
-        <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20">
+        <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20 overflow-auto">
           <FloatingNoteTitle className="pt-2"/>
-          <Preview className="h-screen">
+          <Preview className="">
             <MarkdownPreview markdownContent={markdownDoc}/>
           </Preview>
         </Content>
