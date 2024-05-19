@@ -10,7 +10,7 @@ import remarkGithubAlerts from "remark-github-alerts";
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
 
-import '@renderer/assets/preview.css'
+import '@renderer/assets/darkpreview.css'
 
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';

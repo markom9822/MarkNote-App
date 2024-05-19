@@ -1,12 +1,12 @@
-/*dark*/
+/*light*/
 
 .markdown-body {
-	color-scheme: dark;
+	color-scheme: light;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	margin: 0;
-	color: #e6edf3;
-	background-color: #18181B;
+	color: #18181B;
+	background-color: #ffff;
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 	font-size: 16px;
 	line-height: 1.5;
@@ -76,7 +76,7 @@
 	font-weight: 600;
 	padding-bottom: .3em;
 	font-size: 2em;
-	border-bottom: 1px solid #e6edf3;
+	border-bottom: 1px solid #18181B;
   }
   
   .markdown-body mark {
@@ -285,7 +285,7 @@
 	font-weight: 600;
 	padding-bottom: .3em;
 	font-size: 1.5em;
-	border-bottom: 1px solid #e6edf373;
+	border-bottom: 1px solid #7f7f83;
   }
   
   .markdown-body h3 {
@@ -431,7 +431,7 @@
   .markdown-body h4 .octicon-link,
   .markdown-body h5 .octicon-link,
   .markdown-body h6 .octicon-link {
-	color: #e6edf3;
+	color: #18181B;
 	vertical-align: middle;
 	visibility: hidden;
   }
@@ -572,11 +572,11 @@
   .markdown-body table th,
   .markdown-body table td {
 	padding: 6px 13px;
-	border: 1px solid #8e9194a4;
+	border: 1px solid #636466a4;
   }
 
   .markdown-body table th {
-	background-color: #595a5c;
+	background-color: #edeff1;
   }
   
   .markdown-body table td>:last-child {
@@ -584,12 +584,12 @@
   }
   
   .markdown-body table tr {
-	background-color: #202122;
+	background-color: #aaacad;
 	border-top: 1px solid #21262d;
   }
   
   .markdown-body table tr:nth-child(2n) {
-	background-color: #0f0f0f;
+	background-color: #7b7d7e;
   }
   
   .markdown-body table img {
@@ -634,7 +634,7 @@
 	display: block;
 	padding: 5px 0 0;
 	clear: both;
-	color: #e6edf3;
+	color: #18181B;
   }
   
   .markdown-body span.align-center {
@@ -704,7 +704,7 @@
 	margin: 0;
 	font-size: 90%;
 	white-space: break-spaces;
-	background-color: rgba(8, 8, 8, 0.541);
+	background-color: rgba(150, 151, 153, 0.397);
 	border-radius: 3px;
   }
   
@@ -749,8 +749,8 @@
 	overflow: auto;
 	font-size: 90%;
 	line-height: 1.45;
-	color: #e6edf3;
-	background-color: rgba(8, 8, 8, 0.541);
+	color: #18181B;
+	background-color: rgba(150, 151, 153, 0.397);
 	border-radius: 3px;
   }
   

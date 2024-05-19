@@ -15,6 +15,10 @@ import {CompletionContext, autocompletion} from "@codemirror/autocomplete"
 import { history, historyKeymap } from '@codemirror/commands'
 
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
+import { basicLight } from '@renderer/utils/themes/LightTheme'
+import { solarizedDark } from '@renderer/utils/themes/SolarizedDark'
+
+
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
 
 const emojiList = getEmojiList()
@@ -135,30 +139,6 @@ const CodeBlockField = StateField.define<DecorationSet>({
     })
   })
 
-
-export const transparentTheme = EditorView.theme({
-    '&': {
-        backgroundColor: "#27272A",
-        height: '100%',
-        //font:"'JetBrains Mono', monospace",
-    },
-    '.cm-content': {
-        fontSize: '15px',
-    },
-    ".cm-line.cm-codeblock": {
-        backgroundColor: "#18181b",
-        color: "#fff",
-    },
-    ".cm-line.cm-activeLine.cm-codeblock": {
-        backgroundColor: "#4a4848",
-        color: "#fff",
-    },
-    '.cm-tooltip': {
-      backgroundColor: "#292828",
-  },
-    
-})
-
 const customTags = {
     headingMark: Tag.define(),
   };
@@ -170,41 +150,6 @@ const MarkStylingExtension: MarkdownConfig = {
       }),
     ],
   };
-  
-  const highlightStyle = HighlightStyle.define([
-    {
-        tag: tags.heading1,
-        fontSize: '2.1em',
-        fontWeight: 'bold',
-    },
-    {
-        tag: tags.heading2,
-        fontSize: '1.8em',
-        fontWeight: 'bold',
-    },
-    {
-        tag: tags.heading3,
-        fontSize: '1.5em',
-        fontWeight: 'bold',
-    },
-    {
-        tag: tags.heading4,
-        fontSize: '1.2em',
-        fontWeight: 'bold',
-    },
-    {
-        tag: tags.quote,
-    },
-    {
-        tag: tags.monospace,
-        color: '#b6b8ba',
-        background: '#18181b',
-        borderRadius: '3px',
-        padding: '1px'
-    },
-
-
-  ]);
 
 
 type EditorProps = {
@@ -273,17 +218,15 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
             addKeymap: true,
             extensions: [MarkStylingExtension]
         }),
-        syntaxHighlighting(
-            highlightStyle
-        ),
         placeholders,
         emojiAutoCompletion,
         autocompletion({
           closeOnBlur: false,
         }),
         CodeBlockField,
-        transparentTheme,
         basicDark,
+        //basicLight,
+        //solarizedDark,
         eventHandlers,
         EditorView.updateListener.of(update => {
             if (update.changes) {

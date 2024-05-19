@@ -3,43 +3,44 @@ import { Extension } from '@codemirror/state'
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags as t } from '@lezer/highlight'
 
-const base00 = '#2E3235',
-  base01 = '#DDDDDD',
-  base02 = '#B9D2FF',
-  base03 = '#b0b0b0',
-  base04 = '#d0d0d0',
-  base05 = '#e0e0e0',
-  base06 = '#808080',
-  base07 = '#000000',
-  base08 = '#A54543',
-  base09 = '#fc6d24',
-  base0A = '#fda331',
-  base0B = '#8abeb7',
-  base0C = '#b5bd68',
-  base0D = '#6fb3d2',
-  base0E = '#cc99cc',
-  base0F = '#6987AF'
+const base00 = '#002b36',
+  base01 = '#073642',
+  base02 = '#586e75',
+  base03 = '#657b83',
+  base04 = '#839496',
+  base05 = '#93a1a1',
+  base06 = '#eee8d5',
+  base07 = '#fdf6e3',
+  base_red = '#dc322f',
+  base_orange = '#cb4b16',
+  base_yellow = '#b58900',
+  base_green = '#859900',
+  base_cyan = '#2aa198',
+  base_blue = '#268bd2',
+  base_violet = '#6c71c4',
+  base_magenta = '#d33682'
 
-const invalid = base09,
-  darkBackground = '#292d30',
-  highlightBackground = base02 + '30',
+const invalid = '#d30102',
+  stone = base04,
+  darkBackground = '#00252f',
+  highlightBackground = '#173541',
   background = base00,
-  codeBackground = '#232729',
-  tooltipBackground = "#292828",
-  selection = '#202325',
-  cursor = base01
+  codeBackground = '#011a21',
+  tooltipBackground = base01,
+  selection = '#173541',
+  cursor = base04
 
-/// The editor theme styles for Basic Dark.
-export const basicDarkTheme = EditorView.theme(
+/// The editor theme styles for Solarized Dark.
+export const solarizedDarkTheme = EditorView.theme(
   {
     '&': {
-      color: base01,
+      color: base05,
       backgroundColor: background
     },
 
     '.cm-content': {
       caretColor: cursor,
-      fontSize: '15px',
+      fontSize: '15px'
     },
 
     '.cm-cursor, .cm-dropCursor': { borderLeftColor: cursor },
@@ -51,31 +52,24 @@ export const basicDarkTheme = EditorView.theme(
     '.cm-panels.cm-panels-bottom': { borderTop: '2px solid black' },
 
     '.cm-searchMatch': {
-      backgroundColor: base02,
-      outline: `1px solid ${base03}`,
-      color: base07
+      backgroundColor: '#72a1ff59',
+      outline: '1px solid #457dff'
     },
     '.cm-searchMatch.cm-searchMatch-selected': {
-      backgroundColor: base05,
-      color: base07
+      backgroundColor: '#6199ff2f'
     },
 
     '.cm-activeLine': { backgroundColor: highlightBackground },
-    '.cm-selectionMatch': { backgroundColor: highlightBackground },
+    '.cm-selectionMatch': { backgroundColor: '#aafe661a' },
 
     '&.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket': {
-      outline: `1px solid ${base03}`
-    },
-
-    '&.cm-focused .cm-matchingBracket': {
-      backgroundColor: base02,
-      color: base07
+      outline: `1px solid ${base06}`
     },
 
     '.cm-gutters': {
-      borderRight: `1px solid #ffffff10`,
-      color: base06,
       backgroundColor: darkBackground,
+      color: stone,
+      border: 'none'
     },
 
     '.cm-activeLineGutter': {
@@ -85,7 +79,7 @@ export const basicDarkTheme = EditorView.theme(
     '.cm-foldPlaceholder': {
       backgroundColor: 'transparent',
       border: 'none',
-      color: base02
+      color: '#ddd'
     },
 
     '.cm-tooltip': {
@@ -108,140 +102,139 @@ export const basicDarkTheme = EditorView.theme(
     },
     ".cm-line.cm-codeblock": {
       backgroundColor: codeBackground,
-      color: "#fff",
+      color: base05,
     },
     ".cm-line.cm-activeLine.cm-codeblock": {
       backgroundColor: "#4a4848",
-      color: "#fff",
+      color: base05,
     },
   },
   { dark: true }
 )
 
-/// The highlighting style for code in the Basic Light theme.
-export const basicDarkHighlightStyle = HighlightStyle.define([
-  { tag: t.keyword, color: base0A },
+/// The highlighting style for code in the Solarized Dark theme.
+export const solarizedDarkHighlightStyle = HighlightStyle.define([
+  { tag: t.keyword, color: base_green },
   {
     tag: [t.name, t.deleted, t.character, t.propertyName, t.macroName],
-    color: base0C
+    color: base_cyan
   },
-  { tag: [t.variableName], color: base0D },
-  { tag: [t.function(t.variableName)], color: base0A },
-  { tag: [t.labelName], color: base09 },
+  { tag: [t.variableName], color: base05 },
+  { tag: [t.function(t.variableName)], color: base_blue },
+  { tag: [t.labelName], color: base_magenta },
   {
     tag: [t.color, t.constant(t.name), t.standard(t.name)],
-    color: base0A
+    color: base_yellow
   },
-  { tag: [t.definition(t.name), t.separator], color: base0E },
-  { tag: [t.brace], color: base0E },
+  { tag: [t.definition(t.name), t.separator], color: base_cyan },
+  { tag: [t.brace], color: base_magenta },
   {
     tag: [t.annotation],
     color: invalid
   },
   {
     tag: [t.number, t.changed, t.annotation, t.modifier, t.self, t.namespace],
-    color: base0A
+    color: base_magenta
   },
   {
     tag: [t.typeName, t.className],
-    color: base0D
+    color: base_orange
   },
   {
     tag: [t.operator, t.operatorKeyword],
-    color: base0E
+    color: base_violet
   },
   {
     tag: [t.tagName],
-    color: base0A
+    color: base_blue
   },
   {
     tag: [t.squareBracket],
-    color: base0E
+    color: base_red
   },
   {
     tag: [t.angleBracket],
-    color: base0E
+    color: base02
   },
   {
     tag: [t.attributeName],
-    color: base0D
+    color: base05
   },
   {
     tag: [t.regexp],
-    color: base0A
+    color: invalid
   },
   {
     tag: [t.quote],
-    color: base01
+    color: base_green
   },
-  { tag: [t.string], color: base0C },
+  { tag: [t.string], color: base_yellow },
   {
     tag: t.link,
-    color: base0F,
+    color: base_cyan,
     textDecoration: 'underline',
     textUnderlinePosition: 'under'
   },
   {
     tag: [t.url, t.escape, t.special(t.string)],
-    color: base0B
+    color: base_yellow
   },
-  { tag: [t.meta], color: base08 },
-  { tag: [t.comment], color: base06, fontStyle: 'italic' },
+  { tag: [t.meta], color: base_red },
+  { tag: [t.comment], color: base02, fontStyle: 'italic' },
   {
     tag: t.monospace,
-    color: '#b6b8ba',
+    color: base05,
     background: codeBackground,
     borderRadius: '3px',
     padding: '1px'
   },
-  { tag: t.strong, fontWeight: 'bold', color: base0A },
-  { tag: t.emphasis, fontStyle: 'italic', color: base0D },
+  { tag: t.strong, fontWeight: 'bold', color: base06 },
+  { tag: t.emphasis, fontStyle: 'italic', color: base_green },
   { tag: t.strikethrough, textDecoration: 'line-through' },
-  { tag: t.heading, fontWeight: 'bold', color: base01 },
-  { tag: t.special(t.heading1), fontWeight: 'bold', color: base01 },
-  { tag: t.heading1,
-     fontWeight: 'bold',
-     color: base01,
-     fontSize: '2.1em',
-  },
-  {
-    tag: [t.heading2, t.heading3, t.heading4],
-    color: base01
+  { tag: t.heading, fontWeight: 'bold', color: base_yellow },
+  { 
+    tag: t.heading1,
+    fontWeight: 'bold',
+    color: base07,
+    fontSize: '2.1em',
   },
   {
     tag: t.heading2,
+    color: base07,
     fontSize: '1.8em',
     fontWeight: 'bold',
   },
   {
     tag: t.heading3,
+    color: base07,
     fontSize: '1.5em',
     fontWeight: 'bold',
   },
   {
     tag: t.heading4,
+    color: base07,
     fontSize: '1.2em',
     fontWeight: 'bold',
   },
   {
     tag: [t.heading5, t.heading6],
-    color: base01
+    color: base06
   },
-  { tag: [t.atom, t.bool, t.special(t.variableName)], color: base0B },
+  { tag: [t.atom, t.bool, t.special(t.variableName)], color: base_magenta },
   {
-    tag: [t.processingInstruction, t.inserted],
-    color: base0B
+    tag: [t.processingInstruction, t.inserted, t.contentSeparator],
+    color: base_red
   },
   {
     tag: [t.contentSeparator],
-    color: base0D
+    color: base_yellow
   },
-  { tag: t.invalid, color: base02, borderBottom: `1px dotted ${invalid}` }
+  { tag: t.invalid, color: base02, borderBottom: `1px dotted ${base_red}` }
 ])
 
-/// Extension to enable the Basic Dark theme (both the editor theme and
+/// Extension to enable the Solarized Dark theme (both the editor theme and
 /// the highlight style).
-export const basicDark: Extension = [
-  basicDarkTheme,
-  syntaxHighlighting(basicDarkHighlightStyle)
+export const solarizedDark: Extension = [
+  solarizedDarkTheme,
+  syntaxHighlighting(solarizedDarkHighlightStyle)
 ]
