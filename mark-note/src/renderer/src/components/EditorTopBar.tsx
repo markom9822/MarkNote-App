@@ -14,12 +14,10 @@ export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
 
     const filteredNotes = useAtomValue(filteredNotesAtom)
 
-
     if(!selectedNote) return null
     if(!filteredNotes) return null
 
     const date = formatDateFromMs(selectedNote.lastEditTime)
-    console.info(selectedNoteIndex)
 
     const handleClickRightArrow = () => {
         if(selectedNoteIndex == 0) return
@@ -39,11 +37,13 @@ export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
     <div className={twMerge('relative', className)} {...props}>
         <div className="flex space-x-1 items-center">
             <div className="flex space-x-3 mx-3">
-                <EditorNavButton isActive={selectedNoteIndex !== filteredNotes.length-1}>
-                    <button onClick={handleClickLeftArrow} className="my-2"><RiArrowLeftSLine className="w-5 h-5"/></button>
+                <EditorNavButton isActive={selectedNoteIndex !== filteredNotes.length-1}
+                    onClick={handleClickLeftArrow} className="my-2" >
+                    <RiArrowLeftSLine className="w-5 h-5"/>
                 </EditorNavButton>
-                <EditorNavButton isActive={selectedNoteIndex !== 0}>
-                    <button onClick={handleClickRightArrow} className="my-2"><RiArrowRightSLine className="w-5 h-5"/></button>
+                <EditorNavButton isActive={selectedNoteIndex !== 0}
+                    onClick={handleClickRightArrow} className="my-2" >
+                    <RiArrowRightSLine className="w-5 h-5"/>
                 </EditorNavButton>
             </div>
             <MdOutlineTimer className="w-3.5 h-3.5 text-zinc-200" />

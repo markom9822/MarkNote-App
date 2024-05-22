@@ -5,12 +5,13 @@ import remarkGemoji from 'remark-gemoji'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw';
-import remarkGithubAlerts from "remark-github-alerts";
+import { remarkAlert } from 'remark-github-blockquote-alert'
 
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
 
 import '@renderer/assets/darkpreview.css'
+import 'katex/dist/katex.min.css';
 
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -61,7 +62,7 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
     
   return <ReactMarkdown className="markdown-body"
   
-  remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, underlinePlugin]} 
+  remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, underlinePlugin]} 
   rehypePlugins={[rehypeKatex, rehypeRaw]}
   components={{
     code({ node, inline, className, children, ...props }: any) {

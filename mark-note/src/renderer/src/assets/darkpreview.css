@@ -1029,6 +1029,7 @@
 	margin-bottom: 16px;
 	color: inherit;
 	border-left: .25em solid #30363d;
+  font-size: 85%;
   }
   
   .markdown-body .markdown-alert>:first-child {
@@ -1041,6 +1042,7 @@
   
   .markdown-body .markdown-alert .markdown-alert-title {
 	display: flex;
+  gap: 10px;
 	font-weight: 500;
 	align-items: center;
 	line-height: 1;

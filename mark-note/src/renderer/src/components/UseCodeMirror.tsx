@@ -20,6 +20,7 @@ import { solarizedDark } from '@renderer/utils/themes/SolarizedDark'
 
 
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
+import { InsertTextAroundInEditor, InsertTextAtStartInEditor } from './MarkdownEditorToolBar'
 
 const emojiList = getEmojiList()
 
@@ -199,6 +200,53 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
       },
     })
 
+    const toolbarKeymap = [
+      { key: 'Ctrl-b', run: (target: EditorView) => {InsertTextAroundInEditor("****", target, true) 
+        return true;
+        }
+      },
+      { key: 'Ctrl-i', run: (target: EditorView) => {InsertTextAroundInEditor("**", target, true)
+          return true;
+        }
+      },
+      { key: 'Ctrl-u', run: (target: EditorView) => {InsertTextAroundInEditor("____", target, true)
+          return true;
+        }
+      },
+      { key: 'Ctrl-S', run: (target: EditorView) => {InsertTextAroundInEditor("~~~~", target, true)
+          return true;
+        }
+      },
+      { key: 'Ctrl-1', run: (target: EditorView) => {InsertTextAtStartInEditor("# ", target, false)
+          return true;
+        }
+      },
+      { key: 'Ctrl-2', run: (target: EditorView) => {InsertTextAtStartInEditor("## ", target, false)
+          return true;
+        }
+      },
+      { key: 'Ctrl-3', run: (target: EditorView) => {InsertTextAtStartInEditor("### ", target, false)
+          return true;
+        }
+      },
+      { key: 'Ctrl-4', run: (target: EditorView) => {InsertTextAtStartInEditor("#### ", target, false)
+          return true;
+        }
+      },
+      { key: 'Ctrl-5', run: (target: EditorView) => {InsertTextAtStartInEditor("- ", target, false)
+          return true;
+        }
+      },
+      { key: 'Ctrl-6', run: (target: EditorView) => {InsertTextAtStartInEditor("1. ", target, false)
+          return true;
+        }
+      },
+      { key: 'Ctrl-7', run: (target: EditorView) => {InsertTextAtStartInEditor("- [ ] ", target, false)
+          return true;
+        }
+      },
+    ]
+
   useEffect(() => {
 
     if (!containerRef.current) return
@@ -206,7 +254,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     const startState = EditorState.create({
     doc: doc,
     extensions: [
-        [keymap.of(defaultKeymap), [keymap.of(historyKeymap)]],
+        [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)], ],
         lineNumbers(),
         highlightActiveLineGutter(),
         highlightActiveLine(),
