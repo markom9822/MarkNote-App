@@ -16,6 +16,7 @@ Notes can have a status to let you keep track of your progress.
 
 The Markdown editor supports:
 - Github flavoured markdown
+- Github alerts
 - Underlined text
 - Emojis
 - Math
