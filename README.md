@@ -10,8 +10,9 @@ This is a markdown based note taking app developed using:
 - [Remark](https://github.com/remarkjs/remark)
 
 You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time.
+Notes can have a status to let you keep track of your progress.
 
-![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/0a37b707-c621-411a-ad7c-4db4914a4b7c)
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c58bf6b9-65b6-4790-9c07-01b0ae7996d8)
 
 The Markdown editor supports:
 - Github flavoured markdown
