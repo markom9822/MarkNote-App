@@ -22,5 +22,5 @@ The Markdown editor supports:
 - Math
 
 In the settings menu the theme for the UI, Editor and Preview can be adjusted to your liking.
-![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/62106c63-eab5-4c6b-a9b9-0afe30446cb1)
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/33250402-0ee3-4fec-bb3e-7f3e4f499bbb)
 
