@@ -16,10 +16,10 @@ export const SettingOptionView = ({
 
     const Icon = icon;
 
-    return( <div className={cn('cursor-pointer px-2.5 py-3 rounded-md transition-colors duration-75', 
+    return( <div className={cn('cursor-pointer px-2.5 py-3 transition-colors duration-75', 
     {
-        'bg-zinc-500/75 text-zinc-100': isActive,
-        'hover:bg-zinc-600/75 text-zinc-400': !isActive,
+        'bg-zinc-900 border-r-4 border-indigo-500': isActive,
+        'hover:bg-zinc-500/75 text-zinc-400': !isActive,
     },
     className
     )}

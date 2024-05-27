@@ -5,6 +5,7 @@ import { LuPaintbrush } from "react-icons/lu";
 import { FaChalkboardTeacher, FaLaptopCode } from "react-icons/fa";
 import { MdOutlineDisabledByDefault } from "react-icons/md";
 import { MdOutlinePreview } from "react-icons/md";
+import { RxKeyboard } from "react-icons/rx";
 import { ThemesSettingOption} from '@/components/SettingsPopUp/Options/ThemesSettingOption'
 
  
@@ -25,6 +26,11 @@ const settingsOptions = [{
     id: 3,
     title: 'Preview',
     icon: MdOutlinePreview,
+  },
+  {
+    id: 4,
+    title: 'Keybindings',
+    icon: RxKeyboard,
   }
 ];
 

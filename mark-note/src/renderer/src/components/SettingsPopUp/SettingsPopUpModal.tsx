@@ -10,23 +10,24 @@ import { forceSettings} from '@renderer/hooks/useSettingsList'
 
 export const SettingsPopUpModal = (props) => {
 
-    if(!props.visible) return null
-
+    
     const {forceSetOptionIndex} = forceSettings()
 
     // put into useffect hook
     useEffect(() => {
         forceSetOptionIndex(0)
       }, [props.visible]);
+
+      if(!props.visible) return null
     
 
     return createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white">
                 <button onClick={props.onClose} className="place-self-end"><MdClose size={24}/></button>
-                <div className="bg-zinc-600 rounded-lg px-2 py-1 flex flex-row gap-5 mx-4">
-                    <SettingsSidebar className="bg-zinc-900 rounded-lg">
-                        <SettingsOptionsViewList className = "mt-3 space-y-1"/> 
+                <div className="bg-zinc-600 border-2 border-zinc-500 rounded-md flex flex-row gap-5 mx-4 h-[32rem]">
+                    <SettingsSidebar className="rounded-l-md bg-zinc-900/75">
+                        <SettingsOptionsViewList className = ""/> 
                     </SettingsSidebar>
 
                     <SettingsContent>

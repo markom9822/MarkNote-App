@@ -246,6 +246,10 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
           return true;
         }
       },
+      { key: 'Ctrl-B', run: (target: EditorView) => {InsertTextAtStartInEditor("> ", target, false)
+          return true;
+        }
+      },
     ]
 
   useEffect(() => {
