@@ -21,6 +21,7 @@ import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPop
 import { FaRegFaceSmile, FaBurger, FaRegBuilding } from "react-icons/fa6";
 import { FaMountain } from "react-icons/fa";
 import { MdOutlineEmojiSymbols } from "react-icons/md";
+import { ImageFormatPopUpModal } from "./EditorPopUps/ImageFormatPopUp"
 
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
@@ -30,10 +31,14 @@ export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
 export const MarkdownEditorToolBar = ({editorView, className, ...props}: MarkdownEditorToolbarProps) => {
     const selectedNote = useAtomValue(selectedNoteAtom)
     const [showLinkFormat, setShowLinkFormat] = useState(false)
+    const [showImageFormat, setShowImageFormat] = useState(false)
+
     const [showEmojiPicker, setShowEmojiPicker] = useState(false)
     const [showHeadingHelper, setShowHeadingHelper] = useState(false)
 
     const handleLinkFormatOnClose = () => setShowLinkFormat(false)
+
+    const handleImageFormatOnClose = () => setShowImageFormat(false)
 
     const handleClickLinkInsert = () => {
         if(editorView == null) return 
@@ -47,10 +52,28 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         InsertTextInEditor(linkTitleString + linkAddressString, editorView, false)
     }
 
+    const handleClickImageInsert = () => {
+        if(editorView == null) return 
+        if(editorView == undefined) return
+        if(imageFormatPopUpModal?.imageAddress == undefined) return
+        if(imageFormatPopUpModal?.imageWidth == undefined) return
+
+        //const linkTitleString = "[" + linkFormatPopUpModal?.linkTitle.toString() + "]";
+        //const linkAddressString = "(" + linkFormatPopUpModal?.linkAddress.toString() + ")";
+
+        //InsertTextInEditor(linkTitleString + linkAddressString, editorView, false)
+    }
+
     const linkFormatPopUpModal = LinkFormatPopUpModal({
         onClose: handleLinkFormatOnClose,
         onClickInsert: handleClickLinkInsert,
         visible: showLinkFormat
+    })
+
+    const imageFormatPopUpModal = ImageFormatPopUpModal({
+        onClose: handleImageFormatOnClose,
+        onClickInsert: handleClickImageInsert,
+        visible: showImageFormat
     })
 
     if(!selectedNote) return null
@@ -74,7 +97,12 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         </div>
         
         <LinkButton editorView={editorView} onClick={() => setShowLinkFormat(true)}/>
-        <ImageButton editorView={editorView}/>
+
+        <div>
+            {imageFormatPopUpModal?.imagePopUp}
+        </div>
+
+        <ImageButton editorView={editorView} onClick={() => setShowImageFormat(true)}/>
         <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
         <ButtonTooltip message="More options">
             <MoreOptionsButton editorView={editorView}/>
@@ -448,11 +476,8 @@ export const LinkButton = ({...props}: ToolBarButtonProps) => {
 
 export const ImageButton = ({...props}: ToolBarButtonProps) => {
 
-    const handleCreateImage = async () => {
-    }
-
     return (
-        <ToolBarButton onClick={handleCreateImage} {...props}>
+        <ToolBarButton {...props}>
             <CiImageOn className="w-4 h-4 text-zinc-100"/>
         </ToolBarButton>
     )
