@@ -210,7 +210,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
           return true;
         }
       },
-      { key: 'Ctrl-u', run: (target: EditorView) => {InsertTextAroundInEditor("____", target, true)
+      { key: 'Ctrl-U', run: (target: EditorView) => {InsertTextAroundInEditor("____", target, true)
           return true;
         }
       },
@@ -281,6 +281,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         //basicLight,
         //solarizedDark,
         eventHandlers,
+        EditorView.lineWrapping,
         EditorView.updateListener.of(update => {
             if (update.changes) {
                setDoc(update.state.doc.toString())

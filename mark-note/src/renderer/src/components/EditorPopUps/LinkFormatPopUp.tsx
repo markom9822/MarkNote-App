@@ -35,17 +35,17 @@ export const LinkFormatPopUpModal  = ({
 
     const linkPopUp = createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center z-20">
-            <div className="mt-10 flex flex-col gap-2 text-white">
-                <div className="bg-zinc-600 rounded-lg px-2 py-1 flex flex-col gap-5 mx-4 px-5">
-                    <div className='flex flex-row gap-3'>
-                        <IoIosLink className="w-4 h-4 text-zinc-100"/>
+            <div className="mt-10 flex flex-col gap-2">
+                <div className="bg-zinc-700 rounded-md flex flex-col gap-5 mx-4 border-2 border-zinc-500">
+                    <div className='flex flex-row gap-3 mx-2 my-1'>
+                        <IoIosLink className="w-4 h-4 my-1 text-zinc-100"/>
                         <div>Insert a link</div>
                     </div>
-                    <FormInputField label='Link title' placeholder='Link title' setInputText={setLinkTitle}/>
-                    <FormInputField label='Link address' placeholder='https://' setInputText={setLinkAddress}/>
-                    <div className='flex justify-center items-center space-x-8'>
-                        <button onClick={handleOnClickCancel} className="rounded bg-zinc-800 px-9 py-2">Cancel</button>
-                        <button onClick={handleOnClickInsert} className="rounded bg-zinc-800 px-9 py-2">Insert</button>
+                    <FormInputField className='px-2' label='Link title' placeholder='Link title' setInputText={setLinkTitle}/>
+                    <FormInputField className='px-2' label='Link address' placeholder='https://' setInputText={setLinkAddress}/>
+                    <div className='flex justify-center items-center space-x-8 py-3 rounded-b-md bg-zinc-600'>
+                        <button onClick={handleOnClickCancel} className="font-bold rounded-lg bg-zinc-800 px-6 py-1 border border-zinc-500">Cancel</button>
+                        <button onClick={handleOnClickInsert} className="font-bold rounded-lg bg-indigo-500 px-6 py-1 border border-indigo-400 text-zinc-800">Insert</button>
                     </div>
                 </div>
             </div>
@@ -70,10 +70,11 @@ export const FormInputField = ({label, placeholder, setInputText, ...props}: For
 
     return (
         <div {...props}>
-            <label className="block text-gray-100 text-sm font-bold mb-3">
+            <label className="block text-zinc-200 text-sm font-bold mb-2">
             {label}
             </label>
-            <input className="border rounded py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline w-80" 
+            <input className="rounded py-2 px-3 text-gray-200 bg-zinc-800 leading-tight border-2 border-zinc-800 focus:border-indigo-500 
+            focus:outline-none focus:shadow-outline w-80" 
             id="username" type="text" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
         </div>
     )

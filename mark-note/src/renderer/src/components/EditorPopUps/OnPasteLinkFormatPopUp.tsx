@@ -65,20 +65,20 @@ export const OnPasteLinkFormatPopUpModal  = ({
     if(!visible) return null
 
     return createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-10 flex justify-center z-20">
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white">
-                <div className="bg-zinc-600 rounded-lg px-2 py-1 flex flex-col gap-5 mx-4 px-5">
-                    <div className='flex flex-row gap-3'>
-                        <IoIosLink className="w-4 h-4 text-zinc-100"/>
+                <div className="bg-zinc-700 rounded-md flex flex-col gap-5 mx-4 border-2 border-zinc-500">
+                    <div className='flex flex-row gap-3 mx-2 my-1'>
+                        <IoIosLink className="w-4 h-4 my-1 text-zinc-100"/>
                         <div>Choose a link format</div>
                     </div>
                     <RadioButtonForm 
                     handleOptionChange={handleOptionChange} 
                     selectedRadio={selectedRadio}
                     formatList={formatList}/>
-                    <div className='flex justify-center items-center space-x-8'>
-                        <button onClick={handleOnClickCancel} className="rounded bg-zinc-800 px-9 py-2">Cancel</button>
-                        <button onClick={handleOnClickCreate} className="rounded bg-zinc-800 px-9 py-2">Create</button>
+                    <div className='flex justify-center items-center space-x-8 py-3 rounded-b-md bg-zinc-600'>
+                        <button onClick={handleOnClickCancel} className="font-bold rounded-lg bg-zinc-800 px-6 py-1 border border-zinc-500">Cancel</button>
+                        <button onClick={handleOnClickCreate} className="font-bold rounded-lg bg-indigo-500 px-6 py-1 border border-indigo-400 text-zinc-800">Create</button>
                     </div>
                 </div>
             </div>
@@ -99,43 +99,43 @@ export const RadioButtonForm = ({
     }: RadioButtonFormProps) => {
 
     return (
-        <ul className="grid grid-rows-3 gap-x-5 m-5">
-        <div className="relative flex flex-col items-center justify-center">
-            <p>
+        <ul className="grid grid-rows-3 gap-x-5 m-2">
+        <div className="relative flex flex-col">
+            <div className='text-sm my-1'>
                 {formatList[0].title}
-            </p>
+            </div>
             <input type="radio" value="option1" id='option1' 
                 checked={selectedRadio == 'option1'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
-            <label htmlFor='option1' className="w-96 cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
-            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-cyan-600">
+            <label htmlFor='option1' className="w-[32rem] truncate cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
+            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-indigo-600">
                 {formatList[0].formatting}
             </label>
         </div>
-        <div className="relative flex flex-col items-center justify-center">
-            <p>
+        <div className="relative flex flex-col">
+            <div className='text-sm my-1'>
                 {formatList[1].title}
-            </p>
+            </div>
             <input type="radio" value="option2" id='option2' 
                 checked={selectedRadio == 'option2'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
-            <label htmlFor='option2' className="w-96 cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
-            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-cyan-600">
+            <label htmlFor='option2' className="w-[32rem] truncate cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
+            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-indigo-600">
                 {formatList[1].formatting}
             </label>
         </div>
-        <div className="relative flex flex-col items-center justify-center">
-            <p>
+        <div className="relative flex flex-col">
+            <div className='text-sm my-1'>
                 {formatList[2].title}
-            </p>
+            </div>
             <input type="radio" value="option3" id='option3' 
                 checked={selectedRadio == 'option3'}
                 onChange={handleOptionChange}
                 className='hidden peer'/>
-            <label htmlFor='option3' className="w-96 cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
-            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-cyan-600">
+            <label htmlFor='option3' className="w-[32rem] truncate cursor-pointer border-2 border-zinc-800 bg-zinc-800 rounded-xl text-white p-2 text-center 
+            peer-checked:bg-zinc-900 peer-checked:font-bold peer-checked:border-indigo-600">
                 {formatList[2].formatting}
             </label>
         </div>
