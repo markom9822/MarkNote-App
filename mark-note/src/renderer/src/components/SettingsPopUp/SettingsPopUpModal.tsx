@@ -30,7 +30,7 @@ export const SettingsPopUpModal = (props) => {
                     </SettingsSidebar>
 
                     <SettingsContent>
-                        <div className='flex justify-end sticky top-0 bg-zinc-700'>
+                        <div className='flex justify-end sticky top-0 bg-zinc-700 rounded-md'>
                             <button onClick={props.onClose} className='px-0.5 py-0.5'><MdClose size={17}/></button>
                         </div>
                     <SettingsContentView />
