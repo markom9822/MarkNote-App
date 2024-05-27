@@ -6,7 +6,7 @@ import { useSetAtom, useAtomValue } from "jotai"
 import { setNoteStatusAtom, selectedNoteAtom} from "@renderer/store"
 
 
-export const NoteStatusDropdown = (props) => {
+export const NoteStatusDropdown = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [chosenStatus, setChosenStatus] = useState('Active');
 

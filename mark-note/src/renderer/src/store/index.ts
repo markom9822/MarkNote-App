@@ -1,6 +1,5 @@
 import { NoteInfo, NoteContent, SettingOptionInfo } from "@shared/models";
 import { atom } from "jotai";
-import { notesMock } from "@/store/mocks";
 import {unwrap} from 'jotai/utils'
 
 const loadNotes = async () => {

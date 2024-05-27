@@ -8,7 +8,7 @@ export type EmojiPickerProps = ComponentProps<'div'> & {
     selectedType: string
 }
 
-export const EmojiPicker = ({handlePickedEmoji, selectedType, ...props}: EmojiPickerProps) => {
+export const EmojiPicker = ({handlePickedEmoji, selectedType}: EmojiPickerProps) => {
 
     const emojiList = getEmojiList()
 

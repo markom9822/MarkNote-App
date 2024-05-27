@@ -6,7 +6,7 @@ export type ButtonTooltipProps = ComponentProps<'button'> & {
 }
 
 
-export const ButtonTooltip = ({message, className, children, ...props}: ButtonTooltipProps) => {
+export const ButtonTooltip = ({message, className, children}: ButtonTooltipProps) => {
     
     return (
     <div className={twMerge('group relative flex justify-center', className)}>

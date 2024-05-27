@@ -96,7 +96,7 @@ export const RadioButtonForm = ({
     handleOptionChange, 
     selectedRadio,
     formatList,
-     ...props}: RadioButtonFormProps) => {
+    }: RadioButtonFormProps) => {
 
     return (
         <ul className="grid grid-rows-3 gap-x-5 m-5">

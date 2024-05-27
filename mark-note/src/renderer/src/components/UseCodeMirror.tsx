@@ -188,6 +188,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     const eventHandlers = EditorView.domEventHandlers({
       paste(event, view) {
         var pastedText = event.clipboardData?.getData('Text');
+        const editorView = view;
 
         // check if link
         var regex = /https?:\/\/[^\s]+/g;
