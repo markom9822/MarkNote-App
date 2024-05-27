@@ -25,6 +25,11 @@ export const KeybindingSettingOption = () => {
             action: 'Strikethrough',
         },
         {
+            keybinding: 'Ctrl + Shift + C',
+            source: 'Markdown',
+            action: 'Code Block',
+        },
+        {
             keybinding: 'Ctrl + 1',
             source: 'Markdown',
             action: 'Heading 1',
@@ -63,6 +68,16 @@ export const KeybindingSettingOption = () => {
             keybinding: 'Ctrl + 8',
             source: 'Markdown',
             action: 'Quote',
+        },
+        {
+            keybinding: 'Ctrl + C',
+            source: 'Editor',
+            action: 'Copy',
+        },
+        {
+            keybinding: 'Ctrl + V',
+            source: 'Editor',
+            action: 'Paste',
         },
         {
             keybinding: 'Ctrl + Z',

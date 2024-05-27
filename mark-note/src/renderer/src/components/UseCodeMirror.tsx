@@ -250,6 +250,10 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
           return true;
         }
       },
+      { key: 'Ctrl-C', run: (target: EditorView) => {InsertTextAroundInEditor("```" + "\n" + "\n" +"```", target, true)
+          return true;
+        }
+      },
     ]
 
   useEffect(() => {

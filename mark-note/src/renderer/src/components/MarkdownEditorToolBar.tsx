@@ -363,7 +363,7 @@ export const CodeSegmentButton = ({editorView, ...props}: ToolBarButtonProps) =>
         if(editorView == null) return 
         if(editorView == undefined) return
 
-        InsertTextInEditor("```" + "\n" + "\n" +"```", editorView, true)
+        InsertTextAroundInEditor("```" + "\n" + "\n" +"```", editorView, true)
     }
 
     return (
