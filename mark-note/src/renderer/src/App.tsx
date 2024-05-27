@@ -53,7 +53,6 @@ const App = () => {
             <p className="text-lg">All Notes</p>
             <NewNoteButton />
           </div>
-          <NotesSearchBar className="px-2"/>
           <hr className="h-px my-3 bg-zinc-700 border-0 " />
           <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   

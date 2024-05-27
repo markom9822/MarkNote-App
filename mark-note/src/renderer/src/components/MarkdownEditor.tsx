@@ -48,7 +48,7 @@ export const MarkdownEditor = ({
 
             const timeoutID = setTimeout(async () => {
                 await handleSavingText()
-            }, 1000)
+            }, 0)
 
             return () => clearTimeout(timeoutID)
     }, [doc])
@@ -56,10 +56,10 @@ export const MarkdownEditor = ({
     useEffect(() => {
         if(view !== null)
         {
-            saveEditorView(view)
+            //saveEditorView(view)
         }
         
-    }, [view])
+    }, [selectedNote?.title])
 
     const handleChange = useCallback(
         state => onChange(state.doc.toString()),

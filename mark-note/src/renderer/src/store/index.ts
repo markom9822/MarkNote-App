@@ -20,11 +20,12 @@ export const filteredNotesAtom = atom<NoteInfo[] | null>(await loadNotes())
 
 const selectedNoteAtomAsync = atom(async (get) => {
     const filteredNotes = get(filteredNotesAtom)
+    const allNotes = get(allNotesAtom)
     const selectedNoteIndex = get(selectedNoteIndexAtom)
 
-    if (selectedNoteIndex == null || !filteredNotes) return null
+    if (selectedNoteIndex == null || !allNotes) return null
 
-    const selectedNote = filteredNotes[selectedNoteIndex]
+    const selectedNote = allNotes[selectedNoteIndex]
 
     const noteContent = await window.context.readNote(selectedNote.title)
 

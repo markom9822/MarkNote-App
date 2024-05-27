@@ -12,9 +12,9 @@ export type NotePreviewListProps = ComponentProps<'ul'> & {
 export const NotePreviewList = ({onSelect, className, ...props}: NotePreviewListProps) => {
     const {allNotes, filteredNotes, selectedNoteIndex, handleNotesSelect} = useNotesList({onSelect})
 
-    if(!filteredNotes) return null
+    if(!allNotes) return null
 
-    if(isEmpty(filteredNotes))
+    if(isEmpty(allNotes))
     {
         return <ul className={twMerge('text-center pt-4' ,className)} {...props}>
             <span>No Notes Yet</span>
@@ -23,7 +23,7 @@ export const NotePreviewList = ({onSelect, className, ...props}: NotePreviewList
 
     return ( 
     <ul className={className} {...props}>
-        {filteredNotes.map((note, index) => (
+        {allNotes.map((note, index) => (
             <NotePreview 
             key={note.title + note.lastEditTime} 
             isActive = {selectedNoteIndex == index}
