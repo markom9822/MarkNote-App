@@ -34,6 +34,8 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
     const [showImageFormat, setShowImageFormat] = useState(false)
 
     const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+    const [showOptionsMenu, setShowOptionsMenu] = useState(false)
+
     const [showHeadingHelper, setShowHeadingHelper] = useState(false)
 
     const handleLinkFormatOnClose = () => setShowLinkFormat(false)
@@ -58,10 +60,10 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         if(imageFormatPopUpModal?.imageAddress == undefined) return
         if(imageFormatPopUpModal?.imageWidth == undefined) return
 
-        //const linkTitleString = "[" + linkFormatPopUpModal?.linkTitle.toString() + "]";
-        //const linkAddressString = "(" + linkFormatPopUpModal?.linkAddress.toString() + ")";
+        const imageAddressString = '<img src=\"' + imageFormatPopUpModal?.imageAddress.toString() + '\" ';
+        const imageWidthString = 'width=\"' + imageFormatPopUpModal?.imageWidth.toString() + '\">';
 
-        //InsertTextInEditor(linkTitleString + linkAddressString, editorView, false)
+        InsertTextInEditor(imageAddressString + imageWidthString, editorView, false)
     }
 
     const linkFormatPopUpModal = LinkFormatPopUpModal({
@@ -104,10 +106,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
 
         <ImageButton editorView={editorView} onClick={() => setShowImageFormat(true)}/>
         <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
-        <ButtonTooltip message="More options">
-            <MoreOptionsButton editorView={editorView}/>
-        </ButtonTooltip>
-
+        <MoreOptionsButton editorView={editorView} handleClickOptionsButton={() => setShowOptionsMenu((prev) => !prev)} moreOptionsOpen={showOptionsMenu}/>
     </div>
    ) 
 }
@@ -528,7 +527,13 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
     )
 }
 
-export const MoreOptionsButton = ({editorView, ...props}: ToolBarButtonProps) => {
+export type MoreOptionsButtonProps = ComponentProps<'button'> & {
+    editorView: EditorView | null | undefined;
+    moreOptionsOpen: boolean,
+    handleClickOptionsButton: () => void,
+}
+
+export const MoreOptionsButton = ({editorView, moreOptionsOpen, handleClickOptionsButton, ...props}: MoreOptionsButtonProps) => {
 
     const handleMoreOptions = async () => {
     
@@ -536,9 +541,23 @@ export const MoreOptionsButton = ({editorView, ...props}: ToolBarButtonProps) =>
     }
 
     return (
-        <ToolBarButton editorView={editorView} onClick={handleMoreOptions} {...props}>
-            <TfiMore className="w-4 h-4 text-zinc-100"/>
-        </ToolBarButton>
+        <div className="relative flex flex-col">
+            <div>
+                <ToolBarButton editorView={editorView} onClick={handleClickOptionsButton} {...props}>
+                    <TfiMore className="w-4 h-4 text-zinc-100"/>
+                </ToolBarButton>
+            </div>
+            {moreOptionsOpen && (
+                <div className="absolute right-0 w-36 h-36 bg-zinc-900 top-8 rounded-lg overflow-auto">
+                    <div className="divide-zinc-400 divide-y-2">
+                        <div className="flex flex-row justify-center space-x-0.5 ">
+                            <button>Option 1</button>
+                            <button>Option 2</button>
+                        </div>
+                    </div>     
+                </div>
+            )}
+        </div>
     )
 }
 

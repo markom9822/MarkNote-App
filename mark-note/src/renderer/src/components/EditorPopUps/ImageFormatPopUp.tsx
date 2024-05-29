@@ -42,7 +42,7 @@ export const ImageFormatPopUpModal  = ({
                         <div>Insert an image</div>
                     </div>
                     <FormInputField className='px-2' label='Image address' placeholder='https://' setInputText={setImageAddress}/>
-                    <FormInputField className='px-2' label='Image width' placeholder='100' setInputText={setImageWidth}/>
+                    <NumberFormInputField className='px-2' label='Image width' placeholder='0' setInputText={setImageWidth}/>
                     <div className='flex justify-center items-center space-x-8 py-3 rounded-b-md bg-zinc-600'>
                         <button onClick={handleOnClickCancel} className="font-bold rounded-lg bg-zinc-800 px-6 py-1 border border-zinc-500">Cancel</button>
                         <button onClick={handleOnClickInsert} className="font-bold rounded-lg bg-indigo-500 px-6 py-1 border border-indigo-400 text-zinc-800">Insert</button>
@@ -76,6 +76,27 @@ export const FormInputField = ({label, placeholder, setInputText, ...props}: For
             <input className="rounded py-2 px-3 text-gray-200 bg-zinc-800 leading-tight border-2 border-zinc-800 focus:border-indigo-500 
             focus:outline-none focus:shadow-outline w-80" 
             id="username" type="text" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
+        </div>
+    )
+
+}
+
+export type NumberFormInputFieldProps = ComponentProps<'div'> & {
+    label: string,
+    placeholder: string,
+    setInputText(title: string)
+}
+
+export const NumberFormInputField = ({label, placeholder, setInputText, ...props}: NumberFormInputFieldProps) => {
+
+    return (
+        <div {...props}>
+            <label className="block text-zinc-200 text-sm font-bold mb-2">
+            {label}
+            </label>
+            <input className="rounded py-2 px-3 text-gray-200 bg-zinc-800 leading-tight border-2 border-zinc-800 focus:border-indigo-500 
+            focus:outline-none focus:shadow-outline w-24" 
+            id="username" type="number" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
         </div>
     )
 
