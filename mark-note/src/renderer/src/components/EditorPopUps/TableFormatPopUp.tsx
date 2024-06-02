@@ -2,47 +2,46 @@ import { createPortal } from 'react-dom';
 import { ComponentProps, useState} from "react"
 import { CiImageOn } from 'react-icons/ci';
 
-export type ImageFormatPopUpModalProps = {
+export type TableFormatPopUpModalProps = {
     onClose: () => void;
     onClickInsert: () => void;
     visible: boolean,
 }
 
-export const ImageFormatPopUpModal  = ({
+export const TableFormatPopUpModal  = ({
     onClose,
     onClickInsert,
     visible,
-}: ImageFormatPopUpModalProps) => {
-    const [imageAddress, setImageAddress] = useState("")
-    const [imageWidth, setImageWidth] = useState("")
+}: TableFormatPopUpModalProps) => {
+    const [tableCols, setTableCols] = useState("")
+    const [tableRows, setTableRows] = useState("")
 
     const handleOnClickInsert = () => {
         onClickInsert()
         onClose()
 
-        setImageAddress("")
-        setImageWidth("")
+        setTableCols("")
+        setTableRows("")
     }
 
     const handleOnClickCancel = () => {
         onClose()
 
-        setImageAddress("")
-        setImageWidth("")
+        setTableCols("")
+        setTableRows("")
     }
 
     if(!visible) return null
 
-    const imagePopUp = createPortal(
+    const tablePopUp = createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2">
                 <div className="bg-zinc-700 rounded-md flex flex-col gap-5 mx-4 border-2 border-zinc-500">
                     <div className='flex flex-row gap-3 mx-2 my-1'>
                         <CiImageOn className="w-4 h-4 my-1 text-zinc-100"/>
-                        <div>Insert an image</div>
+                        <div>Insert a table</div>
                     </div>
-                    <FormInputField className='px-2' label='Image address' placeholder='https://' setInputText={setImageAddress}/>
-                    <NumberFormInputField className='px-2' label='Image width' placeholder='0' setInputText={setImageWidth}/>
+                    <NumberFormInputField className='px-2' label='Table columns' placeholder='0' setInputText={setTableCols}/>
                     <div className='flex justify-center items-center space-x-8 py-3 rounded-b-md bg-zinc-600'>
                         <button onClick={handleOnClickCancel} className="font-bold rounded-lg bg-zinc-800 px-6 py-1 border border-zinc-500">Cancel</button>
                         <button onClick={handleOnClickInsert} className="font-bold rounded-lg bg-indigo-500 px-6 py-1 border border-indigo-400 text-zinc-800">Insert</button>
@@ -54,31 +53,10 @@ export const ImageFormatPopUpModal  = ({
     )
 
     return {
-        imagePopUp,
-        imageAddress,
-        imageWidth
+        tablePopUp,
+        tableCols,
+        tableRows
     }
-}
-
-export type FormInputFieldProps = ComponentProps<'div'> & {
-    label: string,
-    placeholder: string,
-    setInputText(title: string)
-}
-
-export const FormInputField = ({label, placeholder, setInputText, ...props}: FormInputFieldProps) => {
-
-    return (
-        <div {...props}>
-            <label className="block text-zinc-200 text-sm font-bold mb-2">
-            {label}
-            </label>
-            <input className="rounded py-2 px-3 text-gray-200 bg-zinc-800 leading-tight border-2 border-zinc-800 focus:border-indigo-500 
-            focus:outline-none focus:shadow-outline w-80" 
-            id="username" type="text" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
-        </div>
-    )
-
 }
 
 export type NumberFormInputFieldProps = ComponentProps<'div'> & {
