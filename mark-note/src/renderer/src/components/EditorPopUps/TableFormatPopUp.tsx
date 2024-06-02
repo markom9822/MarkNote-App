@@ -41,7 +41,8 @@ export const TableFormatPopUpModal  = ({
                         <CiImageOn className="w-4 h-4 my-1 text-zinc-100"/>
                         <div>Insert a table</div>
                     </div>
-                    <NumberFormInputField className='px-2' label='Table columns' placeholder='0' setInputText={setTableCols}/>
+                    <NumberFormInputField className='px-2' label='Table rows' placeholder='1' setInputText={setTableRows}/>
+                    <NumberFormInputField className='px-2' label='Table columns' placeholder='1' setInputText={setTableCols}/>
                     <div className='flex justify-center items-center space-x-8 py-3 rounded-b-md bg-zinc-600'>
                         <button onClick={handleOnClickCancel} className="font-bold rounded-lg bg-zinc-800 px-6 py-1 border border-zinc-500">Cancel</button>
                         <button onClick={handleOnClickInsert} className="font-bold rounded-lg bg-indigo-500 px-6 py-1 border border-indigo-400 text-zinc-800">Insert</button>
@@ -74,7 +75,7 @@ export const NumberFormInputField = ({label, placeholder, setInputText, ...props
             </label>
             <input className="rounded py-2 px-3 text-gray-200 bg-zinc-800 leading-tight border-2 border-zinc-800 focus:border-indigo-500 
             focus:outline-none focus:shadow-outline w-24" 
-            id="username" type="number" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
+            id="username" type="number" min="1" max="6" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
         </div>
     )
 

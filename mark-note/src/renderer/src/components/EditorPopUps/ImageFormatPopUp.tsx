@@ -96,7 +96,7 @@ export const NumberFormInputField = ({label, placeholder, setInputText, ...props
             </label>
             <input className="rounded py-2 px-3 text-gray-200 bg-zinc-800 leading-tight border-2 border-zinc-800 focus:border-indigo-500 
             focus:outline-none focus:shadow-outline w-24" 
-            id="username" type="number" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
+            id="username" type="number" min="0" placeholder={placeholder} onChange={event => setInputText(event.target.value)} />
         </div>
     )
 

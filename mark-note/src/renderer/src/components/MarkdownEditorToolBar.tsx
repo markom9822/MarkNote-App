@@ -24,6 +24,8 @@ import { MdOutlineEmojiSymbols } from "react-icons/md";
 import { ImageFormatPopUpModal } from "./EditorPopUps/ImageFormatPopUp"
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import { TableFormatPopUpModal } from "./EditorPopUps/TableFormatPopUp"
+import { markdownTableFormat } from "@renderer/utils"
+import { RxDividerHorizontal } from "react-icons/rx"
 
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
@@ -78,8 +80,9 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         if(tableFormatPopUpModal?.tableCols == undefined) return
         if(tableFormatPopUpModal?.tableRows == undefined) return
 
+        const tableFormat = markdownTableFormat(Number(tableFormatPopUpModal.tableRows), Number(tableFormatPopUpModal.tableCols))
 
-        //InsertTextInEditor(imageAddressString + imageWidthString, editorView, false)
+        InsertTextInEditor(tableFormat, editorView, false)
     }
 
     const tableFormatPopUpModal = TableFormatPopUpModal({
@@ -99,6 +102,11 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         onClickInsert: handleClickImageInsert,
         visible: showImageFormat
     })
+
+    const handleClickedTableOption = () => {
+        setShowTableFormat(true)
+        setShowOptionsMenu(false)
+    }
 
     if(!selectedNote) return null
 
@@ -134,7 +142,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
             {tableFormatPopUpModal?.tablePopUp}
         </div>
 
-        <MoreOptionsButton editorView={editorView} handleClickOptionsButton={() => setShowOptionsMenu((prev) => !prev)} moreOptionsOpen={showOptionsMenu} OnClickTableOption={() => setShowTableFormat(true)}/>
+        <MoreOptionsButton editorView={editorView} handleClickOptionsButton={() => setShowOptionsMenu((prev) => !prev)} moreOptionsOpen={showOptionsMenu} OnClickTableOption={handleClickedTableOption}/>
     </div>
    ) 
 }
@@ -642,6 +650,13 @@ export type MoreOptionsButtonProps = ComponentProps<'button'> & {
 
 export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOption, handleClickOptionsButton, ...props}: MoreOptionsButtonProps) => {
 
+    const handleCreateDivider = async () => {
+        if(editorView == null) return 
+        if(editorView == undefined) return
+
+        InsertTextInEditor("---", editorView, false)
+    }
+
     return (
         <div className="relative flex flex-col">
             <div>
@@ -652,11 +667,17 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
             {moreOptionsOpen && (
                 <div className="absolute right-0 bg-zinc-900 top-8 rounded-lg overflow-auto">
                     <div className="divide-zinc-400 divide-y-2">
-                        <div className="flex flex-row justify-center space-x-0.5 ">
+                        <div className="flex flex-col justify-center space-x-0.5 ">
                             <HeadingHelperButton onClick={OnClickTableOption}>
                                 <div className="flex space-x-2 items-center">
-                                    <FaTable className="text-zinc-100"/>
+                                    <FaTable className="text-zinc-400"/>
                                     <span className="text-xs">Table</span>
+                                </div>
+                            </HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleCreateDivider}>
+                                <div className="flex space-x-2 items-center">
+                                    <RxDividerHorizontal className="text-zinc-100"/>
+                                    <span className="text-xs">Divider</span>
                                 </div>
                             </HeadingHelperButton>
                         </div>
