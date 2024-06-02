@@ -34,10 +34,10 @@ export type EmojiFilterButtonProps = ComponentProps<'button'> & {
 }
 
 export const EmojiFilterButton = ({isActive, className, children, ...props}: EmojiFilterButtonProps) => {
-    return <button className={cn('cursor-pointer rounded-md transition-colors duration-100 px-1 py-1',
+    return <button className={cn('cursor-pointer border border-zinc-900 rounded-md transition-colors duration-100 px-1 py-1',
     {
-        'bg-zinc-600/75': isActive,
-        'hover:bg-zinc-500/75': !isActive,
+        'bg-indigo-600/75': isActive,
+        'hover:border-indigo-500': !isActive,
     }, className
     )} {...props}
     >
@@ -49,7 +49,7 @@ export type EmojiPickerButtonProps = ComponentProps<'button'>
 
 
 export const EmojiPickerButton = ({className, children, ...props}: EmojiPickerButtonProps) => {
-    return <button className={twMerge('rounded-md hover:bg-zinc-600/50 transition-colors duration-100', className
+    return <button className={twMerge('border border-zinc-900 rounded-md hover:border-indigo-500 transition-colors duration-100', className
     )} {...props}
     >
         {children}

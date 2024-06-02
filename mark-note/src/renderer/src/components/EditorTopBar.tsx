@@ -46,9 +46,11 @@ export const EditorTopBar = ({className, ...props}: ComponentProps<'div'>) => {
                     <RiArrowRightSLine className="w-5 h-5"/>
                 </EditorNavButton>
             </div>
-            <MdOutlineTimer className="w-3.5 h-3.5 text-zinc-200" />
-            <p className="text-xs font-light text-left text-zinc-400">{date}</p> 
-            <DeleteNoteButton className="absolute right-0"/> 
+            <div className="flex space-x-2">
+                <MdOutlineTimer className="w-3.5 h-3.5 text-zinc-200" />
+                <p className="text-xs font-light text-left text-zinc-400">{date}</p> 
+                <DeleteNoteButton className="absolute right-0"/> 
+            </div>
         </div>
     </div>
    ) 

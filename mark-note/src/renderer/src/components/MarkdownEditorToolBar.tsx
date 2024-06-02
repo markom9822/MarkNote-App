@@ -152,7 +152,7 @@ export type ToolBarButtonProps = ComponentProps<'button'> & {
 }
 
 export const ToolBarButton = ({editorView, className, children, ...props}: ToolBarButtonProps) => {
-    return <button className={twMerge('px-2 py-1 rounded-md hover:bg-zinc-600/50 transition-colors duration-100', className
+    return <button className={twMerge('px-2 py-1 border border-zinc-800 rounded-md hover:border-indigo-500 transition-colors duration-100', className
     )} {...props}
     >
         {children}
@@ -624,7 +624,7 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
                 </ToolBarButton>
             </div>
             {emojiPickerOpen && (
-                <div className="absolute right-0 w-36 h-36 bg-zinc-900 top-8 rounded-lg overflow-auto">
+                <div className="absolute right-0 w-40 h-36 bg-zinc-900 top-8 rounded-lg overflow-auto">
                     <div className="divide-zinc-400 divide-y-2">
                         <div className="flex flex-row justify-center space-x-0.5 ">
                             <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'people'} value='people'><FaRegFaceSmile /></EmojiFilterButton>
