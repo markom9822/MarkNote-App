@@ -3,7 +3,7 @@ import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { CreateNote, DeleteNote, GetNotes, ReadNote, RenameNote, SetNoteStatus, WriteNote } from '@shared/types'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
-import icon from '../../resources/MarkNoteLogoV1.png?asset'
+import icon from '../../resources/MarkNoteLogoPixel.png?asset'
 
 function createWindow(): void {
   // Create the browser window.
