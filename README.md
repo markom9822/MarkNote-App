@@ -1,4 +1,5 @@
 # MarkNote App Project
+<img src="https://github.com/markom9822/MarkNote-App_V2/assets/96113848/d240f0d4-2f35-48dd-8fab-c27e48da6a69" width="600">
 
 This is a markdown based note taking app developed using:
 - [Electron](https://www.electronjs.org/)
