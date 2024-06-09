@@ -69,7 +69,7 @@ export const MarkdownEditor = ({
     if(!selectedNote) return null
 
     const editor = <CodeMirrorEditor setView={setView} setDoc={setDoc} onChange={setChange} onDocChange={handleChange} onPastedLink={onPastedLink}
-     intitialCode={selectedNote.content} editable={editable}/>
+     intitialCode={selectedNote.content} editorTheme='basic dark' editable={editable}/>
     
     return {
         editor,

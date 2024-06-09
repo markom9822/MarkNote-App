@@ -1,7 +1,8 @@
 import { ActionButtonsRow, Content, FloatingNoteTitle, MarkdownEditor, NotePreviewList, RootLayout, 
   Sidebar, SettingsPopUpModal, SettingsButton, MarkdownEditorToolBar, NotesSearchBar, EditorTitleBar, EditorTopBar, NewNoteButton,
   Editor,
-  Preview} from "@/components";
+  Preview,
+  DraggableTopBar} from "@/components";
 import { useRef, useState, useCallback } from "react";
 import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
@@ -46,11 +47,13 @@ const App = () => {
     <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings}/>
     <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} visible={showOnPasteLinkFormat} pastedText={pastedLinkText} editorView={markdownEditor?.view} />
 
+    <DraggableTopBar/>
+
       <RootLayout>
         <Sidebar className="bg-zinc-900/80">
           <div className="flex justify-between my-2">
             <SettingsButton onClick={() => setShowSettings(true)}/>
-            <p className="text-lg">All Notes</p>
+            <p className="text-lg text-zinc-400">Notes</p>
             <NewNoteButton />
           </div>
           <hr className="h-px my-3 bg-zinc-700 border-0 " />

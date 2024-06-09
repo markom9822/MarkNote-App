@@ -1,4 +1,5 @@
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus } from "@shared/types"
+import { minimiseApp } from "@/lib"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp } from "@shared/types"
 import { contextBridge, ipcRenderer } from "electron"
 
 if(!process.contextIsolated) {
@@ -14,7 +15,9 @@ try {
     renameNote: (...args: Parameters<RenameNote>) => ipcRenderer.invoke('renameNote', ...args),
     setNoteStatus: (...args: Parameters<SetNoteStatus>) => ipcRenderer.invoke('setNoteStatus', ...args),
     createNote: (...args: Parameters<CreateNote>) => ipcRenderer.invoke('createNote', ...args),
-    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args)
+    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args),
+    closeApp: (...args: Parameters<CloseApp>) => ipcRenderer.send('close'),
+    minimiseApp: (...args: Parameters<MinimiseApp>) => ipcRenderer.send('minimise'),
   })
   
 } catch (error) {

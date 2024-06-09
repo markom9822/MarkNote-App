@@ -32,9 +32,9 @@ const invalid = '#d30102',
   darkBackground = base06,
   highlightBackground = darkBackground,
   background = '#ffffff',
-  codeBlockBackground = "#d0d4d6",
+  codeBlockBackground = "#e1e2e3",
   tooltipBackground = base05,
-  selection = darkBackground,
+  selection = "#a197a1",
   cursor = base01
 
 /// The editor theme styles for Basic Light.
@@ -116,7 +116,7 @@ export const basicLightTheme = EditorView.theme(
         color: base00,
     },
     ".cm-line.cm-activeLine.cm-codeblock": {
-        backgroundColor: "#a8acad",
+        backgroundColor: "#bec1c2",
         color: base00,
     }
   },

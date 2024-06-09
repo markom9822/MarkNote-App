@@ -160,6 +160,7 @@ type EditorProps = {
     onDocChange?: (state: EditorState) => void;
     onPastedLink: (pastedText: string) => void;
     intitialCode: string;
+    editorTheme: string;
     editable: boolean;
     children?: never;
 };

@@ -1,6 +1,6 @@
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from "@shared/constants"
 import { NoteInfo } from "@shared/models"
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus } from "@shared/types"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp } from "@shared/types"
 import { app, dialog } from "electron"
 import { readdir, stat, readFile, remove, rename } from "fs-extra"
 import { ensureDir, writeFile} from "fs-extra"
@@ -203,5 +203,12 @@ export const deleteNote: DeleteNote = async (filename) => {
 
 
     return true
+}
+
+
+export const closeApp: CloseApp = async () => {
+}
+
+export const minimiseApp: MinimiseApp = async () => {
 }
 

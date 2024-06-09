@@ -204,3 +204,14 @@ export const deleteNoteAtom = atom(null, async (get,set) => {
     // de selecting any note
     set(selectedNoteIndexAtom, null)
 })
+
+
+export const closeAppAtom = atom(null, async (get,set) => {
+    
+    await window.context.closeApp()
+})
+
+export const minimiseAppAtom = atom(null, async (get,set) => {
+    
+    await window.context.minimiseApp()
+})

@@ -87,13 +87,13 @@ export const codeStyle =  {
         "Opacity": ".7"
     },
     "string": {
-        "color": "#88e820"
+        "color": "#adcc58"
     },
     "punctuation": {
-        "color": "#87548c"
+        "color": "#ad72b3"
     },
     "operator": {
-        "color": "#87548c"
+        "color": "#ad72b3"
     },
     "url": {
         "color": "#36acaa"

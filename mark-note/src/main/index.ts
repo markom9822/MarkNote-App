@@ -1,7 +1,7 @@
-import { createNote, deleteNote, getNotes, readNote, renameNote, setNoteStatus, writeNote } from '@/lib'
+import { closeApp, createNote, deleteNote, getNotes, minimiseApp, readNote, renameNote, setNoteStatus, writeNote } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { CreateNote, DeleteNote, GetNotes, ReadNote, RenameNote, SetNoteStatus, WriteNote } from '@shared/types'
-import { BrowserWindow, app, ipcMain, shell } from 'electron'
+import { CloseApp, CreateNote, DeleteNote, GetNotes, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, WriteNote } from '@shared/types'
+import { BrowserWindow, app, ipcMain, ipcRenderer, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/MarkNoteLogoPixel.png?asset'
 
@@ -12,10 +12,12 @@ function createWindow(): void {
     height: 700,
     show: false,
     icon: icon,
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     center: true,
     title: 'MarkNote',
+    titleBarOverlay: true,
     backgroundMaterial: 'acrylic',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -40,6 +42,11 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  ipcMain.on('minimise', () =>{
+    mainWindow.minimize()
+  })
+ 
 }
 
 // This method will be called when Electron has finished
@@ -59,6 +66,10 @@ app.whenReady().then(() => {
   // IPC test
   //ipcMain.on('ping', () => console.log('pong'))
 
+  ipcMain.on('close', () => {
+    app.quit()
+  })
+
   // useful trick here
   ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args))
   ipcMain.handle('readNote', (_, ...args: Parameters<ReadNote>) => readNote(...args))
@@ -67,6 +78,8 @@ app.whenReady().then(() => {
   ipcMain.handle('setNoteStatus', (_, ...args: Parameters<SetNoteStatus>) => setNoteStatus(...args))
   ipcMain.handle('createNote', (_, ...args: Parameters<CreateNote>) => createNote(...args))
   ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
+  ipcMain.handle('closeApp', (_, ...args: Parameters<CloseApp>) => () => closeApp(...args) )
+  ipcMain.handle('minimiseApp', (_, ...args: Parameters<MinimiseApp>) => () => minimiseApp(...args) )
 
 
   createWindow()

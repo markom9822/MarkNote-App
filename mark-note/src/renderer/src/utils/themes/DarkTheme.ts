@@ -26,7 +26,7 @@ const invalid = base09,
   background = base00,
   codeBackground = '#232729',
   tooltipBackground = "#292828",
-  selection = '#202325',
+  selection = '#756e75',
   cursor = base01
 
 /// The editor theme styles for Basic Dark.

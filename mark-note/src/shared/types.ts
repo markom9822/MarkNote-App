@@ -7,3 +7,5 @@ export type RenameNote = (title: NoteInfo['title'], newTitle: string) => Promise
 export type SetNoteStatus = (title: NoteInfo['title'], newStatus: string) => Promise<void>
 export type CreateNote = () => Promise<NoteInfo['title'] | false>
 export type DeleteNote = (title: NoteInfo['title']) => Promise<boolean>
+export type CloseApp = () => void;
+export type MinimiseApp = () => void;
