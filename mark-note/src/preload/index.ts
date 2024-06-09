@@ -1,4 +1,3 @@
-import { minimiseApp } from "@/lib"
 import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp } from "@shared/types"
 import { contextBridge, ipcRenderer } from "electron"
 

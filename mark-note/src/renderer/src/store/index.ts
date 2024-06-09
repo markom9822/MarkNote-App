@@ -206,12 +206,12 @@ export const deleteNoteAtom = atom(null, async (get,set) => {
 })
 
 
-export const closeAppAtom = atom(null, async (get,set) => {
+export const closeAppAtom = atom(null, async () => {
     
     await window.context.closeApp()
 })
 
-export const minimiseAppAtom = atom(null, async (get,set) => {
+export const minimiseAppAtom = atom(null, async () => {
     
     await window.context.minimiseApp()
 })

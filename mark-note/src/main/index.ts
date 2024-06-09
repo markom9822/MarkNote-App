@@ -1,7 +1,7 @@
 import { closeApp, createNote, deleteNote, getNotes, minimiseApp, readNote, renameNote, setNoteStatus, writeNote } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { CloseApp, CreateNote, DeleteNote, GetNotes, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, WriteNote } from '@shared/types'
-import { BrowserWindow, app, ipcMain, ipcRenderer, shell } from 'electron'
+import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/MarkNoteLogoPixel.png?asset'
 
