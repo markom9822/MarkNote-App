@@ -19,6 +19,7 @@ The Markdown editor supports:
 - Github flavoured markdown
 - Github alerts
 - Underlined text
+- Highlighting text
 - Emojis
 - Math
 
