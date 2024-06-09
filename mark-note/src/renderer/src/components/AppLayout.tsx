@@ -30,7 +30,7 @@ export const Editor = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
 
 export const Content = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
     ({ children, className, ...props}, ref) => (
-    <div ref={ref} className={twMerge(' w-[500px] flex-1', className)} {...props}>
+    <div ref={ref} className={twMerge(' w-[600px] flex-1', className)} {...props}>
         {children}
     </div>
     ) 

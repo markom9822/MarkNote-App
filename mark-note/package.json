@@ -69,6 +69,7 @@
     "remark-parse": "^11.0.0",
     "remark-react": "9.0.0",
     "remark-rehype": "^11.1.0",
+    "remark-toc": "^9.0.0",
     "remark-underline": "^1.0.5",
     "unified": "^11.0.4"
   },

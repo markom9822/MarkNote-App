@@ -14,8 +14,11 @@ import { VscListOrdered } from "react-icons/vsc";
 import { IoIosCheckboxOutline, IoIosLink } from "react-icons/io";
 import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
-import { ButtonTooltip } from "./Button"
 import { TfiMore } from "react-icons/tfi";
+import {  } from "react-icons/pi";
+import { BiHighlight } from "react-icons/bi";
+
+
 import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton, HeadingHelperButton } from "@/components";
 import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
 import { FaRegFaceSmile, FaBurger, FaRegBuilding, FaTable } from "react-icons/fa6";
@@ -657,6 +660,13 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
         InsertTextInEditor("---", editorView, false)
     }
 
+    const handleCreateHighlightText = async () => {
+        if(editorView == null) return 
+        if(editorView == undefined) return
+
+        InsertTextAroundInEditor("**==**", editorView, true)
+    }
+
     return (
         <div className="relative flex flex-col">
             <div>
@@ -678,6 +688,12 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
                                 <div className="flex space-x-2 items-center">
                                     <RxDividerHorizontal className="text-zinc-100"/>
                                     <span className="text-xs">Divider</span>
+                                </div>
+                            </HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleCreateHighlightText}>
+                                <div className="flex space-x-2 items-center">
+                                    <BiHighlight className="text-zinc-100"/>
+                                    <span className="text-xs">Highlight</span>
                                 </div>
                             </HeadingHelperButton>
                         </div>

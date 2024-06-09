@@ -6,6 +6,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw';
 import { remarkAlert } from 'remark-github-blockquote-alert'
+import remarkToc from 'remark-toc'
 
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
@@ -58,11 +59,41 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
     return transformer;
   };
 
+  // custom highlight plugin
+  const highlightPlugin = () => {
+    function transformer(tree) {
+      // Basically, find all paragraph nodes.
+      // Convert strong nodes created by "==" to a different unist node type.
+      visit(tree, "strong", (node) => {
+        const startOg = node.position.start.offset;
+        const endOg = node.position.end.offset;
+  
+        const strToOperateOn = props.markdownContent.substring(startOg, endOg);
+        const wasHighlight =
+          strToOperateOn.startsWith("**=") && strToOperateOn.endsWith("=**");
+  
+        if (wasHighlight) {
+          const targetString = strToOperateOn.substring(3, strToOperateOn.length - 3);
+
+          node.type = "mark";
+          node.data = {
+            hName: "mark",
+            hProperties: {}
+          };
+          node.children[0].value = targetString;
+        }
+      });
+    }
+  
+    return transformer;
+  };
+
+
 
     
   return <ReactMarkdown className="markdown-body"
   
-  remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, underlinePlugin]} 
+  remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, remarkToc, underlinePlugin, highlightPlugin]} 
   rehypePlugins={[rehypeKatex, rehypeRaw]}
   components={{
     code({ node, inline, className, children, ...props }: any) {
