@@ -7,6 +7,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw';
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkToc from 'remark-toc'
+import rehypeHighlight from 'rehype-highlight'
 
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
@@ -16,6 +17,7 @@ import 'katex/dist/katex.min.css';
 
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import {codeStyle} from '@/components/EditorPlugins/codeHighlightTheme'
 import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import React from "react"
@@ -88,9 +90,6 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
     return transformer;
   };
 
-
-
-    
   return <ReactMarkdown className="markdown-body"
   
   remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, remarkToc, underlinePlugin, highlightPlugin]} 
@@ -101,9 +100,11 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
 
       return !inline && match ? (
         <SyntaxHighlighter 
+        {...props}
+        PreTag="div" 
         children={String(children).replace(/\n$/, "")} 
         language={match[1]} 
-        {...props} 
+        style={codeStyle}
         />
       ) : (
         <code className={className} {...props}>
