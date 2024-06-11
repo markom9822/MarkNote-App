@@ -14,3 +14,11 @@ export type SettingOptionInfo = {
     title: string,
     icon: IconType,
 }
+
+export type SettingPrefsInfo = {
+    section: string,
+    pref: string,
+    value: boolean,
+}
+
+

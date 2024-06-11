@@ -11,6 +11,7 @@ export const EditorSettingOption = () => {
 
     const handleChangeLineNum = () => {
         setCheckedLineNum(!checkedLineNum);
+        localStorage.setItem('lineNumberPref', (!checkedLineNum).toString());
     };
 
     const handleChangeToolbar = () => {

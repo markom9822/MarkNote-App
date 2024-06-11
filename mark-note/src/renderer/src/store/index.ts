@@ -9,6 +9,7 @@ const loadNotes = async () => {
     return allNotes.sort((a,b) => b.lastEditTime - a.lastEditTime)
 }
 
+
 const allNotesAtomAsync = atom<NoteInfo[] | Promise<NoteInfo[]>>(loadNotes())
 
 export const allNotesAtom = unwrap(allNotesAtomAsync, (prev) => prev)

@@ -261,6 +261,11 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
 
     if (!containerRef.current) return
 
+    const storedLineNumPref = localStorage.getItem('lineNumberPref');
+    if (storedLineNumPref) {
+      console.info(`Line Num Pref: ${JSON.parse(storedLineNumPref)}`);
+    }
+
     const startState = EditorState.create({
     doc: doc,
     extensions: [
