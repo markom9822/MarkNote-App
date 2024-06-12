@@ -109,8 +109,13 @@ Check out this guide for markdown syntax [Markdown Guide](https://www.markdowngu
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/b6121c6f-c91d-4c9b-a4b5-0b2d1c31e4bd)
 
 ### Images
+You can add an image to your note by adding ! and wrapping the info text in `[ ]`. Then, wrap the link for the image in parentheses `()`.
 
+```
+![Octocat](https://myoctocat.com/assets/images/base-octocat.svg)
+```
 
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/1fd197e6-d162-48cf-8b21-685e2fb84719)
 
 ### Tables
 You can add a table using three or more hyphens (---) to create each column’s header, and use pipes (|) to separate each column. For compatibility, you should also add a pipe on either end of the row.
@@ -133,8 +138,21 @@ Emoji suggestions are shown when you start typing.
 In the tool bar there is a emoji picker where you can filter through emoji types to find what you're looking for.
 
 
+### Maths
+You can add maths equations inline by inserting `$` around your equation. You can make a maths equation block using `$$`.
+
+```
+When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
+
+$$ 
+x = {-b \pm \sqrt{b^2-4ac} \over 2a} 
+$$
+```
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/2c7a1d6b-4c79-4c20-8e19-d23edd194998)
 
 ### Footnotes
+You can add footnotes to your content by using this bracket syntax `[^1]`.
 
 ```
 This is a simple footnote[^1].
