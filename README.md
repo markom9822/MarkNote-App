@@ -45,19 +45,42 @@ You can style the text in your note with bold, italic, strikethrough, underlined
 
 | Style         |   Syntax   |         Example          |   Output     |
 | :---:        | :---:    |       :---:                |   :---:      |
-| Bold         | `** **`   | `**This is bold text**`   |               |
-| Italic        | `* *`   |  `*This text is italicized*`  |           |
-| Strikethrough | `~~ ~~`   |  `*This text not needed*`  |           |
-| Underlined | `__ __`   |  `*This text is underlined*`  |           |
-| Highlighted | `**= =**`   |  `**=This text is highlighted=**`  |           |
-| Subscript | `<sub> </sub>`   |  `This is a <sub>subscript</sub> text`  |           |
-| Superscript | `<sup> </sup>`   |  `This is a <sup>superscript</sup> text`  |           |
+| Bold         | `** **`   | `**This is bold text**`   |   ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/b574a362-4256-44f5-876b-1bd231b45c7c) |
+| Italic        | `* *`   |  `*This text is italicized*`  | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c03f94c9-8506-43a2-a69c-64aa44aa8c97) |
+| Strikethrough | `~~ ~~`   |  `~~This text not needed~~`  |  ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/e48775a9-fc26-4ea5-adf6-e24b6a3b7828)|
+| Underlined | `__ __`   |  `__This text is underlined__`  |  ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/7fbfd1c0-c7e5-4f1e-a313-e5323d25a84e)|
+| Highlighted | `**= =**`   |  `**=This text is highlighted=**`  | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/3cf461d7-294e-483c-a648-73a2ed9c0d45)|
+| Subscript | `<sub> </sub>`   |  `This is a <sub>subscript</sub> text`  | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/69e61f7a-66b6-4009-aa54-3c9cfa1510e3)|
+| Superscript | `<sup> </sup>`   |  `This is a <sup>superscript</sup> text`  | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/a8015618-1948-4fee-8370-fc24e93dd854)|
 
 ### Lists
+You can make an unordered list by starting one or more lines of text with `-`
 
+```
+- List item 1
+- List item 2
+- List item 3
+```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/ba84a92b-3169-4712-bf27-93f3536e95d5)
+
+To make an ordered list, start each line with a number.
+
+```
+1. List item 1
+2. List item 2
+3. List item 3
+```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/46239774-8276-4a20-9618-27403320cca1)
 
 ### Task Lists
+You can make a task list by starting list items with a hyphen and space followed by `[ ]`. To mark a task as complete, use `[x]`.
 
+```
+- [x] Task item 1
+- [x] Task item 2
+- [ ] Task item 3
+```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/74eda5af-4d0b-4bc2-aedb-34373262692f)
 
 ### Qoutes
 You can create a quote using `>` before your text
@@ -65,6 +88,7 @@ You can create a quote using `>` before your text
 ```
 > Text that is a quote
 ```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/487e0e3c-72ac-47ce-9d82-4d060e139dab)
 
 ### Code
 You can insert inline code using a backtick infront of and after your code text.
@@ -72,56 +96,89 @@ You can insert inline code using a backtick infront of and after your code text.
 ```
 This is some `code` inline
 ```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/315340a6-fae1-4e62-9ea7-d513c160909e)
+
 You can also create a code block by using triple backticks.
 
 ### Links
 You can create an inline link by wrapping link text in brackets `[ ]`, and then wrapping the URL in parentheses `( )`.
 
+```
+Check out this guide for markdown syntax [Markdown Guide](https://www.markdownguide.org/basic-syntax/).
+```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/b6121c6f-c91d-4c9b-a4b5-0b2d1c31e4bd)
 
 ### Images
 
 
+
 ### Tables
+You can add a table using three or more hyphens (---) to create each column’s header, and use pipes (|) to separate each column. For compatibility, you should also add a pipe on either end of the row.
+
+```
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/34e4124a-bb09-45a7-a8dc-75e9aaa69a48)
 
 
 ### Emojis
+You can add emoji to your note by typing `:EMOJICODE:`, a colon followed by the name of the emoji.
+Emoji suggestions are shown when you start typing. 
+
+
+
+In the tool bar there is a emoji picker where you can filter through emoji types to find what you're looking for.
 
 
 
 ### Footnotes
 
 ```
-Here is a simple footnote[^1].
+This is a simple footnote[^1].
 
-A footnote can also have multiple lines[^2].
+This footnote has multiple lines[^2].
 
 [^1]: My reference.
 [^2]: To add line breaks within a footnote, prefix new lines with 2 spaces.
   This is a second line.
 ```
 
-
 ### Github Style Alerts
+You can insert alerts using blockquote syntax that you can use to emphasize critical information. They are displayed with distinctive colors and icons to highlight them to the reader.
+To add an alert, use a special blockquote line specifying the alert type, followed by the alert information in a standard blockquote. There are five types of alerts are available (note, tip, important, warning and caution).
 
 ```
 > [!NOTE]
-> Useful information that users should know, even when skimming content.
+> Useful information that users should know.
 
 > [!TIP]
-> Helpful advice for doing things better or more easily.
+> Helpful advice for doing things better.
 
 > [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+> Key information users need to know.
 
 > [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+> Urgent info that needs immediate user attention.
 
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+> Advises about risks or negative outcomes.
 ```
-
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c615e409-53d8-4ec3-a184-c2f037eebd1d)
 
 ### Dividers
+You can insert a simple horizontal divider to break up the content in the note using three `-`'s.
+
+```
+Text above
+
+---
+
+Text below
+```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/6d12eb55-6411-476a-82a5-b0dc9956bfbb)
 
 
 
