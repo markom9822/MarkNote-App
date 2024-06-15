@@ -30,7 +30,7 @@ export const DraggableTopBar = () => {
 export type MinimiseButtonProps = ComponentProps<'button'>
 
 export const MinimiseButton = ({className, children, ...props}: MinimiseButtonProps) => {
-    return <button className={twMerge('px-4 py-1 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/75 transition-colors duration-100', className
+    return <button className={twMerge('px-4 py-1 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/75 focus:outline focus:outline-indigo-500 transition-colors duration-100', className
     )} {...props}
     >
         {children}
@@ -40,7 +40,7 @@ export const MinimiseButton = ({className, children, ...props}: MinimiseButtonPr
 export type CloseButtonProps = ComponentProps<'button'>
 
 export const CloseButton = ({className, children, ...props}: CloseButtonProps) => {
-    return <button className={twMerge('px-4 py-1 text-zinc-400 hover:text-zinc-100 hover:bg-indigo-600 transition-colors duration-100', className
+    return <button className={twMerge('px-4 py-1 text-zinc-400 hover:text-zinc-100 hover:bg-indigo-600 focus:outline focus:outline-indigo-500 transition-colors duration-100', className
     )} {...props}
     >
         {children}

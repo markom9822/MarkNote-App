@@ -61,7 +61,7 @@ export type EditorNavButtonProps = ComponentProps<'button'> & {
 } 
 
 export const EditorNavButton = ({isActive, className, children, ...props}: EditorNavButtonProps) => {
-    return <button className={cn('text-zinc-200 rounded-md cursor-pointer transition-colors duration-100', 
+    return <button className={cn('text-zinc-200 rounded-md cursor-pointer transition-colors duration-100 focus:outline focus:outline-indigo-500', 
     {
         'hover:text-zinc-100 text-zinc-300': isActive,
         'text-zinc-500': !isActive,

@@ -4,13 +4,9 @@ import { VscSettingsGear } from "react-icons/vsc";
 
 export const SettingsButton = ({...props}: ActionButtonProps) => {
 
-    const handleSettings = async () => {
-        //await
-    }
-
     return (
-        <ActionButton onClick={handleSettings} { ...props}>
-            <VscSettingsGear className="w-4 h-4 text-zinc-300" />
+        <ActionButton className="border-zinc-800" { ...props}>
+            <VscSettingsGear className="w-4 h-4 text-zinc-300"/>
         </ActionButton>
     )
 }

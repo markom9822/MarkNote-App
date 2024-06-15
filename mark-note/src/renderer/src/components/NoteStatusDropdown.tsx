@@ -94,7 +94,8 @@ export const NoteStatusDropdown = () => {
         <div className="relative flex flex-col">
             <div className="">
                 <div>
-                    <button onClick={() => setIsOpen((prev) => !prev)} className="text-xs text-left rounded hover:bg-zinc-900 transition-colors duration-100 px-2 py-1">
+                    <button onClick={() => setIsOpen((prev) => !prev)} className="text-xs text-left rounded hover:bg-zinc-900 transition-colors duration-100 focus:outline focus:outline-indigo-500
+                     px-2 py-1">
                         <div className="flex space-x-1 items-center text-zinc-300">
                             <div>
                                 <div className="flex space-x-2 items-center">

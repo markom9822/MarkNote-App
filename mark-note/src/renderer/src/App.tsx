@@ -72,10 +72,13 @@ const App = () => {
           </Editor>
         </Content>
 
-        <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20 overflow-auto">
-            <div className="pb-10">
+        <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20">
+            <FloatingNoteTitle/>
+            <Editor className="h-[calc(100vh-170px)] overflow-y-auto">
+              <div>
               <MarkdownPreview markdownContent={markdownDoc}/>
-            </div>
+              </div>
+            </Editor>
         </Content>
 
       </RootLayout>

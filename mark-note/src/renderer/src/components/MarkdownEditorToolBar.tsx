@@ -1,6 +1,6 @@
 import { selectedNoteAtom } from "@renderer/store"
 import { useAtomValue } from "jotai"
-import { ComponentProps } from "react"
+import { ComponentProps} from "react"
 import { twMerge } from "tailwind-merge"
 import { EditorView} from '@codemirror/view'
 import {useState} from 'react'
@@ -155,7 +155,7 @@ export type ToolBarButtonProps = ComponentProps<'button'> & {
 }
 
 export const ToolBarButton = ({editorView, className, children, ...props}: ToolBarButtonProps) => {
-    return <button className={twMerge('px-2 py-1 border border-zinc-800 rounded-md hover:border-indigo-500 transition-colors duration-100', className
+    return <button className={twMerge('px-2 py-1 border border-zinc-800 rounded-md hover:border-indigo-500 transition-colors duration-100 focus:outline focus:outline-indigo-500', className
     )} {...props}
     >
         {children}
@@ -336,6 +336,8 @@ export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderB
         handlePickedHeading()
     }
 
+    
+
     return (
         <div className="relative flex flex-col">
             <div>
@@ -352,10 +354,10 @@ export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderB
                             <HeadingHelperButton onClick={handleClickHeadingHelper} value="### "><LuHeading3 className="w-[1.2rem] h-[1.2rem]"/></HeadingHelperButton>
                             <HeadingHelperButton onClick={handleClickHeadingHelper} value="#### "><LuHeading4 className="w-[1rem] h-[1rem]"/></HeadingHelperButton>
                         </div>
-                </div>     
-            </div>
-        )}
-    </div>
+                    </div>     
+                </div>
+                )}
+        </div>
     )
 }
 
