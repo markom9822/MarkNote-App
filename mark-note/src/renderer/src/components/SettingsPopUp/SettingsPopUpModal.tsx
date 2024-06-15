@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { MdClose } from "react-icons/md";
-import { ComponentProps, forwardRef } from "react"
+import { ComponentProps, useEffect, useRef } from "react"
 import { twMerge } from "tailwind-merge"
 import { SettingsOptionsViewList } from "./SettingOptionViewList";
 import { SettingsContentView } from "./SettingsContentView";
@@ -9,9 +8,15 @@ import { forceSettings} from '@renderer/hooks/useSettingsList'
 
 
 export const SettingsPopUpModal = (props) => {
-
-    
     const {forceSetOptionIndex} = forceSettings()
+    const menuRef = useRef(null);
+
+    const closeModal = (e) => {
+        if(menuRef.current == e.target)
+        {
+            props.onClose()
+        }
+    }
 
     // put into useffect hook
     useEffect(() => {
@@ -22,7 +27,7 @@ export const SettingsPopUpModal = (props) => {
     
 
     return createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
+        <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white"> 
                 <div className="bg-zinc-700 border-2 border-zinc-500 rounded-md flex flex-row gap-5 mx-4 h-[32rem]">
                     <SettingsSidebar className="rounded-l-md bg-zinc-900/75 border-r border-zinc-500">
