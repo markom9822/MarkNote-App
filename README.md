@@ -215,6 +215,7 @@ This footnote has multiple lines[^2].
 [^2]: To add line breaks within a footnote, prefix new lines with 2 spaces.
   This is a second line.
 ```
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/eb967258-6041-41d4-9037-93636f9f38a2)
 
 ### Github Style Alerts
 You can insert alerts using blockquote syntax that you can use to emphasize critical information. They are displayed with distinctive colors and icons to highlight them to the reader.
