@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw';
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkToc from 'remark-toc'
-import rehypeHighlight from 'rehype-highlight'
+
 
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'

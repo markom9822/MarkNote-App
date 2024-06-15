@@ -3,9 +3,9 @@ import { FiMoreVertical } from "react-icons/fi";
 import { ActionButton, ActionButtonProps } from "@/components"
 
 
+
 export const PreviewOptionsDropdown = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef("dropdown");
 
     const previewOptions = [{
         id: '0',
@@ -15,7 +15,6 @@ export const PreviewOptionsDropdown = (props) => {
         title: 'Print',
       }
     ];
-
 
     return (
         <div className="relative flex flex-col">
@@ -28,15 +27,11 @@ export const PreviewOptionsDropdown = (props) => {
             </div>
             {isOpen && (
                 <div className="absolute right-0 w-32 bg-zinc-700 top-8 rounded-lg">
-                    {previewOptions.map(function(data) {
-                        return(
-                        <div>
-                            <button className="w-full text-sm text-left hover:bg-zinc-900/50 transition-colors duration-100 px-3 py-2">
-                                {data.title}
-                            </button>
-                        </div> 
-                        )
-                    })}
+                    <div>
+                        <button className="w-full text-sm text-left hover:bg-zinc-900/50 transition-colors duration-100 px-3 py-2">
+                            Download as PDF
+                        </button>
+                    </div> 
                 </div>
             )}
         </div>

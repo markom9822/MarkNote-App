@@ -50,14 +50,14 @@ const App = () => {
     <DraggableTopBar/>
 
       <RootLayout>
-        <Sidebar className="bg-zinc-900/80">
+        <Sidebar className="bg-zinc-900/80 overflow-y-auto">
           <div className="flex justify-between my-2">
             <SettingsButton onClick={() => setShowSettings(true)}/>
             <p className="text-lg text-zinc-400">Notes</p>
             <NewNoteButton />
           </div>
           <hr className="h-px my-3 bg-zinc-700 border-0 " />
-          <NotePreviewList className = "mt-3 space-y-1" onSelect={resetScroll}/>
+          <NotePreviewList className = "mt-3 pb-10 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-800 border-l-white/20">
@@ -65,16 +65,17 @@ const App = () => {
           <EditorTitleBar/>
           <hr className="h-px bg-zinc-700 border-0" />
           <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
-          <Editor className="h-[calc(100vh-150px)]">
-            <div>{markdownEditor?.editor}</div>
+          <Editor className="h-[calc(100vh-150px)] overflow-y-auto">
+            <div className="pb-8">
+              {markdownEditor?.editor}
+            </div>
           </Editor>
         </Content>
 
         <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20 overflow-auto">
-          <FloatingNoteTitle className="pt-2"/>
-          <Preview className="">
-            <MarkdownPreview markdownContent={markdownDoc}/>
-          </Preview>
+            <div className="pb-10">
+              <MarkdownPreview markdownContent={markdownDoc}/>
+            </div>
         </Content>
 
       </RootLayout>

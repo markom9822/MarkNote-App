@@ -12,7 +12,7 @@ export const RootLayout = ({children, className, ...props}: ComponentProps<'main
 export const Sidebar = ({className, children, ...props}: ComponentProps<'aside'>) => {
     return (
         <aside 
-            className={twMerge('w-[220px] h-[100vh + 10px] overflow-auto', className)}
+            className={twMerge('w-[220px] h-[100vh + 10px]', className)}
             {...props}
         >
             {children}
@@ -22,7 +22,7 @@ export const Sidebar = ({className, children, ...props}: ComponentProps<'aside'>
 
 export const Editor = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
     ({ children, className, ...props}, ref) => (
-    <div ref={ref} className={twMerge('overflow-y-auto', className)} {...props}>
+    <div ref={ref} className={twMerge('', className)} {...props}>
         {children}
     </div>
     ) 
@@ -38,7 +38,7 @@ export const Content = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
 
 export const Preview = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
     ({ children, className, ...props}, ref) => (
-    <div ref={ref} className={twMerge('overflow-auto', className)} {...props}>
+    <div ref={ref} className={twMerge('', className)} {...props}>
         {children}
     </div>
     ) 
