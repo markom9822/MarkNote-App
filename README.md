@@ -104,6 +104,14 @@ You can also create a code block by using triple backticks.
 
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/6dd2ca56-7315-493b-8295-f353d4bfd18d)
 
+#### Syntax Highlighting
+
+You can get syntax highlighting for code blocks by including the coding language after the first set of backticks like so.
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/2cc8d28d-8ad5-429b-aad0-89f308c29829)
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/fe12994d-36f1-45ac-8161-0a35e675d345)
+
 
 ### Links
 You can create an inline link by wrapping link text in brackets `[ ]`, and then wrapping the URL in parentheses `( )`.
