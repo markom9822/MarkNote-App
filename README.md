@@ -10,8 +10,34 @@ This is a markdown based note taking app developed using:
 - [Codemirror 6](https://codemirror.net/)
 - [Remark](https://github.com/remarkjs/remark)
 
-You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time.
-Notes can have a status to let you keep track of your progress.
+## How To
+
+You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time. Each note has a status to show your progress at a glance.
+There are several buttons in the UI, the table below explains what they do.
+
+|  Action         |   Button    |      
+| :---:           |   :---:     |       
+| Create New Note | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/73cdb194-e1e6-433d-b47e-e8d93118a1e7)|
+| Delete Note     | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/4ff91910-c745-495e-94a4-d042b6304a11)|
+| Navigate Notes  | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/208c57ad-2f9c-4272-806d-1de142dbb4c2)|
+| Open Settings   | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/77565706-0558-4eca-b094-b166b48f2503)|
+| Change Status   | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/3ed51a50-b881-4ead-866c-6a8bd683ed28)|
+
+## Settings
+
+MarkNote has a number of settings that can be changed such as:
+
+### Themes
+You can change the theme for the main UI, editor and preview.
+
+### Editor
+You can customise the interface and appearance of the markdown editor.
+
+### Preview
+You can customise the appearance of the preview.
+
+### Keybindings
+You can find a list of the keybindings available to use.
 
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c58bf6b9-65b6-4790-9c07-01b0ae7996d8)
 
