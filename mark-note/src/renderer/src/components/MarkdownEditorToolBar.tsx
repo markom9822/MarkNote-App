@@ -15,7 +15,7 @@ import { IoIosCheckboxOutline, IoIosLink } from "react-icons/io";
 import { TfiQuoteLeft } from "react-icons/tfi";
 import { BsEmojiSmile } from "react-icons/bs";
 import { TfiMore } from "react-icons/tfi";
-import {  } from "react-icons/pi";
+import { PiMathOperations } from "react-icons/pi";
 import { BiHighlight } from "react-icons/bi";
 
 
@@ -667,6 +667,13 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
         InsertTextAroundInEditor("**==**", editorView, true)
     }
 
+    const handleCreateMathsText = async () => {
+        if(editorView == null) return 
+        if(editorView == undefined) return
+
+        InsertTextAroundInEditor("$$$$", editorView, true)
+    }
+
     return (
         <div className="relative flex flex-col">
             <div>
@@ -694,6 +701,12 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
                                 <div className="flex space-x-2 items-center">
                                     <BiHighlight className="text-zinc-100"/>
                                     <span className="text-xs">Highlight</span>
+                                </div>
+                            </HeadingHelperButton>
+                            <HeadingHelperButton onClick={handleCreateMathsText}>
+                                <div className="flex space-x-2 items-center">
+                                    <PiMathOperations className="text-zinc-100"/>
+                                    <span className="text-xs">Maths</span>
                                 </div>
                             </HeadingHelperButton>
                         </div>

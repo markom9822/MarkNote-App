@@ -421,6 +421,9 @@ const emojiList = [
   {type: 'objects', name: 'door',emoji: '🚪'},
   {type: 'objects', name: 'smoking',emoji: '🚬'},
   {type: 'objects', name: 'bomb',emoji: '💣'},
+  {type: 'objects', name: 'hammer',emoji: '🪓'},
+  {type: 'objects', name: 'magnet',emoji: '🧲'},
+  {type: 'objects', name: 'chains',emoji: '⛓️'},
   {type: 'objects', name: 'gun',emoji: '🔫'},
   {type: 'objects', name: 'hocho',emoji: '🔪'},
   {type: 'objects', name: 'pill',emoji: '💊'},
@@ -654,8 +657,7 @@ const emojiList = [
   {type: 'places', name: 'small_airplane',emoji: '🛩️'},
   {type: 'places', name: 'flight_departure',emoji: '🛫'},
   {type: 'places', name: 'flight_arrival',emoji: '🛬'},
-
-
+  {type: 'places', name: 'flying_saucer',emoji: '🛸'},
   {type: 'places', name: 'helicopter',emoji: '🚁'},
   {type: 'places', name: 'steam_locomotive',emoji: '🚂'},
   {type: 'places', name: 'tram',emoji: '🚊'},
@@ -710,9 +712,6 @@ const emojiList = [
   {type: 'places', name: 'performing_arts',emoji: '🎭'},
   {type: 'places', name: 'round_pushpin',emoji: '📍'},
   {type: 'places', name: 'triangular_flag_on_post',emoji: '🚩'},
-  {type: 'places', name: '',emoji: ''},
-  {type: 'places', name: '',emoji: ''},
-
   {type: 'symbols', name: 'one',emoji: '1️⃣'},
   {type: 'symbols', name: 'two',emoji: '2️⃣'},
   {type: 'symbols', name: 'three',emoji: '3️⃣'},
@@ -838,6 +837,7 @@ const emojiList = [
   {type: 'symbols', name: 'o2',emoji: '🅾️'},
   {type: 'symbols', name: 'diamond_shape_with_a_dot_inside',emoji: '💠'},
   {type: 'symbols', name: 'recycle',emoji: '♻️'},
+
   {type: 'symbols', name: 'end',emoji: '🔚'},
   {type: 'symbols', name: 'on',emoji: '🔛'},
   {type: 'symbols', name: 'soon',emoji: '🔜'},
