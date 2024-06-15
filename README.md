@@ -100,6 +100,11 @@ This is some `code` inline
 
 You can also create a code block by using triple backticks.
 
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/4a2d6e43-caf9-4779-9244-14c145249537)
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/6dd2ca56-7315-493b-8295-f353d4bfd18d)
+
+
 ### Links
 You can create an inline link by wrapping link text in brackets `[ ]`, and then wrapping the URL in parentheses `( )`.
 
@@ -107,6 +112,13 @@ You can create an inline link by wrapping link text in brackets `[ ]`, and then 
 Check out this guide for markdown syntax [Markdown Guide](https://www.markdownguide.org/basic-syntax/).
 ```
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/b6121c6f-c91d-4c9b-a4b5-0b2d1c31e4bd)
+
+You can select the link button in the editor toolbar to bring up the link format helper.
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/57eb6735-c8dd-4132-abb3-b9b54d506c1c)
+
+You can input a link title, link address and click insert to add a formatted link to your selected line in the editor.
+
 
 ### Images
 You can add an image to your note by adding ! and wrapping the info text in `[ ]`. Then, wrap the link for the image in parentheses `()`.
@@ -117,6 +129,12 @@ You can add an image to your note by adding ! and wrapping the info text in `[ ]
 
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/1fd197e6-d162-48cf-8b21-685e2fb84719)
 
+You can select the image button in the editor toolbar to bring up the image format helper.
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/57f4f6f1-7b2b-4626-a271-14387ab6d463)
+
+You can input an image address, image width and click insert to add a formatted image to your selected line in the editor.
+
 ### Tables
 You can add a table using three or more hyphens (---) to create each column’s header, and use pipes (|) to separate each column. For compatibility, you should also add a pipe on either end of the row.
 
@@ -126,8 +144,14 @@ You can add a table using three or more hyphens (---) to create each column’s 
 | Header      | Title       |
 | Paragraph   | Text        |
 ```
+
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/34e4124a-bb09-45a7-a8dc-75e9aaa69a48)
 
+You can select the more options button in the editor toolbar and then select the table button to bring up the table format helper.
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/4c2a6be1-bf10-4702-8e28-43e3aa4c08da)
+
+You can select the desired number of rows and columns and click insert to add a formatted table to your selected line in the editor.
 
 ### Emojis
 You can add emoji to your note by typing `:EMOJICODE:`, a colon followed by the name of the emoji.
@@ -136,6 +160,8 @@ Emoji suggestions are shown when you start typing.
 
 
 In the tool bar there is a emoji picker where you can filter through emoji types to find what you're looking for.
+
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/a37ef734-7b24-419b-8fc7-ecaba8a31b27)
 
 
 ### Maths
