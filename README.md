@@ -10,6 +10,8 @@ This is a markdown based note taking app developed using:
 - [Codemirror 6](https://codemirror.net/)
 - [Remark](https://github.com/remarkjs/remark)
 
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c58bf6b9-65b6-4790-9c07-01b0ae7996d8)
+
 ## How To
 
 You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time. Each note has a status to show your progress at a glance.
@@ -39,17 +41,6 @@ You can customise the appearance of the preview.
 ### Keybindings
 You can find a list of the keybindings available to use.
 
-![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c58bf6b9-65b6-4790-9c07-01b0ae7996d8)
-
-The Markdown editor supports:
-- Github flavoured markdown
-- Github alerts
-- Underlined text
-- Highlighting text
-- Emojis
-- Math
-
-In the settings menu the theme for the UI, Editor and Preview can be adjusted to your liking.
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/33250402-0ee3-4fec-bb3e-7f3e4f499bbb)
 
 ## Markdown in MarkNote
