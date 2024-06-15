@@ -181,6 +181,7 @@ You can select the desired number of rows and columns and click insert to add a 
 ### Emojis
 You can add emoji to your note by typing `:EMOJICODE:`, a colon followed by the name of the emoji.
 Emoji suggestions are shown when you start typing. 
+([Emoji List](https://gist.github.com/rxaviers/7360908))
 
 ![emoji demo gif](https://github.com/markom9822/MarkNote-App_V2/blob/main/Mark%20Note%20emojis%20demo.gif)
 
