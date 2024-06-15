@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { ComponentProps, useState} from "react"
+import { ComponentProps, useState, useRef} from "react"
 import { IoIosLink } from "react-icons/io";
 
 export type LinkFormatPopUpModalProps = {
@@ -15,6 +15,14 @@ export const LinkFormatPopUpModal  = ({
 }: LinkFormatPopUpModalProps) => {
     const [linkTitle, setLinkTitle] = useState("")
     const [linkAddress, setLinkAddress] = useState("")
+    const menuRef = useRef(null);
+
+    const closeModal = (e) => {
+        if(menuRef.current == e.target)
+        {
+            onClose()
+        }
+    }
 
     const handleOnClickInsert = () => {
         onClickInsert()
@@ -31,10 +39,11 @@ export const LinkFormatPopUpModal  = ({
         setLinkAddress("")
     }
 
+
     if(!visible) return null
 
     const linkPopUp = createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center z-20">
+        <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2">
                 <div className="bg-zinc-700 rounded-md flex flex-col gap-5 mx-4 border-2 border-zinc-500">
                     <div className='flex flex-row gap-3 mx-2 my-1'>
