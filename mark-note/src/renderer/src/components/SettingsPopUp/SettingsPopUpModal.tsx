@@ -18,7 +18,6 @@ export const SettingsPopUpModal = (props) => {
         }
     }
 
-    // put into useffect hook
     useEffect(() => {
         forceSetOptionIndex(0)
       }, [props.visible]);
