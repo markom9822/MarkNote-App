@@ -19,7 +19,7 @@ import { PiMathOperations } from "react-icons/pi";
 import { BiHighlight } from "react-icons/bi";
 
 
-import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton, HeadingHelperButton } from "@/components";
+import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton, HeadingHelperButton, HeadingHelperPopUpModal } from "@/components";
 import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
 import { FaRegFaceSmile, FaBurger, FaRegBuilding, FaTable } from "react-icons/fa6";
 import { FaMountain } from "react-icons/fa";
@@ -116,7 +116,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
    return (
     <div className={twMerge('flex flex-row bg-zinc-800', className)} {...props}>
 
-        <HeadingButton editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} handlePickedHeading={() => setShowHeadingHelper(false)} headingHelperOpen={showHeadingHelper} /> 
+        <HeadingButton editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} headingHelperOpen={showHeadingHelper} /> 
         <BoldedButton editorView={editorView}/>
         <ItalicButton editorView={editorView}/>
         <StrikethroughButton editorView={editorView}/>
@@ -319,44 +319,18 @@ export type HeadingButtonProps = ComponentProps<'button'> & {
     editorView: EditorView | null | undefined;
     headingHelperOpen: boolean,
     handleClickHeaderButton: () => void,
-    handlePickedHeading: () => void,
 }
 
-export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderButton, handlePickedHeading, ...props}: HeadingButtonProps) => {
-
-    const handleCreateHeading = (pickedHeading: string) => {
-        if(editorView == null) return 
-        if(editorView == undefined) return
-
-        InsertTextAtStartInEditor(pickedHeading, editorView, false)
-    }
-
-    const handleClickHeadingHelper = (changeEvent) => {
-        handleCreateHeading(changeEvent.currentTarget.value)
-        handlePickedHeading()
-    }
-
-    
+export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderButton, ...props}: HeadingButtonProps) => {
 
     return (
         <div className="relative flex flex-col">
-            <div>
-                <ToolBarButton editorView={editorView} onClick={handleClickHeaderButton} {...props}>
-                    <LuHeading className="w-4 h-4 text-zinc-100"/>
-                </ToolBarButton>
+                <div>
+                    <ToolBarButton editorView={editorView} onClick={handleClickHeaderButton} {...props}>
+                        <LuHeading className="w-4 h-4 text-zinc-100"/>
+                    </ToolBarButton>
                 </div>
-                {headingHelperOpen && (
-                <div className="absolute bg-zinc-900 top-7 rounded-lg overflow-auto">
-                    <div className="divide-zinc-400 divide-y-2">
-                        <div className="flex flex-col justify-center space-x-0.5 ">
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="# "><LuHeading1 className="w-[1.6rem] h-[1.6rem]"/></HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="## "><LuHeading2 className="w-[1.4rem] h-[1.4rem]"/></HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="### "><LuHeading3 className="w-[1.2rem] h-[1.2rem]"/></HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleClickHeadingHelper} value="#### "><LuHeading4 className="w-[1rem] h-[1rem]"/></HeadingHelperButton>
-                        </div>
-                    </div>     
-                </div>
-                )}
+                <HeadingHelperPopUpModal editorView={editorView} visible={headingHelperOpen} onToggle={handleClickHeaderButton}/>
         </div>
     )
 }
