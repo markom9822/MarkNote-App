@@ -17,19 +17,15 @@ export const HeadingHelperButton = ({className, children, ...props}: ComponentPr
 
 export type HeadingHelperPopUpModalProps = {
     onToggle: () => void;
-    onClickInsert?: () => void;
     visible: boolean,
     editorView: EditorView | null | undefined;
 }
 
 export const HeadingHelperPopUpModal  = ({
     onToggle,
-    //onClickInsert,
     visible,
     editorView,
 }: HeadingHelperPopUpModalProps) => {
-    const [linkTitle, setLinkTitle] = useState("")
-    const [linkAddress, setLinkAddress] = useState("")
     const menuRef = useRef(null);
 
     const closeModal = (e) => {
@@ -69,11 +65,5 @@ export const HeadingHelperPopUpModal  = ({
             
         </div>, document.body 
     ))
-
-    //return {
-    //    headingHelperPopUp,
-    //    linkTitle,
-    //    linkAddress
-    //}
 }
 
