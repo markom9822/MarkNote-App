@@ -30,6 +30,7 @@ import { TableFormatPopUpModal } from "./EditorPopUps/TableFormatPopUp"
 import { markdownTableFormat } from "@renderer/utils"
 import { RxDividerHorizontal } from "react-icons/rx"
 import { AlertHelperPopUpModal } from "./EditorPopUps/AlertHelper"
+import { MoreOptionsPopUpModal } from "./EditorPopUps/MoreOptionsDropdown"
 
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
@@ -573,27 +574,6 @@ export type MoreOptionsButtonProps = ComponentProps<'button'> & {
 
 export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOption, handleClickOptionsButton, ...props}: MoreOptionsButtonProps) => {
 
-    const handleCreateDivider = async () => {
-        if(editorView == null) return 
-        if(editorView == undefined) return
-
-        InsertTextInEditor("---", editorView, false)
-    }
-
-    const handleCreateHighlightText = async () => {
-        if(editorView == null) return 
-        if(editorView == undefined) return
-
-        InsertTextAroundInEditor("**==**", editorView, true)
-    }
-
-    const handleCreateMathsText = async () => {
-        if(editorView == null) return 
-        if(editorView == undefined) return
-
-        InsertTextAroundInEditor("$$$$", editorView, true)
-    }
-
     return (
         <div className="relative flex flex-col">
             <div>
@@ -601,38 +581,7 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
                     <TfiMore className="w-4 h-4 text-zinc-100"/>
                 </ToolBarButton>
             </div>
-            {moreOptionsOpen && (
-                <div className="absolute right-0 bg-zinc-900 top-8 rounded-lg overflow-auto">
-                    <div className="divide-zinc-400 divide-y-2">
-                        <div className="flex flex-col justify-center space-x-0.5 ">
-                            <HeadingHelperButton onClick={OnClickTableOption}>
-                                <div className="flex space-x-2 items-center">
-                                    <FaTable className="text-zinc-400"/>
-                                    <span className="text-xs">Table</span>
-                                </div>
-                            </HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleCreateDivider}>
-                                <div className="flex space-x-2 items-center">
-                                    <RxDividerHorizontal className="text-zinc-100"/>
-                                    <span className="text-xs">Divider</span>
-                                </div>
-                            </HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleCreateHighlightText}>
-                                <div className="flex space-x-2 items-center">
-                                    <BiHighlight className="text-zinc-100"/>
-                                    <span className="text-xs">Highlight</span>
-                                </div>
-                            </HeadingHelperButton>
-                            <HeadingHelperButton onClick={handleCreateMathsText}>
-                                <div className="flex space-x-2 items-center">
-                                    <PiMathOperations className="text-zinc-100"/>
-                                    <span className="text-xs">Maths</span>
-                                </div>
-                            </HeadingHelperButton>
-                        </div>
-                    </div>     
-                </div>
-            )}
+            <MoreOptionsPopUpModal editorView={editorView} visible={moreOptionsOpen} onToggle={handleClickOptionsButton} OnClickTableOption={OnClickTableOption}  />
         </div>
     )
 }
