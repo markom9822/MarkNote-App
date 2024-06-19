@@ -68,7 +68,7 @@ export const MoreOptionsPopUpModal  = ({
     if(!visible) return null
 
     return(createPortal(
-        <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10 border">
+        <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10">
             <div className="w-[100px] ml-[630px] mt-[180px]">
                 <div className="bg-zinc-900 rounded-md flex flex-col border border-indigo-500">
                     <div className='flex flex-col'>

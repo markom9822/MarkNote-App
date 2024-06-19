@@ -19,7 +19,7 @@ import { PiMathOperations } from "react-icons/pi";
 import { BiHighlight } from "react-icons/bi";
 
 
-import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton, HeadingHelperButton, HeadingHelperPopUpModal } from "@/components";
+import { EmojiPicker, LinkFormatPopUpModal, EmojiFilterButton, HeadingHelperButton, HeadingHelperPopUpModal, EmojiPickerPopUpModal } from "@/components";
 import { OnPasteLinkFormatPopUpModal } from "./EditorPopUps/OnPasteLinkFormatPopUp"
 import { FaRegFaceSmile, FaBurger, FaRegBuilding, FaTable } from "react-icons/fa6";
 import { FaMountain } from "react-icons/fa";
@@ -547,20 +547,7 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
                     <BsEmojiSmile className="w-4 h-4 text-zinc-100"/>
                 </ToolBarButton>
             </div>
-            {emojiPickerOpen && (
-                <div className="absolute right-0 w-40 h-36 bg-zinc-900 top-8 rounded-lg overflow-auto">
-                    <div className="divide-zinc-400 divide-y-2">
-                        <div className="flex flex-row justify-center space-x-0.5 ">
-                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'people'} value='people'><FaRegFaceSmile /></EmojiFilterButton>
-                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'nature'} value='nature'><FaMountain /></EmojiFilterButton>
-                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'objects'} value='objects'><FaBurger /></EmojiFilterButton>
-                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'places'} value='places'><FaRegBuilding /></EmojiFilterButton>
-                            <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'symbols'} value='symbols'><MdOutlineEmojiSymbols /></EmojiFilterButton>
-                        </div>
-                        <EmojiPicker handlePickedEmoji={handleCreateEmoji} selectedType={emojiType} />
-                    </div>     
-                </div>
-            )}
+            <EmojiPickerPopUpModal visible={emojiPickerOpen} editorView={editorView} onToggle={handleClickEmojiButton}/>
         </div>
     )
 }
