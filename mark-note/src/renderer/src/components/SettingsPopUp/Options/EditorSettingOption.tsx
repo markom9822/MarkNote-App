@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dropdown } from "@renderer/components/Utilities/Dropdown"
+import { Dropdown, NumberDropdown } from "@renderer/components/Utilities/Dropdown"
 import { Checkbox } from "@renderer/components/Utilities/Checkbox"
 
 
@@ -9,9 +9,10 @@ export const EditorSettingOption = () => {
     const [checkedHighlightLine, setCheckedHighlightLine] = useState(true);
     const [checkedWrapping, setCheckedWrapping] = useState(true);
 
-    const handleChangeLineNum = () => {
-        setCheckedLineNum(!checkedLineNum);
-        localStorage.setItem('lineNumberPref', (!checkedLineNum).toString());
+    const handleChangeLineNum = (e) => {
+        setCheckedLineNum(e.target.checked);
+        console.info(`Line Numbers set to ${e.target.checked}`)
+        localStorage.setItem('lineNumberPref', (e.target.checked).toString());
     };
 
     const handleChangeToolbar = () => {
@@ -29,16 +30,36 @@ export const EditorSettingOption = () => {
     const editorFontOptions = [
       {label: "Monospace", value: 1},
       {label: "Sans Serif", value: 2}
-  ]
+    ]
 
-    return (
+    const editorFontSizeOptions = [
+      {label: "10px", value: 1},
+      {label: "12px", value: 2},
+      {label: "14px", value: 3},
+      {label: "16px", value: 4}
+    ]
+
+  const storedValue = localStorage.getItem('lineNumberPref');
+  var lineNumValue = true;
+
+  if(storedValue == null)
+  {
+    localStorage.setItem('lineNumberPref', 'true');
+  }
+  else
+  {
+    lineNumValue = JSON.parse(storedValue);
+  }
+  
+
+  return (
         <div className="editor">
             <h2 className="mb-2 font-bold truncate text-xl">Interface</h2>
             <hr></hr>
             <div className="my-2">
                 <Checkbox
                 label="Line numbers"
-                value={checkedLineNum}
+                value={lineNumValue}
                 onChange={handleChangeLineNum}
                 />
                 <p className="text-xs text-zinc-300">
@@ -77,18 +98,19 @@ export const EditorSettingOption = () => {
             </div>
             <h2 className="mb-2 font-bold truncate text-xl">Text Appearance</h2>
             <hr></hr>
-            <div className="my-2">
-              <p>Font Size</p>
-              <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
+            <div className="my-2 flex space-x-24">
+              <div>
+                <p>Font Size</p>
+                <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
+              </div>
+              <NumberDropdown options={editorFontSizeOptions}/>
             </div>
-            <div className="my-2">
-              <p>Font Weight</p>
-              <span className="text-xs text-zinc-300">Weight of the font used in the editor</span>
-            </div>
-            <div className="my-2">
-              <p>Font Family</p>
-              <span className="text-xs text-zinc-300">The font used in the Markdown editor</span>
-                {Dropdown(editorFontOptions)}
+            <div className="my-2 flex space-x-12">
+              <div>
+                <p>Font Family</p>
+                <span className="text-xs text-zinc-300">The font used in the Markdown editor</span>
+              </div>
+              <Dropdown options={editorFontOptions}/>
             </div>
         </div> 
         )
