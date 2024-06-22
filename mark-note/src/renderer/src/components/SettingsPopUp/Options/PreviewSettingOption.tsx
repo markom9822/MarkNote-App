@@ -12,7 +12,7 @@ export const PreviewSettingOption = () => {
             <div className="mb-5">
                 <h2 className="mb-2 font-bold truncate text-xl">Preview Font</h2>
                 <span>The font used in the Markdown preview</span>
-                {Dropdown(previewFontOptions)}
+                <Dropdown options={previewFontOptions}/>
             </div>       
         </div>
     )

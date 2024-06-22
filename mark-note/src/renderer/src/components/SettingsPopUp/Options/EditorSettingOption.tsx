@@ -1,18 +1,33 @@
 import { useState } from "react";
 import { Dropdown, NumberDropdown } from "@renderer/components/Utilities/Dropdown"
 import { Checkbox } from "@renderer/components/Utilities/Checkbox"
+import { useSetAtom} from "jotai"
+import {getSettingPrefValueAtom, setSettingPrefAtom} from '@/store/settingsOptions'
+
+
 
 
 export const EditorSettingOption = () => {
-    const [checkedLineNum, setCheckedLineNum] = useState(true);
-    const [checkedToolbar, setCheckedToolbar] = useState(true);
-    const [checkedHighlightLine, setCheckedHighlightLine] = useState(true);
-    const [checkedWrapping, setCheckedWrapping] = useState(true);
+  const getSettingPrefValue = useSetAtom(getSettingPrefValueAtom)
+  const setSettingPref = useSetAtom(setSettingPrefAtom)
+
+  const initLineNum = getSettingPrefValue('Line Numbers Visible');
+
+
+  console.info(`Line Number Init ${initLineNum.toString()}`)
+  const initLineNumValue = (initLineNum.toString() === 'true') ;
+
+  const [checkedLineNum, setCheckedLineNum] = useState(initLineNumValue);
+  const [checkedToolbar, setCheckedToolbar] = useState(true);
+  const [checkedHighlightLine, setCheckedHighlightLine] = useState(true);
+  const [checkedWrapping, setCheckedWrapping] = useState(true);
+
+
 
     const handleChangeLineNum = (e) => {
         setCheckedLineNum(e.target.checked);
         console.info(`Line Numbers set to ${e.target.checked}`)
-        localStorage.setItem('lineNumberPref', (e.target.checked).toString());
+        setSettingPref('Line Numbers Visible', e.target.checked.toString())
     };
 
     const handleChangeToolbar = () => {
@@ -39,17 +54,8 @@ export const EditorSettingOption = () => {
       {label: "16px", value: 4}
     ]
 
-  const storedValue = localStorage.getItem('lineNumberPref');
-  var lineNumValue = true;
-
-  if(storedValue == null)
-  {
-    localStorage.setItem('lineNumberPref', 'true');
-  }
-  else
-  {
-    lineNumValue = JSON.parse(storedValue);
-  }
+  
+  //const lineNumValue = getSettingPrefValue('Line Numbers Visible');
   
 
   return (
@@ -59,7 +65,7 @@ export const EditorSettingOption = () => {
             <div className="my-2">
                 <Checkbox
                 label="Line numbers"
-                value={lineNumValue}
+                value={checkedLineNum}
                 onChange={handleChangeLineNum}
                 />
                 <p className="text-xs text-zinc-300">

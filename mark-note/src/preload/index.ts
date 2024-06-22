@@ -1,4 +1,5 @@
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp } from "@shared/types"
+import { setSettingPref } from "@/lib"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp, SetSettingPref, GetSettingPrefValue} from "@shared/types"
 import { contextBridge, ipcRenderer } from "electron"
 
 if(!process.contextIsolated) {
@@ -17,6 +18,8 @@ try {
     deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args),
     closeApp: (...args: Parameters<CloseApp>) => ipcRenderer.send('close'),
     minimiseApp: (...args: Parameters<MinimiseApp>) => ipcRenderer.send('minimise'),
+    setSettingPref: (...args: Parameters<SetSettingPref>) => ipcRenderer.invoke('setSettingPref', ...args),
+    getSettingPrefValue: (...args: Parameters<GetSettingPrefValue>) => ipcRenderer.invoke('getSettingPrefValue', ...args),
   })
   
 } catch (error) {

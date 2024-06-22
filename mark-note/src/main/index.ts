@@ -1,6 +1,6 @@
-import { closeApp, createNote, deleteNote, getNotes, minimiseApp, readNote, renameNote, setNoteStatus, writeNote } from '@/lib'
+import { closeApp, createNote, deleteNote, getNotes, minimiseApp, readNote, renameNote, setNoteStatus, writeNote, setSettingPref, getSettingPrefValue } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { CloseApp, CreateNote, DeleteNote, GetNotes, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, WriteNote } from '@shared/types'
+import { CloseApp, CreateNote, DeleteNote, GetNotes, GetSettingPrefValue, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, SetSettingPref, WriteNote } from '@shared/types'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/MarkNoteLogoPixel.png?asset'
@@ -82,6 +82,8 @@ app.whenReady().then(() => {
   ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
   ipcMain.handle('closeApp', (_, ...args: Parameters<CloseApp>) => () => closeApp(...args) )
   ipcMain.handle('minimiseApp', (_, ...args: Parameters<MinimiseApp>) => () => minimiseApp(...args) )
+  ipcMain.handle('setSettingPref', (_, ...args: Parameters<SetSettingPref>) => setSettingPref(...args))
+  ipcMain.handle('getSettingPrefValue', (_, ...args: Parameters<GetSettingPrefValue>) => getSettingPrefValue(...args))
 
 
   createWindow()

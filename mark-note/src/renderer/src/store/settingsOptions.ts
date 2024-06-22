@@ -7,6 +7,7 @@ import { MdOutlineDisabledByDefault } from "react-icons/md";
 import { MdOutlinePreview } from "react-icons/md";
 import { RxKeyboard } from "react-icons/rx";
 import { ThemesSettingOption} from '@/components/SettingsPopUp/Options/ThemesSettingOption'
+import { read } from "fs";
 
  
 const settingsOptions = [{
@@ -65,4 +66,22 @@ export const selectedSettingAtom = unwrap(selectedSettingAtomAsync, (prev) => pr
     title: '',
     icon: MdOutlineDisabledByDefault,
     content: ThemesSettingOption
+})
+
+export const setSettingPrefAtom = atom(null, async (get, set, prefTitle: string, newPref: string) => {
+
+  // save on disk
+  await window.context.setSettingPref(prefTitle, newPref)
+
+})
+
+export const getSettingPrefValueAtom = atom(null, async (get, set, prefTitle: string) => {
+
+  // save on disk
+  const readValue = Promise.all(await window.context.getSettingPrefValue(prefTitle))[0]
+
+  return (
+    readValue
+  )
+  
 })

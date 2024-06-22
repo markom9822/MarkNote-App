@@ -2,14 +2,12 @@ import { SettingPrefsInfo } from "@shared/models";
 import { atom } from "jotai";
 import {unwrap} from 'jotai/utils'
 
-const settingsPrefsDefaults = [{
-    id: 0,
+export const settingsPrefsDefaults = [{
     section: 'Editor',
     pref: 'Line Numbers Visible',
     value: true,
   },
   {
-    id: 1,
     section: 'Editor',
     pref: 'Toolbar Visible',
     value: true,

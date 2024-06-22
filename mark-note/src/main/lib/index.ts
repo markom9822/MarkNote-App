@@ -1,6 +1,6 @@
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from "@shared/constants"
 import { NoteInfo } from "@shared/models"
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp } from "@shared/types"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp, SetSettingPref, GetSettingPrefValue } from "@shared/types"
 import { app, dialog } from "electron"
 import { readdir, stat, readFile, remove, rename } from "fs-extra"
 import { ensureDir, writeFile} from "fs-extra"
@@ -8,6 +8,19 @@ import { homedir } from "os"
 import path from 'path'
 import { isEmpty } from 'lodash'
 import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
+
+export const settingsPrefsDefaults = [{
+    section: 'Editor',
+    title: 'Line Numbers Visible',
+    prefValue: 'true',
+  },
+  {
+    section: 'Editor',
+    title: 'Toolbar Visible',
+    prefValue: 'true',
+  },
+];
+
 
 export const getRootDir = () => {
     return `${homedir()}\\${appDirectoryName}`
@@ -31,6 +44,10 @@ export const getNotes: GetNotes = async () => {
         const json = [{title: welcomeNoteFilename.replace(/\.md$/, ''), status: "Active"}];
 
         await writeFile(`${rootDir}\\NotesInfoJSON.json`, JSON.stringify(json), {encoding: fileEncoding})
+            .then(  () => { console.log('Append Success'); })
+            .catch(err => { console.log("Append Failed: " + err);});
+
+        await writeFile(`${rootDir}\\SettingsPrefsJSON.json`, JSON.stringify(settingsPrefsDefaults), {encoding: fileEncoding})
             .then(  () => { console.log('Append Success'); })
             .catch(err => { console.log("Append Failed: " + err);});
 
@@ -110,6 +127,48 @@ export const setNoteStatus: SetNoteStatus = async (filename, newStatus) => {
                         .catch(err => { console.log("Append Failed: " + err);});
         })
         .catch(err => { console.log("Read Error: " +err);});
+}
+
+export const setSettingPref: SetSettingPref = async (prefTitle, newPref) => {
+    const rootDir = getRootDir()
+
+    readFile(`${rootDir}\\SettingsPrefsJSON.json`, { encoding: fileEncoding}) 
+        .then(jsonData => { 
+                let json = JSON.parse(jsonData);
+                json.map((prefJSON, index) => {
+                    // this is the note that we want to update
+                    if(prefJSON.title == prefTitle) {
+                        json[index].prefValue = newPref
+                    } 
+                })
+
+                writeFile(`${rootDir}\\SettingsPrefsJSON.json`, JSON.stringify(json), {encoding: fileEncoding})
+                        .then(  () => { console.log('Append Success'); })
+                        .catch(err => { console.log("Append Failed: " + err);});
+        })
+        .catch(err => { console.log("Read Error: " +err);});
+}
+
+export const getSettingPrefValue: GetSettingPrefValue = async (prefTitle: string): Promise<string> => {
+    const rootDir = getRootDir()
+
+    var readPref = '';
+
+    await readFile(`${rootDir}\\SettingsPrefsJSON.json`, { encoding: fileEncoding}) 
+        .then(jsonData => { 
+                let json = JSON.parse(jsonData);
+                json.map((prefJSON) => {
+                    // this is the note that we want to update
+                    if(prefJSON.title == prefTitle) {
+                        readPref = prefJSON.prefValue
+                    } 
+                })
+        }
+    )
+
+    return (
+        readPref
+    )
 }
 
 
