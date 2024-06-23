@@ -9,18 +9,17 @@ export const EditorSettingOption = () => {
   const setSettingPref = useSetAtom(setSettingPrefAtom)
 
   
-  const initLineNum = getSettingPrefValueFromTitle('Line Numbers Visible');
+  const initLineNum = getSettingPrefValueFromTitle('Line Numbers Visible') === 'true';
+  const initToolbarVisible = getSettingPrefValueFromTitle('Toolbar Visible') === 'true';
+  const initHighlightLine = getSettingPrefValueFromTitle('Highlight Active Line') === 'true';
+  const initLineWrapping = getSettingPrefValueFromTitle('Line Wrapping') === 'true';
+
   console.info(`Line Number Init ${initLineNum}`)
-  const initLineNumValue = (initLineNum === 'true') ;
 
-  
-
-  const [checkedLineNum, setCheckedLineNum] = useState(initLineNumValue);
-  const [checkedToolbar, setCheckedToolbar] = useState(true);
-  const [checkedHighlightLine, setCheckedHighlightLine] = useState(true);
-  const [checkedWrapping, setCheckedWrapping] = useState(true);
-
-
+  const [checkedLineNum, setCheckedLineNum] = useState(initLineNum);
+  const [checkedToolbar, setCheckedToolbar] = useState(initToolbarVisible);
+  const [checkedHighlightLine, setCheckedHighlightLine] = useState(initHighlightLine);
+  const [checkedWrapping, setCheckedWrapping] = useState(initLineWrapping);
 
     const handleChangeLineNum = (e) => {
         setCheckedLineNum(e.target.checked);
@@ -28,16 +27,19 @@ export const EditorSettingOption = () => {
         setSettingPref('Line Numbers Visible', e.target.checked.toString())
     };
 
-    const handleChangeToolbar = () => {
-      setCheckedToolbar(!checkedToolbar);
+    const handleChangeToolbar = (e) => {
+      setCheckedToolbar(e.target.checked);
+      setSettingPref('Toolbar Visible', e.target.checked.toString())
     };
 
-    const handleChangeHighlight = () => {
-      setCheckedHighlightLine(!checkedHighlightLine);
+    const handleChangeHighlight = (e) => {
+      setCheckedHighlightLine(e.target.checked);
+      setSettingPref('Highlight Active Line', e.target.checked.toString())
     };
 
-    const handleChangeWrapping = () => {
-      setCheckedWrapping(!checkedWrapping);
+    const handleChangeWrapping = (e) => {
+      setCheckedWrapping(e.target.checked);
+      setSettingPref('Line Wrapping', e.target.checked.toString())
     };
 
     const editorFontOptions = [

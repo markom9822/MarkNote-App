@@ -70,7 +70,6 @@ export const selectedSettingAtom = unwrap(selectedSettingAtomAsync, (prev) => pr
 
 const loadSettingPref = async () => {
   const allPrefs = await window.context.getAllPrefs()
-  console.info(allPrefs)
 
   return allPrefs
 }

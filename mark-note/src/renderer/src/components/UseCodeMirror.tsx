@@ -259,11 +259,31 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
       },
     ]
 
+  const lineNumberAction = new Compartment();
+  const highlightActiveLineAction = new Compartment();
+  const lineWrappingAction = new Compartment();
+
+  const toggleLineNumber = () =>{
+    const lineNumBoolean = (getSettingPrefValueFromTitle('Line Numbers Visible') == 'true');
+    return lineNumBoolean ? lineNumbers() : [];
+  }
+
+  const toggleHighlightActiveLine = () =>{
+    const highLightActiveBoolean = (getSettingPrefValueFromTitle('Highlight Active Line') == 'true');
+    return highLightActiveBoolean ? highlightActiveLine() : [];
+  }
+
+  const toggleLineWrapping = () =>{
+    const lineWrappingBoolean = (getSettingPrefValueFromTitle('Line Wrapping') == 'true');
+    return lineWrappingBoolean ? EditorView.lineWrapping : [];
+  }
+
   const codeMirrorExtensions = [
     [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)], ],
-    lineNumbers(),
+    lineNumberAction.of(toggleLineNumber()),
+    highlightActiveLineAction.of(toggleHighlightActiveLine()),
+    lineWrappingAction.of(toggleLineWrapping()),
     highlightActiveLineGutter(),
-    highlightActiveLine(),
     bracketMatching(),
     history(),
     markdown({
@@ -282,7 +302,6 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     //basicLight,
     //solarizedDark,
     eventHandlers,
-    EditorView.lineWrapping,
     EditorView.updateListener.of(update => {
         if (update.changes) {
            setDoc(update.state.doc.toString())

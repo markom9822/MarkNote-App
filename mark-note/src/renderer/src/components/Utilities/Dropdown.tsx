@@ -1,9 +1,10 @@
 
-export const Dropdown = ({options}) => {
+
+export const Dropdown = ({options, OnChangeOption}) => {
 
     return (
         <div>
-            <select className="bg-gray-500 border border-gray-800 text-gray-50 text-sm rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block p-2.5">
+            <select onChange={OnChangeOption} className="bg-gray-500 border border-gray-800 text-gray-50 text-sm rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block p-2.5">
                 {options.map(option => (
                     <option key={option.value + option.label} value={option.value}>{option.label}</option>
                 ))}

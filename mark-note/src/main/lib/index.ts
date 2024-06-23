@@ -10,6 +10,11 @@ import { isEmpty } from 'lodash'
 import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
 
 export const settingsPrefsDefaults = [{
+    section: 'Themes',
+    title: 'Editor Theme',
+    prefValue: 'dark',
+  },
+  {
     section: 'Editor',
     title: 'Line Numbers Visible',
     prefValue: 'true',
@@ -17,6 +22,16 @@ export const settingsPrefsDefaults = [{
   {
     section: 'Editor',
     title: 'Toolbar Visible',
+    prefValue: 'true',
+  },
+  {
+    section: 'Editor',
+    title: 'Highlight Active Line',
+    prefValue: 'true',
+  },
+  {
+    section: 'Editor',
+    title: 'Line Wrapping',
     prefValue: 'true',
   },
 ];
@@ -151,7 +166,7 @@ export const setSettingPref: SetSettingPref = async (prefTitle, newPref) => {
 
 export const getAllPrefs: GetAllPrefs = async () => {
 
-    const prefTitles = ['Line Numbers Visible', 'Toolbar Visible']
+    const prefTitles = ['Line Numbers Visible', 'Toolbar Visible', 'Highlight Active Line', 'Line Wrapping']
 
     return Promise.all(prefTitles.map(getSettingPrefValue))
 
