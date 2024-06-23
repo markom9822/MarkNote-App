@@ -21,6 +21,8 @@ import { solarizedDark } from '@renderer/utils/themes/SolarizedDark'
 
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
 import { InsertTextAroundInEditor, InsertTextAtStartInEditor } from './MarkdownEditorToolBar'
+import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
+
 
 const emojiList = getEmojiList()
 
@@ -257,52 +259,51 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
       },
     ]
 
+  const codeMirrorExtensions = [
+    [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)], ],
+    lineNumbers(),
+    highlightActiveLineGutter(),
+    highlightActiveLine(),
+    bracketMatching(),
+    history(),
+    markdown({
+        base: markdownLanguage,
+        codeLanguages: languages,
+        addKeymap: true,
+        extensions: [MarkStylingExtension]
+    }),
+    placeholders,
+    emojiAutoCompletion,
+    autocompletion({
+      closeOnBlur: false,
+    }),
+    CodeBlockField,
+    basicDark,
+    //basicLight,
+    //solarizedDark,
+    eventHandlers,
+    EditorView.lineWrapping,
+    EditorView.updateListener.of(update => {
+        if (update.changes) {
+           setDoc(update.state.doc.toString())
+           onDocChange && onDocChange(update.state)
+        }
+        const hasChanged = update.startState !== update.state;
+        onChange(hasChanged) 
+    }),
+    isEditable.of(EditorView.editable.of(editable))
+]
+  
+  const currentLineNum = getSettingPrefValueFromTitle('Line Numbers Visible');
+
+
   useEffect(() => {
 
     if (!containerRef.current) return
 
-    const storedLineNumPref = localStorage.getItem('lineNumberPref');
-    if (storedLineNumPref) {
-      console.info(`Line Num Pref: ${JSON.parse(storedLineNumPref)}`);
-    }
-
     const startState = EditorState.create({
     doc: doc,
-    extensions: [
-        [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)], ],
-        lineNumbers(),
-        highlightActiveLineGutter(),
-        highlightActiveLine(),
-        bracketMatching(),
-        history(),
-        markdown({
-            base: markdownLanguage,
-            codeLanguages: languages,
-            addKeymap: true,
-            extensions: [MarkStylingExtension]
-        }),
-        placeholders,
-        emojiAutoCompletion,
-        autocompletion({
-          closeOnBlur: false,
-        }),
-        CodeBlockField,
-        basicDark,
-        //basicLight,
-        //solarizedDark,
-        eventHandlers,
-        EditorView.lineWrapping,
-        EditorView.updateListener.of(update => {
-            if (update.changes) {
-               setDoc(update.state.doc.toString())
-               onDocChange && onDocChange(update.state)
-            }
-            const hasChanged = update.startState !== update.state;
-            onChange(hasChanged) 
-        }),
-        isEditable.of(EditorView.editable.of(editable))
-    ],
-    
+    extensions: codeMirrorExtensions,
     })
 
     const view = new EditorView({ 

@@ -1,4 +1,5 @@
-import { selectedSettingAtom, settingOptionsAtom, selectedSettingOptionIndexAtom } from "@renderer/store/settingsOptions"
+import { selectedSettingAtom, settingOptionsAtom, selectedSettingOptionIndexAtom, allPrefsAtom } from "@renderer/store/settingsOptions"
+import { SettingPrefsInfo } from "@shared/models"
 import { useAtom, useAtomValue } from "jotai"
 
 
@@ -35,4 +36,15 @@ export const forceSettings = () => {
     return {
         forceSetOptionIndex
     }
+}
+
+export const getSettingPrefValueFromTitle = (prefTitle: string): string => {
+    const allPrefs = useAtomValue(allPrefsAtom)
+    if(!allPrefs) return ''
+
+    const filteredPref = allPrefs.filter(pref => pref.title == prefTitle);
+
+    if(filteredPref == undefined) return ''
+
+    return(filteredPref[0].prefValue)
 }

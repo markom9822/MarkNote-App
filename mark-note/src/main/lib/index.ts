@@ -1,6 +1,6 @@
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from "@shared/constants"
-import { NoteInfo } from "@shared/models"
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp, SetSettingPref, GetSettingPrefValue } from "@shared/types"
+import { NoteInfo, SettingPrefsInfo } from "@shared/models"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp, SetSettingPref, GetSettingPrefValue, GetAllPrefs } from "@shared/types"
 import { app, dialog } from "electron"
 import { readdir, stat, readFile, remove, rename } from "fs-extra"
 import { ensureDir, writeFile} from "fs-extra"
@@ -149,10 +149,19 @@ export const setSettingPref: SetSettingPref = async (prefTitle, newPref) => {
         .catch(err => { console.log("Read Error: " +err);});
 }
 
-export const getSettingPrefValue: GetSettingPrefValue = async (prefTitle: string): Promise<string> => {
+export const getAllPrefs: GetAllPrefs = async () => {
+
+    const prefTitles = ['Line Numbers Visible', 'Toolbar Visible']
+
+    return Promise.all(prefTitles.map(getSettingPrefValue))
+
+}
+
+export const getSettingPrefValue = async (prefTitle: string): Promise<SettingPrefsInfo> => {
     const rootDir = getRootDir()
 
     var readPref = '';
+    var readTitle = '';
 
     await readFile(`${rootDir}\\SettingsPrefsJSON.json`, { encoding: fileEncoding}) 
         .then(jsonData => { 
@@ -161,14 +170,16 @@ export const getSettingPrefValue: GetSettingPrefValue = async (prefTitle: string
                     // this is the note that we want to update
                     if(prefJSON.title == prefTitle) {
                         readPref = prefJSON.prefValue
+                        readTitle = prefJSON.title
                     } 
                 })
         }
     )
 
-    return (
-        readPref
-    )
+    return {
+        title: readTitle,
+        prefValue: readPref
+    }
 }
 
 

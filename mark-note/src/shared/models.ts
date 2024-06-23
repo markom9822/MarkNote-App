@@ -16,9 +16,8 @@ export type SettingOptionInfo = {
 }
 
 export type SettingPrefsInfo = {
-    section: string,
-    pref: string,
-    value: boolean,
+    title: string,
+    prefValue: string,
 }
 
 

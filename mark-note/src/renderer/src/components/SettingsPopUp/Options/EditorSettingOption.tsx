@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { Dropdown, NumberDropdown } from "@renderer/components/Utilities/Dropdown"
 import { Checkbox } from "@renderer/components/Utilities/Checkbox"
-import { useSetAtom} from "jotai"
-import {getSettingPrefValueAtom, setSettingPrefAtom} from '@/store/settingsOptions'
-
-
-
+import { useSetAtom, useAtomValue} from "jotai"
+import {setSettingPrefAtom, allPrefsAtom} from '@/store/settingsOptions'
+import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
 
 export const EditorSettingOption = () => {
-  const getSettingPrefValue = useSetAtom(getSettingPrefValueAtom)
   const setSettingPref = useSetAtom(setSettingPrefAtom)
 
-  const initLineNum = getSettingPrefValue('Line Numbers Visible');
+  
+  const initLineNum = getSettingPrefValueFromTitle('Line Numbers Visible');
+  console.info(`Line Number Init ${initLineNum}`)
+  const initLineNumValue = (initLineNum === 'true') ;
 
-
-  console.info(`Line Number Init ${initLineNum.toString()}`)
-  const initLineNumValue = (initLineNum.toString() === 'true') ;
+  
 
   const [checkedLineNum, setCheckedLineNum] = useState(initLineNumValue);
   const [checkedToolbar, setCheckedToolbar] = useState(true);
@@ -53,9 +51,6 @@ export const EditorSettingOption = () => {
       {label: "14px", value: 3},
       {label: "16px", value: 4}
     ]
-
-  
-  //const lineNumValue = getSettingPrefValue('Line Numbers Visible');
   
 
   return (

@@ -14,14 +14,5 @@ export const settingsPrefsDefaults = [{
   },
 ];
 
-const loadSettingsPrefs = async () => {
-    const options = Promise.all(settingsPrefsDefaults)
-    return options;
-}
-
-// settings
-const settingPrefsAtomAsync = atom<SettingPrefsInfo[] | Promise<SettingPrefsInfo[]>>(loadSettingsPrefs)
-
-export const settingOptionsAtom = unwrap(settingPrefsAtomAsync, (prev) => prev)
 
 

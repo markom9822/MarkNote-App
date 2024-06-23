@@ -1,4 +1,4 @@
-import { NoteInfo, NoteContent, SettingOptionInfo } from "@shared/models";
+import { NoteInfo, NoteContent, SettingOptionInfo, SettingPrefsInfo } from "@shared/models";
 import { atom } from "jotai";
 import {unwrap} from 'jotai/utils'
 import { LuPaintbrush } from "react-icons/lu";
@@ -68,20 +68,38 @@ export const selectedSettingAtom = unwrap(selectedSettingAtomAsync, (prev) => pr
     content: ThemesSettingOption
 })
 
+const loadSettingPref = async () => {
+  const allPrefs = await window.context.getAllPrefs()
+  console.info(allPrefs)
+
+  return allPrefs
+}
+
+const allPrefsAtomAsync = atom<SettingPrefsInfo[] | Promise<SettingPrefsInfo[]>>(loadSettingPref())
+
+export const allPrefsAtom = unwrap(allPrefsAtomAsync, (prev) => prev)
+
 export const setSettingPrefAtom = atom(null, async (get, set, prefTitle: string, newPref: string) => {
+
+  const allPrefs = get(allPrefsAtom)
+
+  if(!allPrefs) return
 
   // save on disk
   await window.context.setSettingPref(prefTitle, newPref)
 
-})
-
-export const getSettingPrefValueAtom = atom(null, async (get, set, prefTitle: string) => {
-
-  // save on disk
-  const readValue = Promise.all(await window.context.getSettingPrefValue(prefTitle))[0]
-
-  return (
-    readValue
+  set(
+    allPrefsAtom,
+    allPrefs.map((pref) => {
+        // this is the pref that we want to update
+        if(pref.title == prefTitle) {
+            return {
+                ...pref,
+                prefValue: newPref
+            }
+        }
+        return pref
+    })
   )
-  
+
 })

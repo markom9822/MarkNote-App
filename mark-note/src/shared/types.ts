@@ -1,4 +1,4 @@
-import { NoteContent, NoteInfo } from "./models";
+import { NoteContent, NoteInfo, SettingPrefsInfo } from "./models";
 
 export type GetNotes = () => Promise<NoteInfo[]>
 export type ReadNote = (title: NoteInfo['title']) => Promise<NoteContent>
@@ -7,6 +7,8 @@ export type RenameNote = (title: NoteInfo['title'], newTitle: string) => Promise
 export type SetNoteStatus = (title: NoteInfo['title'], newStatus: string) => Promise<void>
 export type SetSettingPref= (prefTitle: string, newPref: string) => Promise<void>
 export type GetSettingPrefValue= (prefTitle: string) => Promise<string>
+export type GetAllPrefs = () => Promise<SettingPrefsInfo[]>
+
 
 export type CreateNote = () => Promise<NoteInfo['title'] | false>
 export type DeleteNote = (title: NoteInfo['title']) => Promise<boolean>

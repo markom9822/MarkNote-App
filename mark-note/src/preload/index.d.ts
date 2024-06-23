@@ -1,4 +1,4 @@
-import { CloseApp, CreateNote, DeleteNote, GetNotes, GetSettingPrefValue, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, SetSettingPref, WriteNote } from "@shared/types"
+import { CloseApp, CreateNote, DeleteNote, GetAllPrefs, GetNotes, GetSettingPrefValue, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, SetSettingPref, WriteNote } from "@shared/types"
 
 declare global {
   interface Window {
@@ -14,7 +14,7 @@ declare global {
       closeApp: CloseApp
       minimiseApp: MinimiseApp
       setSettingPref: SetSettingPref
-      getSettingPrefValue: GetSettingPrefValue
+      getAllPrefs: GetAllPrefs
     }
   }
 }
