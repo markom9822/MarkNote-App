@@ -12,7 +12,7 @@ import remarkToc from 'remark-toc'
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
 
-import '@renderer/assets/darkpreview.css'
+//import '@renderer/assets/darkpreview.css';
 import 'katex/dist/katex.min.css';
 
 
@@ -24,12 +24,40 @@ import React from "react"
 import { visit } from "unist-util-visit";
 import { selectedNoteIndexAtom } from '@renderer/store'
 import { useAtomValue } from 'jotai'
+import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
 
 export type MarkdownPreviewProps = {
     markdownContent: string
 }
 
 export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
+
+  const previewThemeString = getSettingPrefValueFromTitle('Preview Theme');
+
+  console.info(previewThemeString)
+
+    switch (previewThemeString) {
+      case 'dark':
+        console.info("Importing dark preview")
+        import('@renderer/assets/darkpreview.css')
+        break;
+      case 'light':
+        console.info("Importing light preview")
+        import('@renderer/assets/lightpreview.css')
+        break;
+      default:
+        import('@renderer/assets/darkpreview.css')
+        break;
+      }
+
+  //if(false)
+  //{
+  //  import('@renderer/assets/darkpreview.css')
+  //}
+  //else
+  //{
+  //  import('@renderer/assets/lightpreview.css')
+  //}
 
   // if no note selected then dont show preview
   const selectedNoteIndex = useAtomValue(selectedNoteIndexAtom)

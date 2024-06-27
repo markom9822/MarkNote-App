@@ -7,19 +7,18 @@ import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
 
 export const EditorSettingOption = () => {
   const setSettingPref = useSetAtom(setSettingPrefAtom)
-
   
   const initLineNum = getSettingPrefValueFromTitle('Line Numbers Visible') === 'true';
   const initToolbarVisible = getSettingPrefValueFromTitle('Toolbar Visible') === 'true';
   const initHighlightLine = getSettingPrefValueFromTitle('Highlight Active Line') === 'true';
   const initLineWrapping = getSettingPrefValueFromTitle('Line Wrapping') === 'true';
 
-  console.info(`Line Number Init ${initLineNum}`)
-
   const [checkedLineNum, setCheckedLineNum] = useState(initLineNum);
   const [checkedToolbar, setCheckedToolbar] = useState(initToolbarVisible);
   const [checkedHighlightLine, setCheckedHighlightLine] = useState(initHighlightLine);
   const [checkedWrapping, setCheckedWrapping] = useState(initLineWrapping);
+  const [fontFamily, setFontFamily] = useState('mono');
+
 
     const handleChangeLineNum = (e) => {
         setCheckedLineNum(e.target.checked);
@@ -42,9 +41,13 @@ export const EditorSettingOption = () => {
       setSettingPref('Line Wrapping', e.target.checked.toString())
     };
 
+    const handleChangeFontFamily = (e) => {
+
+    }
+
     const editorFontOptions = [
-      {label: "Monospace", value: 1},
-      {label: "Sans Serif", value: 2}
+      {label: "Monospace", id: 1},
+      {label: "Sans Serif", id: 2}
     ]
 
     const editorFontSizeOptions = [
@@ -113,7 +116,7 @@ export const EditorSettingOption = () => {
                 <p>Font Family</p>
                 <span className="text-xs text-zinc-300">The font used in the Markdown editor</span>
               </div>
-              <Dropdown options={editorFontOptions}/>
+              <Dropdown selectedOption={fontFamily} OnChangeOption={handleChangeFontFamily} options={editorFontOptions}/>
             </div>
         </div> 
         )

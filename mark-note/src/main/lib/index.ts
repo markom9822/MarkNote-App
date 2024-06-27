@@ -15,6 +15,11 @@ export const settingsPrefsDefaults = [{
     prefValue: 'dark',
   },
   {
+    section: 'Themes',
+    title: 'Preview Theme',
+    prefValue: 'dark',
+  },
+  {
     section: 'Editor',
     title: 'Line Numbers Visible',
     prefValue: 'true',
@@ -165,10 +170,14 @@ export const setSettingPref: SetSettingPref = async (prefTitle, newPref) => {
 }
 
 export const getAllPrefs: GetAllPrefs = async () => {
+    var titlesArray = new Array();
 
-    const prefTitles = ['Line Numbers Visible', 'Toolbar Visible', 'Highlight Active Line', 'Line Wrapping']
+    settingsPrefsDefaults.map((pref) => {
 
-    return Promise.all(prefTitles.map(getSettingPrefValue))
+        titlesArray.push(pref.title)
+    })
+
+    return Promise.all(titlesArray.map(getSettingPrefValue))
 
 }
 

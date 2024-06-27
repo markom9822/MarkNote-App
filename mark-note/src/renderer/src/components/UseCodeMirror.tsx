@@ -262,6 +262,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
   const lineNumberAction = new Compartment();
   const highlightActiveLineAction = new Compartment();
   const lineWrappingAction = new Compartment();
+  const editorThemeAction = new Compartment();
 
   const toggleLineNumber = () =>{
     const lineNumBoolean = (getSettingPrefValueFromTitle('Line Numbers Visible') == 'true');
@@ -278,11 +279,25 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     return lineWrappingBoolean ? EditorView.lineWrapping : [];
   }
 
+  const toggleEditorTheme = () =>{
+    const editorThemeString = getSettingPrefValueFromTitle('Editor Theme');
+
+    switch (editorThemeString) {
+      case 'dark':
+        return basicDark
+      case 'light':
+        return basicLight
+      default:
+         return basicDark 
+      }
+  }
+
   const codeMirrorExtensions = [
     [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)], ],
     lineNumberAction.of(toggleLineNumber()),
     highlightActiveLineAction.of(toggleHighlightActiveLine()),
     lineWrappingAction.of(toggleLineWrapping()),
+    editorThemeAction.of(toggleEditorTheme()),
     highlightActiveLineGutter(),
     bracketMatching(),
     history(),
@@ -298,9 +313,6 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
       closeOnBlur: false,
     }),
     CodeBlockField,
-    basicDark,
-    //basicLight,
-    //solarizedDark,
     eventHandlers,
     EditorView.updateListener.of(update => {
         if (update.changes) {
@@ -312,9 +324,6 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     }),
     isEditable.of(EditorView.editable.of(editable))
 ]
-  
-  const currentLineNum = getSettingPrefValueFromTitle('Line Numbers Visible');
-
 
   useEffect(() => {
 
