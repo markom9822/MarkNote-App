@@ -17,6 +17,8 @@ export const EditorSettingOption = () => {
   const [checkedToolbar, setCheckedToolbar] = useState(initToolbarVisible);
   const [checkedHighlightLine, setCheckedHighlightLine] = useState(initHighlightLine);
   const [checkedWrapping, setCheckedWrapping] = useState(initLineWrapping);
+  const [checkedBracketMatching, setCheckedBracketMatching] = useState(true);
+
   const [fontFamily, setFontFamily] = useState('mono');
 
 
@@ -41,6 +43,11 @@ export const EditorSettingOption = () => {
       setSettingPref('Line Wrapping', e.target.checked.toString())
     };
 
+    const handleChangeBracketMatching = (e) => {
+      setCheckedBracketMatching(e.target.checked);
+      //setSettingPref('Line Wrapping', e.target.checked.toString())
+    };
+
     const handleChangeFontFamily = (e) => {
 
     }
@@ -55,6 +62,12 @@ export const EditorSettingOption = () => {
       {label: "12px", value: 2},
       {label: "14px", value: 3},
       {label: "16px", value: 4}
+    ]
+
+    const editorTabSizeOptions = [
+      {label: "2", value: 1},
+      {label: "3", value: 2},
+      {label: "4", value: 3},
     ]
   
 
@@ -102,6 +115,16 @@ export const EditorSettingOption = () => {
                   Wrap longer lines in the editor.
                 </p>
             </div>
+            <div className="my-2">
+                <Checkbox
+                label="Bracket Matching"
+                value={checkedBracketMatching}
+                onChange={handleChangeBracketMatching}
+                />
+                <p className="text-xs text-zinc-300">
+                  Wrap longer lines in the editor.
+                </p>
+            </div>
             <h2 className="mb-2 font-bold truncate text-xl">Text Appearance</h2>
             <hr></hr>
             <div className="my-2 flex space-x-24">
@@ -110,6 +133,13 @@ export const EditorSettingOption = () => {
                 <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
               </div>
               <NumberDropdown options={editorFontSizeOptions}/>
+            </div>
+            <div className="my-2 flex space-x-24">
+              <div>
+                <p>Tab Size</p>
+                <span className="text-xs text-zinc-300">Size of a tab (in spaces) in your editor</span>
+              </div>
+              <NumberDropdown options={editorTabSizeOptions}/>
             </div>
             <div className="my-2 flex space-x-12">
               <div>

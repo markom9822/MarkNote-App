@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 
 import { Compartment, EditorState, Extension } from '@codemirror/state'
 import { EditorView, keymap, Decoration, DecorationSet, MatchDecorator, ViewPlugin, ViewUpdate, WidgetType} from '@codemirror/view'
-import { defaultKeymap } from '@codemirror/commands'
-import { lineNumbers, highlightActiveLine, highlightActiveLineGutter } from '@codemirror/view'
+import { defaultKeymap} from '@codemirror/commands'
+import { lineNumbers, highlightActiveLine, highlightActiveLineGutter} from '@codemirror/view'
 import { markdown, markdownLanguage} from '@codemirror/lang-markdown'
 import { languages } from '@codemirror/language-data'
 import { useMarkdownEditor } from "@renderer/hooks/useMarkdownEditor"
@@ -257,6 +257,10 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
           return true;
         }
       },
+      { key: 'Tab', run: (target: EditorView) => {InsertTextAroundInEditor("  ", target, false)
+        return true;
+      }
+    },
     ]
 
   const lineNumberAction = new Compartment();
@@ -293,12 +297,13 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
   }
 
   const codeMirrorExtensions = [
-    [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)], ],
+    [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)] ],
     lineNumberAction.of(toggleLineNumber()),
     highlightActiveLineAction.of(toggleHighlightActiveLine()),
     lineWrappingAction.of(toggleLineWrapping()),
     editorThemeAction.of(toggleEditorTheme()),
     highlightActiveLineGutter(),
+    
     bracketMatching(),
     history(),
     markdown({
