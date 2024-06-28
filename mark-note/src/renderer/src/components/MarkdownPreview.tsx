@@ -13,6 +13,9 @@ import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
 
 //import '@renderer/assets/darkpreview.css';
+import darkStyle from './darkpreview.module.css';
+import lightStyle from './lightpreview.module.css'
+
 import 'katex/dist/katex.min.css';
 
 
@@ -21,6 +24,7 @@ import {codeStyle} from '@/components/EditorPlugins/codeHighlightTheme'
 import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import React from "react"
+import { useEffect } from 'react'
 import { visit } from "unist-util-visit";
 import { selectedNoteIndexAtom } from '@renderer/store'
 import { useAtomValue } from 'jotai'
@@ -30,34 +34,23 @@ export type MarkdownPreviewProps = {
     markdownContent: string
 }
 
-export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
+export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
 
   const previewThemeString = getSettingPrefValueFromTitle('Preview Theme');
 
-  console.info(previewThemeString)
+  var currentStylesheet = darkStyle;
+  switch (previewThemeString) {
+    case 'dark':
+      currentStylesheet = darkStyle
+      break;
+    case 'light':
+      currentStylesheet = lightStyle
+      break;
+    default:
+      currentStylesheet = darkStyle
+      break;
+    }
 
-    switch (previewThemeString) {
-      case 'dark':
-        console.info("Importing dark preview")
-        import('@renderer/assets/darkpreview.css')
-        break;
-      case 'light':
-        console.info("Importing light preview")
-        import('@renderer/assets/lightpreview.css')
-        break;
-      default:
-        import('@renderer/assets/darkpreview.css')
-        break;
-      }
-
-  //if(false)
-  //{
-  //  import('@renderer/assets/darkpreview.css')
-  //}
-  //else
-  //{
-  //  import('@renderer/assets/lightpreview.css')
-  //}
 
   // if no note selected then dont show preview
   const selectedNoteIndex = useAtomValue(selectedNoteIndexAtom)
@@ -118,7 +111,7 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> = (props) => {
     return transformer;
   };
 
-  return <ReactMarkdown className="markdown-body"
+  return <ReactMarkdown className={currentStylesheet.markdownBody}
   
   remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, remarkToc, underlinePlugin, highlightPlugin]} 
   rehypePlugins={[rehypeKatex, rehypeRaw]}

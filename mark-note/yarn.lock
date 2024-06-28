@@ -2497,6 +2497,11 @@
     "@typescript-eslint/types" "6.21.0"
     eslint-visitor-keys "^3.4.1"
 
+"@uiw/codemirror-extensions-hyper-link@^4.22.2":
+  version "4.22.2"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-extensions-hyper-link/-/codemirror-extensions-hyper-link-4.22.2.tgz#fe257ff4538e0c5a6481e6fcbb9d01db9eaa028d"
+  integrity sha512-mwIIS5vP5xXOZTuUDqGCiKU4QVrrFC2eh5EO2fd++uV7V0sSYwLdZ8HkkkRjC7dtFQdJc1W8+pXiOJpWEsTYsw==
+
 "@uiw/react-codemirror@^3.2.6":
   version "3.2.6"
   resolved "https://registry.npmjs.org/@uiw/react-codemirror/-/react-codemirror-3.2.6.tgz"

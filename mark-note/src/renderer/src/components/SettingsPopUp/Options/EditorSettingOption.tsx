@@ -45,7 +45,7 @@ export const EditorSettingOption = () => {
 
     const handleChangeBracketMatching = (e) => {
       setCheckedBracketMatching(e.target.checked);
-      //setSettingPref('Line Wrapping', e.target.checked.toString())
+      setSettingPref('Bracket Matching', e.target.checked.toString())
     };
 
     const handleChangeFontFamily = (e) => {
@@ -134,7 +134,7 @@ export const EditorSettingOption = () => {
               </div>
               <NumberDropdown options={editorFontSizeOptions}/>
             </div>
-            <div className="my-2 flex space-x-24">
+            <div className="my-2 flex space-x-16">
               <div>
                 <p>Tab Size</p>
                 <span className="text-xs text-zinc-300">Size of a tab (in spaces) in your editor</span>

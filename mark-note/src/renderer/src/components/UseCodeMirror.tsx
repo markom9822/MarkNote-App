@@ -13,11 +13,11 @@ import { MarkdownConfig, MarkdownExtension } from '@lezer/markdown';
 import { RangeSetBuilder, StateField } from "@codemirror/state";
 import {CompletionContext, autocompletion} from "@codemirror/autocomplete"
 import { history, historyKeymap } from '@codemirror/commands'
+import { hyperLink } from '@uiw/codemirror-extensions-hyper-link';
 
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
 import { basicLight } from '@renderer/utils/themes/LightTheme'
 import { solarizedDark } from '@renderer/utils/themes/SolarizedDark'
-
 
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
 import { InsertTextAroundInEditor, InsertTextAtStartInEditor } from './MarkdownEditorToolBar'
@@ -266,6 +266,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
   const lineNumberAction = new Compartment();
   const highlightActiveLineAction = new Compartment();
   const lineWrappingAction = new Compartment();
+  const bracketMatchingAction = new Compartment();
   const editorThemeAction = new Compartment();
 
   const toggleLineNumber = () =>{
@@ -281,6 +282,11 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
   const toggleLineWrapping = () =>{
     const lineWrappingBoolean = (getSettingPrefValueFromTitle('Line Wrapping') == 'true');
     return lineWrappingBoolean ? EditorView.lineWrapping : [];
+  }
+
+  const toggleBracketMatching = () =>{
+    const bracketMatchingBoolean = (getSettingPrefValueFromTitle('Bracket Matching') == 'true');
+    return bracketMatchingBoolean ? bracketMatching() : [];
   }
 
   const toggleEditorTheme = () =>{
@@ -301,10 +307,9 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     lineNumberAction.of(toggleLineNumber()),
     highlightActiveLineAction.of(toggleHighlightActiveLine()),
     lineWrappingAction.of(toggleLineWrapping()),
+    bracketMatchingAction.of(toggleBracketMatching()),
     editorThemeAction.of(toggleEditorTheme()),
     highlightActiveLineGutter(),
-    
-    bracketMatching(),
     history(),
     markdown({
         base: markdownLanguage,
@@ -312,6 +317,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         addKeymap: true,
         extensions: [MarkStylingExtension]
     }),
+    hyperLink,
     placeholders,
     emojiAutoCompletion,
     autocompletion({

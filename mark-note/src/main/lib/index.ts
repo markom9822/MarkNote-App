@@ -39,6 +39,11 @@ export const settingsPrefsDefaults = [{
     title: 'Line Wrapping',
     prefValue: 'true',
   },
+  {
+    section: 'Editor',
+    title: 'Bracket Matching',
+    prefValue: 'true',
+  },
 ];
 
 
