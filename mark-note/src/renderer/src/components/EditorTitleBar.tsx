@@ -1,8 +1,7 @@
 import { selectedNoteAtom, renameNoteAtom } from "@renderer/store"
 import { useAtomValue, useSetAtom } from "jotai"
-import { ComponentProps, useState } from "react"
+import { ComponentProps, useState} from "react"
 import { twMerge } from "tailwind-merge"
-import { formatDateFromMs} from '@renderer/utils'
 import { NoteStatusDropdown } from "./NoteStatusDropdown"
 
 
@@ -12,6 +11,7 @@ export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => 
 
     const [titleToggle, setTitleToggle] = useState(true);
     const [newText, setNewText] = useState('');
+
     
     const handleClickSave = async() => {
         await renameNote(newText)
@@ -34,20 +34,18 @@ export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => 
         setTitleToggle(false);
     }
 
-    const date = formatDateFromMs(selectedNote.lastEditTime)
-
    return (
     <div className={twMerge('flex flex-col mx-4 my-2', className)} {...props}>
         <div>
             {titleToggle ? (
-                <h1 onDoubleClick={showInput} className = "text-2xl border-2 rounded border-zinc-800 text-gray-300 hover:border-indigo-500/20">{selectedNote.title}</h1>
+                <h1 onDoubleClick={showInput} className = "text-2xl border-2 rounded border-bkgSecondary text-textSecondary hover:border-indigo-500/20">{selectedNote.title}</h1>
             ) : (
                 <div>  
-                    <input type="text" value={newText}  onChange={handleChange} className=" ps-1 mx-1 text-2xl text-zinc-300 border border-indigo-400 rounded-md bg-zinc-700 focus:outline-none"/>
+                    <input type="text" value={newText}  onChange={handleChange} className=" ps-1 mx-1 text-2xl text-textSecondary border border-indigo-400 rounded-md bg-bkgSecondary focus:outline-none"/>
                     <button onClick={handleClickSave} className="px-2 py-1 rounded-md text-xs bg-indigo-500 border border-zinc-400/50 hover:bg-indigo-600 transition-colors duration-100">
                         Save
                     </button>
-                    <button onClick={handleClickCancel} className="px-2 py-1 rounded-md text-xs border border-zinc-400/50 hover:bg-zinc-600/50 transition-colors duration-100">
+                    <button onClick={handleClickCancel} className="px-2 py-1 rounded-md text-xs text-textSecondary border border-zinc-400/50 hover:bg-zinc-500/50 transition-colors duration-100">
                         Cancel
                     </button>
                 </div> 
@@ -55,7 +53,7 @@ export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => 
         </div>
         <div className="flex space-x-3 items-center">
             <NoteStatusDropdown />
-        </div>
+        </div>   
     </div>
    ) 
 }

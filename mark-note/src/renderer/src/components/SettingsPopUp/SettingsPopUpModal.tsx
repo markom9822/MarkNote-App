@@ -26,23 +26,25 @@ export const SettingsPopUpModal = (props) => {
     
 
     return createPortal(
+        <body className={props.uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white"> 
-                <div className="bg-zinc-700 border-2 border-zinc-500 rounded-md flex flex-row gap-5 mx-4 h-[32rem]">
-                    <SettingsSidebar className="rounded-l-md bg-zinc-900/75 border-r border-zinc-500">
+                <div className="bg-bkgSecondary border-2 border-zinc-500 rounded-md flex flex-row gap-5 mx-4 h-[32rem]">
+                    <SettingsSidebar className="rounded-l-md bg-bkgPrimary/75 border-r border-zinc-500">
                         <SettingsOptionsViewList className = ""/> 
                     </SettingsSidebar>
 
                     <SettingsContent>
-                        <div className='flex justify-end sticky top-0 bg-zinc-700 rounded-md'>
-                            <button onClick={props.onClose} className='px-0.5 py-0.5'><MdClose size={17}/></button>
+                        <div className='flex justify-end sticky top-0 bg-bkgSecondary rounded-md'>
+                            <button onClick={props.onClose} className='px-0.5 py-0.5 text-iconPrimary'><MdClose size={17}/></button>
                         </div>
                     <SettingsContentView />
                     </SettingsContent>
                 </div>
             </div>
             
-        </div>, document.body 
+        </div>
+        </body>, document.body 
     )
 }
 

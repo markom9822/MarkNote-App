@@ -29,18 +29,18 @@ export const NotePreview = ({
 
     return( <div className={cn('cursor-pointer px-2.5 py-3 transition-colors duration-75', 
     {
-        'bg-zinc-900 border-r-4 border-indigo-500': isActive,
-        'hover:bg-zinc-500/75 text-zinc-300': !isActive,
+        'bg-bkgPrimary border-r-4 border-indigo-500': isActive,
+        'hover:bg-bkgSecondary/75 text-textSecondary': !isActive,
     },
     className
     )}
     {...props}
     >
-        <div className="flex space-x-2 items-center">
+        <div className="flex space-x-2 items-center text-textPrimary">
             <div>{<chosenElement.icon className={chosenElement.className} />}</div>
             <h3 className="font-bold truncate">{title}</h3>
         </div>
-        <span className="inline-block w-full mb-2 text-xs font-light text-left">{date}</span>
+        <span className="inline-block w-full mb-2 text-xs font-light text-textSecondary text-left">{date}</span>
     </div>
     )
 }

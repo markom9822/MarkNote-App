@@ -129,11 +129,11 @@ export const KeybindingSettingOption = () => {
     
     return (
         <div className="keybinding">
-            <h2 className="mb-2 font-bold truncate text-xl">Keybinding Settings</h2>
+            <h2 className="mb-2 font-bold truncate text-xl text-textPrimary">Keybinding Settings</h2>
 
             <div>
                 <table className="table-auto text-sm">
-                <thead className="bg-zinc-500 border-b border-zinc-300">
+                <thead className="bg-bkgPrimary border-b border-zinc-300 text-textPrimary">
                     <tr>
                         <th className="px-6 py-2">Keybinding</th>
                         <th className="px-6 py-2">Source</th>
@@ -143,10 +143,10 @@ export const KeybindingSettingOption = () => {
                 <tbody>
                 {keybindingItems.map(item => {
                     return (
-                    <tr key={item.keybinding + item.action} className="bg-zinc-800 border-b border-zinc-500">
-                        <td className="px-2 text-zinc-100">{ item.keybinding }</td>
-                        <td className="px-2 text-zinc-300">{ item.source }</td>
-                        <td className="px-2 text-zinc-100">{ item.action }</td>
+                    <tr key={item.keybinding + item.action} className="bg-bkgPrimary/20 border-b border-zinc-500">
+                        <td className="px-2 text-textPrimary">{ item.keybinding }</td>
+                        <td className="px-2 text-textSecondary">{ item.source }</td>
+                        <td className="px-2 text-textPrimary">{ item.action }</td>
                         </tr>
                         );
                     })}

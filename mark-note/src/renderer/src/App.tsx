@@ -22,6 +22,8 @@ const App = () => {
   const [showSettings, setShowSettings] = useState(false)
   const [showOnPasteLinkFormat, setShowOnPasteLinkFormat] = useState(false)
   const [pastedLinkText, setPastedLinkText] = useState('')
+
+  const uiThemeString = getSettingPrefValueFromTitle('UI Theme');
   
   const handleSettingsOnClose = () => setShowSettings(false)
   
@@ -45,23 +47,25 @@ const App = () => {
 
   return (
     <>
-    <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings}/>
+    <body className={uiThemeString}>
+
+    <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings} uiTheme={uiThemeString}/>
     <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} visible={showOnPasteLinkFormat} pastedText={pastedLinkText} editorView={markdownEditor?.view} />
 
     <DraggableTopBar/>
 
       <RootLayout>
-        <Sidebar className="bg-zinc-900/80 overflow-y-auto">
+        <Sidebar className="bg-bkgPrimary/90 overflow-y-auto">
           <div className="flex justify-between my-2">
             <SettingsButton onClick={() => setShowSettings(true)}/>
-            <p className="text-lg text-zinc-400">Notes</p>
+            <p className="text-lg text-textPrimary">Notes</p>
             <NewNoteButton />
           </div>
           <hr className="h-px my-3 bg-zinc-700 border-0 " />
           <NotePreviewList className = "mt-3 pb-10 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 
-        <Content ref={contentContainerRef} className="border-l bg-zinc-800 border-l-white/20">
+        <Content ref={contentContainerRef} className="border-l bg-bkgSecondary border-l-white/20">
           <EditorTopBar />
           <EditorTitleBar/>
           <hr className="h-px bg-zinc-700 border-0" />
@@ -73,7 +77,7 @@ const App = () => {
           </Editor>
         </Content>
 
-        <Content ref={contentContainerRef} className="border-l border-l-white/20 bg-zinc-900" >
+        <Content ref={contentContainerRef} className="border-l border-l-white/20 bg-bkgPrimary" >
             <FloatingNoteTitle className=""/>
             <Editor className="h-[calc(100vh-170px)] overflow-y-auto">
               <div>
@@ -83,6 +87,7 @@ const App = () => {
         </Content>
 
       </RootLayout>
+      </body>
     </>
   )
 }

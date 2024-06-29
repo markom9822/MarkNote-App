@@ -82,7 +82,7 @@ export const EditorSettingOption = () => {
 
   return (
         <div className="editor">
-            <h2 className="mb-2 font-bold truncate text-xl">Interface</h2>
+            <h2 className="mb-2 font-bold truncate text-xl text-textPrimary">Interface</h2>
             <hr></hr>
             <div className="my-2">
                 <Checkbox
@@ -90,7 +90,7 @@ export const EditorSettingOption = () => {
                 value={checkedLineNum}
                 onChange={handleChangeLineNum}
                 />
-                <p className="text-xs text-zinc-300">
+                <p className="text-xs text-textSecondary">
                   Show line numbers on the left hand side of the editor.
                 </p>
             </div>
@@ -100,7 +100,7 @@ export const EditorSettingOption = () => {
                 value={checkedToolbar}
                 onChange={handleChangeToolbar}
                 />
-                <p className="text-xs text-zinc-300">
+                <p className="text-xs text-textSecondary">
                   Display a markdown toolbar above the editor.
                 </p>
             </div>
@@ -110,7 +110,7 @@ export const EditorSettingOption = () => {
                 value={checkedHighlightLine}
                 onChange={handleChangeHighlight}
                 />
-                <p className="text-xs text-zinc-300">
+                <p className="text-xs text-textSecondary">
                   Highlight the current selected line in the editor.
                 </p>
             </div>
@@ -120,7 +120,7 @@ export const EditorSettingOption = () => {
                 value={checkedWrapping}
                 onChange={handleChangeWrapping}
                 />
-                <p className="text-xs text-zinc-300">
+                <p className="text-xs text-textSecondary">
                   Wrap longer lines in the editor.
                 </p>
             </div>
@@ -130,23 +130,23 @@ export const EditorSettingOption = () => {
                 value={checkedBracketMatching}
                 onChange={handleChangeBracketMatching}
                 />
-                <p className="text-xs text-zinc-300">
+                <p className="text-xs text-textSecondary">
                   Highlights cursor next to a bracket and the one it matches.
                 </p>
             </div>
             <div className="my-2 flex space-x-16">
               <div>
-                <p>Tab Size</p>
-                <span className="text-xs text-zinc-300">Size of a tab (in spaces) in your editor</span>
+                <p className="text-textPrimary">Tab Size</p>
+                <span className="text-xs text-textSecondary">Size of a tab (in spaces) in your editor</span>
               </div>
               <NumberDropdown selectedOption={tabSize} OnChangeOption={handleChangeTabSize} options={editorTabSizeOptions}/>
             </div>
-            <h2 className="mb-2 font-bold truncate text-xl">Text Appearance</h2>
+            <h2 className="mb-2 font-bold truncate text-xl text-textPrimary">Text Appearance</h2>
             <hr></hr>
             <div className="my-2 flex space-x-24">
               <div>
-                <p>Font Size</p>
-                <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
+                <p className="text-textPrimary">Font Size</p>
+                <span className="text-xs text-textSecondary">Size of the font used in the editor</span>
               </div>
               <NumberDropdown selectedOption={fontSize} OnChangeOption={handleChangeFontSize} options={editorFontSizeOptions}/>
             </div>

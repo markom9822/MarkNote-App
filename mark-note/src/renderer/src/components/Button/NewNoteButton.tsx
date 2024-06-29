@@ -15,7 +15,7 @@ export const NewNoteButton = ({...props}: ActionButtonProps) => {
 
     return (
         <ActionButton onClick={handleCreation} {...props}>
-            <PiNotePencil className="w-5 h-5 text-zinc-300"/>
+            <PiNotePencil className="w-5 h-5 text-iconPrimary"/>
         </ActionButton>
     )
 }

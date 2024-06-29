@@ -10,11 +10,13 @@ import { isEmpty } from 'lodash'
 import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
 
 export const settingsPrefsDefaults = [{
-    section: 'General',
-    title: 'Status Enabled',
-    prefValue: 'true',
+    
+    section: 'Themes',
+    title: 'UI Theme',
+    prefValue: 'dark',
   },
   {
+
     section: 'Themes',
     title: 'Editor Theme',
     prefValue: 'dark',

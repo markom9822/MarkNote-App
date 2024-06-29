@@ -18,8 +18,8 @@ export const SettingOptionView = ({
 
     return( <div className={cn('cursor-pointer px-2.5 py-3 transition-colors duration-75', 
     {
-        'bg-zinc-900 border-r-4 border-indigo-500': isActive,
-        'hover:bg-zinc-500/75 text-zinc-400': !isActive,
+        'bg-bkgSecondary border-r-4 border-indigo-500 text-textPrimary': isActive,
+        'hover:bg-bkgSecondary/75 text-textPrimary/50': !isActive,
     },
     className
     )}

@@ -7,23 +7,23 @@ import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
 export const ThemesSettingOption = () => {
     const setSettingPref = useSetAtom(setSettingPrefAtom)
 
+    const initUITheme = getSettingPrefValueFromTitle('UI Theme');
     const initEditorTheme = getSettingPrefValueFromTitle('Editor Theme');
     const initPreviewTheme = getSettingPrefValueFromTitle('Preview Theme');
 
-
     const [editorTheme, setEditorTheme] = useState(initEditorTheme);
-    const [uiTheme, setUITheme] = useState('dark');
+    const [uiTheme, setUITheme] = useState(initUITheme);
     const [previewTheme, setPreviewTheme] = useState(initPreviewTheme);
 
 
     const handleChangeEditorTheme = (e) => {
         setEditorTheme(e.target.value);
-        console.info(`Editor Theme set to ${e.target.value}`)
         setSettingPref('Editor Theme', e.target.value.toString())
     };
 
     const handleChangeUITheme = (e) => {
-
+        setUITheme(e.target.value);
+        setSettingPref('UI Theme', e.target.value.toString())
     }
 
     const handleChangePreviewTheme = (e) => {
@@ -51,23 +51,23 @@ export const ThemesSettingOption = () => {
     return (
         <div>
             <div className="mb-5">
-                <h2 className="mb-2 font-bold truncate text-lg">UI Theme</h2>
+                <h2 className="mb-2 font-bold truncate text-lg text-textPrimary">UI Theme</h2>
                 <hr></hr>
-                <span className="text-xs text-zinc-300">This styles the buttons, side bar and other common components</span>
+                <span className="text-xs text-textSecondary">This styles the buttons, side bar and other common components</span>
                 <Dropdown selectedOption={uiTheme} OnChangeOption={handleChangeUITheme} options={uiThemeOptions}/>
             </div>
 
             <div className="mb-5">
-                <h2 className="mb-2 font-bold truncate text-lg">Editor Theme</h2>
+                <h2 className="mb-2 font-bold truncate text-lg text-textPrimary">Editor Theme</h2>
                 <hr></hr>
-                <span className="text-xs text-zinc-300">This styles the text inside the editor</span>
+                <span className="text-xs text-textSecondary">This styles the text inside the editor</span>
                 <Dropdown selectedOption={editorTheme} OnChangeOption={handleChangeEditorTheme} options={editorThemeOptions}/>
             </div>
 
             <div className="mb-5">
-                <h2 className="mb-2 font-bold truncate text-lg">Preview Theme</h2>
+                <h2 className="mb-2 font-bold truncate text-lg text-textPrimary">Preview Theme</h2>
                 <hr></hr>
-                <span className="text-xs text-zinc-300">This styles the Markdown output</span>
+                <span className="text-xs text-textSecondary">This styles the Markdown output</span>
                 <Dropdown selectedOption={previewTheme} OnChangeOption={handleChangePreviewTheme} options={previewThemeOptions}/>
             </div>
             

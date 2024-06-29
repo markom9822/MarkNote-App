@@ -116,7 +116,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
     if(!selectedNote) return null
 
    return (
-    <div className={twMerge('flex flex-row bg-zinc-800', className)} {...props}>
+    <div className={twMerge('flex flex-row bg-bkgSecondary', className)} {...props}>
 
         <HeadingButton editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} headingHelperOpen={showHeadingHelper} /> 
         <BoldedButton editorView={editorView}/>
@@ -157,7 +157,7 @@ export type ToolBarButtonProps = ComponentProps<'button'> & {
 }
 
 export const ToolBarButton = ({editorView, className, children, ...props}: ToolBarButtonProps) => {
-    return <button className={twMerge('px-2 py-1 border border-zinc-800 rounded-md hover:border-indigo-500 transition-colors duration-100 focus:outline focus:outline-indigo-500', className
+    return <button className={twMerge('px-2 py-1 border border-bkgSecondary rounded-md hover:border-indigo-500 transition-colors duration-100 focus:outline focus:outline-indigo-500', className
     )} {...props}
     >
         {children}
@@ -329,7 +329,7 @@ export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderB
         <div className="relative flex flex-col">
                 <div>
                     <ToolBarButton editorView={editorView} onClick={handleClickHeaderButton} {...props}>
-                        <LuHeading className="w-4 h-4 text-zinc-100"/>
+                        <LuHeading className="w-4 h-4 text-iconPrimary"/>
                     </ToolBarButton>
                 </div>
                 <HeadingHelperPopUpModal editorView={editorView} visible={headingHelperOpen} onToggle={handleClickHeaderButton}/>
@@ -348,7 +348,7 @@ export const BoldedButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateBolded} {...props}>
-            <TbBold className="w-4 h-4 text-zinc-100"/>
+            <TbBold className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -364,7 +364,7 @@ export const ItalicButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateItalic} {...props}>
-            <TbItalic className="w-4 h-4 text-zinc-100"/>
+            <TbItalic className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -380,7 +380,7 @@ export const StrikethroughButton = ({editorView, ...props}: ToolBarButtonProps) 
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateStrikethrough} {...props}>
-            <RiStrikethrough className="w-4 h-4 text-zinc-100"/>
+            <RiStrikethrough className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -396,7 +396,7 @@ export const UnderlineButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateUnderline} {...props}>
-            <RiUnderline className="w-4 h-4 text-zinc-100"/>
+            <RiUnderline className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -412,7 +412,7 @@ export const CodeSegmentButton = ({editorView, ...props}: ToolBarButtonProps) =>
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateCodeSegment} {...props}>
-            <IoCode className="w-4 h-4 text-zinc-100"/>
+            <IoCode className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -428,7 +428,7 @@ export const UnorderdListButton = ({editorView, ...props}: ToolBarButtonProps) =
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateUnorderedList} {...props}>
-            <CiCircleList className="w-4 h-4 text-zinc-100"/>
+            <CiCircleList className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -444,7 +444,7 @@ export const OrderedListButton = ({editorView, ...props}: ToolBarButtonProps) =>
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateOrderedList} {...props}>
-            <VscListOrdered className="w-4 h-4 text-zinc-100"/>
+            <VscListOrdered className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -460,7 +460,7 @@ export const CheckBoxButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateCheckBox} {...props}>
-            <IoIosCheckboxOutline className="w-4 h-4 text-zinc-100"/>
+            <IoIosCheckboxOutline className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -476,7 +476,7 @@ export const QuoteButton = ({editorView, ...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton editorView={editorView} onClick={handleCreateQuote} {...props}>
-            <TfiQuoteLeft className="w-4 h-4 text-zinc-100"/>
+            <TfiQuoteLeft className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -494,7 +494,7 @@ export const AlertButton = ({editorView, alertHelperOpen, handleClickAlertButton
         <div className="relative flex flex-col">
             <div>
                 <ToolBarButton editorView={editorView} onClick={handleClickAlertButton} {...props}>
-                    <HiOutlineBellAlert className="w-4 h-4 text-zinc-100"/>
+                    <HiOutlineBellAlert className="w-4 h-4 text-iconPrimary"/>
                 </ToolBarButton>
             </div>
             <AlertHelperPopUpModal editorView={editorView} onToggle={handleClickAlertButton} visible={alertHelperOpen}/>
@@ -506,7 +506,7 @@ export const LinkButton = ({...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton {...props}>
-            <IoIosLink className="w-4 h-4 text-zinc-100"/>
+            <IoIosLink className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -515,7 +515,7 @@ export const ImageButton = ({...props}: ToolBarButtonProps) => {
 
     return (
         <ToolBarButton {...props}>
-            <CiImageOn className="w-4 h-4 text-zinc-100"/>
+            <CiImageOn className="w-4 h-4 text-iconPrimary"/>
         </ToolBarButton>
     )
 }
@@ -544,7 +544,7 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
         <div className="relative flex flex-col">
             <div>
                 <ToolBarButton editorView={editorView} onClick={handleClickEmojiButton} {...props}>
-                    <BsEmojiSmile className="w-4 h-4 text-zinc-100"/>
+                    <BsEmojiSmile className="w-4 h-4 text-iconPrimary"/>
                 </ToolBarButton>
             </div>
             <EmojiPickerPopUpModal visible={emojiPickerOpen} editorView={editorView} onToggle={handleClickEmojiButton}/>
@@ -565,7 +565,7 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
         <div className="relative flex flex-col">
             <div>
                 <ToolBarButton editorView={editorView} onClick={handleClickOptionsButton} {...props}>
-                    <TfiMore className="w-4 h-4 text-zinc-100"/>
+                    <TfiMore className="w-4 h-4 text-iconPrimary"/>
                 </ToolBarButton>
             </div>
             <MoreOptionsPopUpModal editorView={editorView} visible={moreOptionsOpen} onToggle={handleClickOptionsButton} OnClickTableOption={OnClickTableOption}  />

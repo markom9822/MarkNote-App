@@ -10,6 +10,24 @@
         @apply h-full;
     }
 
+    .dark {
+        --color-bkgPrimary: 24 24 27;
+        --color-bkgSecondary: 39 39 42;
+        --color-textPrimary: 250 250 250;
+        --color-textSecondary: 212 212 216;
+        --color-iconPrimary: 212 212 216;
+    }
+
+    .light {
+        --color-bkgPrimary: 228 228 231;
+        --color-bkgSecondary: 250 250 250;
+        --color-textPrimary: 24 24 27;
+        --color-textSecondary: 82 82 91;
+        --color-iconPrimary: 39 39 42;
+    }
+
+
+
     html, 
     body {
         @apply h-full;

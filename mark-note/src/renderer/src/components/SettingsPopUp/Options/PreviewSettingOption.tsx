@@ -30,12 +30,12 @@ export const PreviewSettingOption = () => {
     return (
         <div>
             <div className="mb-5">
-                <h2 className="mb-2 font-bold truncate text-xl">Preview Settings</h2>
+                <h2 className="mb-2 font-bold truncate text-xl text-textPrimary">Preview Settings</h2>
                 <hr></hr>
                 <div className="my-2 flex space-x-16">
                     <div>
-                        <p>Font Size</p>
-                        <span className="text-xs text-zinc-300">Size of the font used in the Markdown preview</span>
+                        <p className="text-textPrimary">Font Size</p>
+                        <span className="text-xs text-textSecondary">Size of the font used in the Markdown preview</span>
                     </div>
                     <NumberDropdown selectedOption={fontSize} OnChangeOption={handleChangeFontSize} options={previewFontSizeOptions}/>
                 </div>
