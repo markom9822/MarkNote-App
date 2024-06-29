@@ -133,6 +133,14 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
         </code>
       );
     },
+    a({ node, inline, className, children, ...props }: any) {
+
+      return (
+        <a className={className} target='_blank' {...props}>
+          {children}
+        </a>
+      );
+    }, 
   }}
   >
   {props.markdownContent}</ReactMarkdown>
