@@ -43,7 +43,7 @@ export const LinkFormatPopUpModal  = ({
     if(!visible) return null
 
     const linkPopUp = createPortal(
-        <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center z-20">
+        <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2">
                 <div className="bg-zinc-700 rounded-md flex flex-col gap-5 mx-4 border-2 border-zinc-500">
                     <div className='flex flex-row gap-3 mx-2 my-1'>

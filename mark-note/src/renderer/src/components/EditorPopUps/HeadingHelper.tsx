@@ -7,7 +7,7 @@ import { LuHeading1, LuHeading2, LuHeading3, LuHeading4 } from "react-icons/lu";
 import { InsertTextAtStartInEditor } from "../MarkdownEditorToolBar";
 
 export const HeadingHelperButton = ({className, children, ...props}: ComponentProps<'button'>) => {
-    return <button className={cn('cursor-pointer border border-zinc-900 rounded-md hover:border-indigo-500 px-2 py-1', className
+    return <button className={cn('cursor-pointer text-textPrimary border border-bkgPrimary rounded-md hover:border-indigo-500 px-2 py-1', className
     )} {...props}
     >
         {children}
@@ -19,12 +19,14 @@ export type HeadingHelperPopUpModalProps = {
     onToggle: () => void;
     visible: boolean,
     editorView: EditorView | null | undefined;
+    uiTheme: string
 }
 
 export const HeadingHelperPopUpModal  = ({
     onToggle,
     visible,
     editorView,
+    uiTheme,
 }: HeadingHelperPopUpModalProps) => {
     const menuRef = useRef(null);
 
@@ -51,9 +53,10 @@ export const HeadingHelperPopUpModal  = ({
     if(!visible) return null
 
     return(createPortal(
+        <body className={uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10">
             <div className="w-10 ml-[220px] mt-[180px]">
-                <div className="bg-zinc-900 rounded-md flex flex-col border border-indigo-500">
+                <div className="bg-bkgPrimary rounded-md flex flex-col border border-indigo-500">
                     <div className='flex flex-col'>
                         <HeadingHelperButton value="# " onClick={handleClickHeadingHelper}><LuHeading1 className="w-[1.6rem] h-[1.6rem]"/></HeadingHelperButton>
                         <HeadingHelperButton value="## " onClick={handleClickHeadingHelper}><LuHeading2 className="w-[1.4rem] h-[1.4rem]"/></HeadingHelperButton>
@@ -63,7 +66,8 @@ export const HeadingHelperPopUpModal  = ({
                 </div>
             </div>
             
-        </div>, document.body 
+        </div>
+        </body>, document.body 
     ))
 }
 

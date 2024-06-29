@@ -13,12 +13,14 @@ export type EmojiPickerPopUpModalProps = {
     onToggle: () => void;
     visible: boolean,
     editorView: EditorView | null | undefined;
+    uiTheme: string,
 }
 
 export const EmojiPickerPopUpModal  = ({
     onToggle,
     visible,
     editorView,
+    uiTheme,
 }: EmojiPickerPopUpModalProps) => {
     const menuRef = useRef(null);
     const [emojiType, setEmojiType] = useState('people');
@@ -44,9 +46,10 @@ export const EmojiPickerPopUpModal  = ({
     if(!visible) return null
 
     return(createPortal(
+        <body className={uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10">
             <div className="w-40 h-36 overflow-auto ml-[550px] mt-[180px]">
-                <div className="bg-zinc-900 rounded-md flex flex-col border border-indigo-500 divide-zinc-400 divide-y-2">
+                <div className="bg-bkgPrimary rounded-md flex flex-col border border-indigo-500 divide-zinc-400 divide-y-2">
                         <div className="flex flex-row justify-center space-x-0.5 ">
                             <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'people'} value='people'><FaRegFaceSmile /></EmojiFilterButton>
                             <EmojiFilterButton onClick={handleEmojiFilterChange} isActive={emojiType == 'nature'} value='nature'><FaMountain /></EmojiFilterButton>
@@ -58,7 +61,8 @@ export const EmojiPickerPopUpModal  = ({
                 </div>
             </div>
             
-        </div>, document.body 
+        </div>
+        </body>, document.body 
     ))
 }
 
@@ -95,9 +99,9 @@ export type EmojiFilterButtonProps = ComponentProps<'button'> & {
 }
 
 export const EmojiFilterButton = ({isActive, className, children, ...props}: EmojiFilterButtonProps) => {
-    return <button className={cn('cursor-pointer border border-zinc-900 rounded-md transition-colors duration-100 px-1 py-1',
+    return <button className={cn('cursor-pointer text-iconPrimary border border-bkgPrimary rounded-md transition-colors duration-100 px-1 py-1',
     {
-        'bg-indigo-600/75': isActive,
+        'bg-indigo-600/50': isActive,
         'hover:border-indigo-500': !isActive,
     }, className
     )} {...props}
@@ -110,7 +114,7 @@ export type EmojiPickerButtonProps = ComponentProps<'button'>
 
 
 export const EmojiPickerButton = ({className, children, ...props}: EmojiPickerButtonProps) => {
-    return <button className={twMerge('border border-zinc-900 rounded-md hover:border-indigo-500 transition-colors duration-100', className
+    return <button className={twMerge('border border-bkgPrimary rounded-md hover:border-indigo-500 transition-colors duration-100', className
     )} {...props}
     >
         {children}

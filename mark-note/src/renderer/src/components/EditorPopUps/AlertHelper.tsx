@@ -6,7 +6,7 @@ import { EditorView} from '@codemirror/view'
 import { InsertTextAtStartInEditor } from "../MarkdownEditorToolBar";
 
 export const AlertHelperButton = ({className, children, ...props}: ComponentProps<'button'>) => {
-    return <button className={cn('cursor-pointer border border-zinc-900 rounded-md hover:border-indigo-500 px-2 py-1', className
+    return <button className={cn('cursor-pointer border border-bkgPrimary rounded-md hover:border-indigo-500 px-2 py-1', className
     )} {...props}
     >
         {children}
@@ -17,12 +17,14 @@ export type AlertHelperPopUpModalProps = {
     onToggle: () => void;
     visible: boolean,
     editorView: EditorView | null | undefined;
+    uiTheme: string,
 }
 
 export const AlertHelperPopUpModal  = ({
     onToggle,
     visible,
     editorView,
+    uiTheme,
 }: AlertHelperPopUpModalProps) => {
     const menuRef = useRef(null);
 
@@ -81,9 +83,10 @@ export const AlertHelperPopUpModal  = ({
     if(!visible) return null
 
     return(createPortal(
+        <body className={uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10">
             <div className="w-10 ml-[560px] mt-[180px]">
-                <div className="bg-zinc-900 rounded-md flex flex-col border border-indigo-500">
+                <div className="bg-bkgPrimary rounded-md flex flex-col border border-indigo-500">
                     <div className='flex flex-col'>
                         <AlertHelperButton onClick={handleClickAlertHelper} value={"> [!NOTE]" + "\n" +"> "}>{noteIcon}</AlertHelperButton>
                         <AlertHelperButton onClick={handleClickAlertHelper} value={"> [!TIP]" + "\n" +"> "}>{tipIcon}</AlertHelperButton>
@@ -94,7 +97,8 @@ export const AlertHelperPopUpModal  = ({
                 </div>
             </div>
             
-        </div>, document.body 
+        </div>
+        </body>, document.body 
     ))
 }
 

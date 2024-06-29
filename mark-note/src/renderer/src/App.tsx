@@ -69,7 +69,7 @@ const App = () => {
           <EditorTopBar />
           <EditorTitleBar/>
           <hr className="h-px bg-zinc-700 border-0" />
-          <MarkdownEditorToolBar editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
+          <MarkdownEditorToolBar uiTheme={uiThemeString} editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <Editor className="h-[calc(100vh-150px)] overflow-y-auto">
             <div className="pb-8">
               {markdownEditor?.editor}

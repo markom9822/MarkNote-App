@@ -35,9 +35,10 @@ import { MoreOptionsPopUpModal } from "./EditorPopUps/MoreOptionsDropdown"
 
 export type MarkdownEditorToolbarProps = ComponentProps<'div'> & {
     editorView: EditorView | null | undefined;
+    uiTheme: string
 }
 
-export const MarkdownEditorToolBar = ({editorView, className, ...props}: MarkdownEditorToolbarProps) => {
+export const MarkdownEditorToolBar = ({editorView, uiTheme, className, ...props}: MarkdownEditorToolbarProps) => {
     const selectedNote = useAtomValue(selectedNoteAtom)
     const [showLinkFormat, setShowLinkFormat] = useState(false)
     const [showImageFormat, setShowImageFormat] = useState(false)
@@ -118,7 +119,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
    return (
     <div className={twMerge('flex flex-row bg-bkgSecondary', className)} {...props}>
 
-        <HeadingButton editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} headingHelperOpen={showHeadingHelper} /> 
+        <HeadingButton uiTheme={uiTheme} editorView={editorView} handleClickHeaderButton={() => setShowHeadingHelper((prev) => !prev)} headingHelperOpen={showHeadingHelper} /> 
         <BoldedButton editorView={editorView}/>
         <ItalicButton editorView={editorView}/>
         <StrikethroughButton editorView={editorView}/>
@@ -128,7 +129,7 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         <OrderedListButton editorView={editorView}/>
         <CheckBoxButton editorView={editorView}/>
         <QuoteButton editorView={editorView}/>
-        <AlertButton editorView={editorView} handleClickAlertButton={() => setShowAlertHelper((prev) => !prev)} handlePickedAlert={() => setShowAlertHelper(false)} alertHelperOpen={showAlertHelper}/>
+        <AlertButton uiTheme={uiTheme} editorView={editorView} handleClickAlertButton={() => setShowAlertHelper((prev) => !prev)} handlePickedAlert={() => setShowAlertHelper(false)} alertHelperOpen={showAlertHelper}/>
 
         <div>
             {linkFormatPopUpModal?.linkPopUp}
@@ -141,13 +142,13 @@ export const MarkdownEditorToolBar = ({editorView, className, ...props}: Markdow
         </div>
 
         <ImageButton editorView={editorView} onClick={() => setShowImageFormat(true)}/>
-        <EmojiButton editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
+        <EmojiButton uiTheme={uiTheme} editorView={editorView} handleClickEmojiButton={() => setShowEmojiPicker((prev) => !prev)} emojiPickerOpen={showEmojiPicker}/>
 
         <div>
             {tableFormatPopUpModal?.tablePopUp}
         </div>
 
-        <MoreOptionsButton editorView={editorView} handleClickOptionsButton={() => setShowOptionsMenu((prev) => !prev)} moreOptionsOpen={showOptionsMenu} OnClickTableOption={handleClickedTableOption}/>
+        <MoreOptionsButton uiTheme={uiTheme} editorView={editorView} handleClickOptionsButton={() => setShowOptionsMenu((prev) => !prev)} moreOptionsOpen={showOptionsMenu} OnClickTableOption={handleClickedTableOption}/>
     </div>
    ) 
 }
@@ -321,9 +322,10 @@ export type HeadingButtonProps = ComponentProps<'button'> & {
     editorView: EditorView | null | undefined;
     headingHelperOpen: boolean,
     handleClickHeaderButton: () => void,
+    uiTheme: string,
 }
 
-export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderButton, ...props}: HeadingButtonProps) => {
+export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderButton, uiTheme, ...props}: HeadingButtonProps) => {
 
     return (
         <div className="relative flex flex-col">
@@ -332,7 +334,7 @@ export const HeadingButton = ({editorView, headingHelperOpen, handleClickHeaderB
                         <LuHeading className="w-4 h-4 text-iconPrimary"/>
                     </ToolBarButton>
                 </div>
-                <HeadingHelperPopUpModal editorView={editorView} visible={headingHelperOpen} onToggle={handleClickHeaderButton}/>
+                <HeadingHelperPopUpModal uiTheme={uiTheme} editorView={editorView} visible={headingHelperOpen} onToggle={handleClickHeaderButton}/>
         </div>
     )
 }
@@ -486,9 +488,10 @@ export type AlertButtonProps = ComponentProps<'button'> & {
     alertHelperOpen: boolean,
     handleClickAlertButton: () => void,
     handlePickedAlert: () => void,
+    uiTheme: string,
 }
 
-export const AlertButton = ({editorView, alertHelperOpen, handleClickAlertButton, handlePickedAlert, ...props}: AlertButtonProps) => {
+export const AlertButton = ({editorView, alertHelperOpen, handleClickAlertButton, handlePickedAlert, uiTheme, ...props}: AlertButtonProps) => {
 
     return (
         <div className="relative flex flex-col">
@@ -497,7 +500,7 @@ export const AlertButton = ({editorView, alertHelperOpen, handleClickAlertButton
                     <HiOutlineBellAlert className="w-4 h-4 text-iconPrimary"/>
                 </ToolBarButton>
             </div>
-            <AlertHelperPopUpModal editorView={editorView} onToggle={handleClickAlertButton} visible={alertHelperOpen}/>
+            <AlertHelperPopUpModal uiTheme={uiTheme} editorView={editorView} onToggle={handleClickAlertButton} visible={alertHelperOpen}/>
     </div>
     )
 }
@@ -524,22 +527,10 @@ export type EmojiButtonProps = ComponentProps<'button'> & {
     editorView: EditorView | null | undefined;
     emojiPickerOpen: boolean,
     handleClickEmojiButton: () => void,
+    uiTheme: string,
 }
 
-export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton, ...props}: EmojiButtonProps) => {
-    const [emojiType, setEmojiType] = useState('people');
-
-    const handleCreateEmoji = (pickedEmojiName: string) => {
-        if(editorView == null) return 
-        if(editorView == undefined) return
-
-        InsertTextInEditor(':' + pickedEmojiName + ':', editorView, false)
-    }
-
-    const handleEmojiFilterChange = (changeEvent) => {
-        setEmojiType(changeEvent.currentTarget.value)
-    }
-
+export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton, uiTheme, ...props}: EmojiButtonProps) => {
     return (
         <div className="relative flex flex-col">
             <div>
@@ -547,7 +538,7 @@ export const EmojiButton = ({editorView, emojiPickerOpen, handleClickEmojiButton
                     <BsEmojiSmile className="w-4 h-4 text-iconPrimary"/>
                 </ToolBarButton>
             </div>
-            <EmojiPickerPopUpModal visible={emojiPickerOpen} editorView={editorView} onToggle={handleClickEmojiButton}/>
+            <EmojiPickerPopUpModal uiTheme={uiTheme} visible={emojiPickerOpen} editorView={editorView} onToggle={handleClickEmojiButton}/>
         </div>
     )
 }
@@ -557,9 +548,10 @@ export type MoreOptionsButtonProps = ComponentProps<'button'> & {
     moreOptionsOpen: boolean,
     OnClickTableOption: () => void,
     handleClickOptionsButton: () => void,
+    uiTheme: string,
 }
 
-export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOption, handleClickOptionsButton, ...props}: MoreOptionsButtonProps) => {
+export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOption, handleClickOptionsButton, uiTheme, ...props}: MoreOptionsButtonProps) => {
 
     return (
         <div className="relative flex flex-col">
@@ -568,7 +560,7 @@ export const MoreOptionsButton = ({editorView, moreOptionsOpen, OnClickTableOpti
                     <TfiMore className="w-4 h-4 text-iconPrimary"/>
                 </ToolBarButton>
             </div>
-            <MoreOptionsPopUpModal editorView={editorView} visible={moreOptionsOpen} onToggle={handleClickOptionsButton} OnClickTableOption={OnClickTableOption}  />
+            <MoreOptionsPopUpModal uiTheme={uiTheme} editorView={editorView} visible={moreOptionsOpen} onToggle={handleClickOptionsButton} OnClickTableOption={OnClickTableOption}  />
         </div>
     )
 }
