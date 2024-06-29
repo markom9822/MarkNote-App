@@ -15,13 +15,13 @@ export const Dropdown = ({options, selectedOption, OnChangeOption}) => {
 }
 
 
-export const NumberDropdown = ({options}) => {
+export const NumberDropdown = ({options, selectedOption, OnChangeOption}) => {
 
     return (
         <div>
-            <select className="w-20 bg-gray-500 border border-gray-800 text-gray-50 text-sm rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 p-2.5">
+            <select value={selectedOption} onChange={OnChangeOption} className="w-20 bg-gray-500 border border-gray-800 text-gray-50 text-sm rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 p-2.5">
                 {options.map(option => (
-                    <option key={option.value + option.label} value={option.value}>{option.label}</option>
+                    <option key={option.id + option.label} value={option.id}>{option.label}</option>
                 ))}
 
             </select>

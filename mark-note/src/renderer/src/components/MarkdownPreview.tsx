@@ -8,20 +8,16 @@ import rehypeRaw from 'rehype-raw';
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkToc from 'remark-toc'
 
-
 import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
 import { Highlighter } from 'react-codemirror-runmode'
 
-//import '@renderer/assets/darkpreview.css';
 import darkStyle from './darkpreview.module.css';
 import lightStyle from './lightpreview.module.css'
-
 import 'katex/dist/katex.min.css';
 
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {codeStyle} from '@/components/EditorPlugins/codeHighlightTheme'
-import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import React from "react"
 import { useEffect } from 'react'
@@ -37,6 +33,7 @@ export type MarkdownPreviewProps = {
 export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
 
   const previewThemeString = getSettingPrefValueFromTitle('Preview Theme');
+  const previewThemeFontSize = getSettingPrefValueFromTitle('Preview Font Size');
 
   var currentStylesheet = darkStyle;
   switch (previewThemeString) {
@@ -49,7 +46,7 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
     default:
       currentStylesheet = darkStyle
       break;
-    }
+  }
 
 
   // if no note selected then dont show preview
@@ -111,8 +108,8 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
     return transformer;
   };
 
-  return <ReactMarkdown className={currentStylesheet.markdownBody}
-  
+  return <div className={currentStylesheet.markdownBody} style={{ fontSize: previewThemeFontSize }}> 
+  <ReactMarkdown
   remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, remarkToc, underlinePlugin, highlightPlugin]} 
   rehypePlugins={[rehypeKatex, rehypeRaw]}
   components={{
@@ -144,4 +141,5 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
   }}
   >
   {props.markdownContent}</ReactMarkdown>
+  </div>
 }

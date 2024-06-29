@@ -1,7 +1,7 @@
 import { Dropdown } from "@renderer/components/Utilities/Dropdown"
 import { useState } from "react";
-import { useSetAtom, useAtomValue} from "jotai"
-import {setSettingPrefAtom, allPrefsAtom} from '@/store/settingsOptions'
+import { useSetAtom} from "jotai"
+import {setSettingPrefAtom} from '@/store/settingsOptions'
 import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
 
 export const ThemesSettingOption = () => {
@@ -28,7 +28,6 @@ export const ThemesSettingOption = () => {
 
     const handleChangePreviewTheme = (e) => {
         setPreviewTheme(e.target.value);
-        console.info(`Preview Theme set to ${e.target.value}`)
         setSettingPref('Preview Theme', e.target.value.toString())
 
     }

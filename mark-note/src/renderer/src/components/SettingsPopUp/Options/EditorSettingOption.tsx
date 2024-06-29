@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Dropdown, NumberDropdown } from "@renderer/components/Utilities/Dropdown"
+import { NumberDropdown } from "@renderer/components/Utilities/Dropdown"
 import { Checkbox } from "@renderer/components/Utilities/Checkbox"
-import { useSetAtom, useAtomValue} from "jotai"
-import {setSettingPrefAtom, allPrefsAtom} from '@/store/settingsOptions'
+import { useSetAtom} from "jotai"
+import {setSettingPrefAtom} from '@/store/settingsOptions'
 import {getSettingPrefValueFromTitle} from '@renderer/hooks/useSettingsList'
 
 export const EditorSettingOption = () => {
@@ -12,14 +12,18 @@ export const EditorSettingOption = () => {
   const initToolbarVisible = getSettingPrefValueFromTitle('Toolbar Visible') === 'true';
   const initHighlightLine = getSettingPrefValueFromTitle('Highlight Active Line') === 'true';
   const initLineWrapping = getSettingPrefValueFromTitle('Line Wrapping') === 'true';
+  const initBracketMatching = getSettingPrefValueFromTitle('Bracket Matching') === 'true';
+  const initTabSize = getSettingPrefValueFromTitle('Tab Size');
+  const initFontSize = getSettingPrefValueFromTitle('Editor Font Size');
+
 
   const [checkedLineNum, setCheckedLineNum] = useState(initLineNum);
   const [checkedToolbar, setCheckedToolbar] = useState(initToolbarVisible);
   const [checkedHighlightLine, setCheckedHighlightLine] = useState(initHighlightLine);
   const [checkedWrapping, setCheckedWrapping] = useState(initLineWrapping);
-  const [checkedBracketMatching, setCheckedBracketMatching] = useState(true);
-
-  const [fontFamily, setFontFamily] = useState('mono');
+  const [checkedBracketMatching, setCheckedBracketMatching] = useState(initBracketMatching);
+  const [fontSize, setFontSize] = useState(initFontSize);
+  const [tabSize, setTabSize] = useState(initTabSize);
 
 
     const handleChangeLineNum = (e) => {
@@ -48,26 +52,31 @@ export const EditorSettingOption = () => {
       setSettingPref('Bracket Matching', e.target.checked.toString())
     };
 
-    const handleChangeFontFamily = (e) => {
-
+    const handleChangeTabSize = (e) => {
+      setTabSize(e.target.value);
+      setSettingPref('Tab Size', e.target.value.toString())
     }
 
-    const editorFontOptions = [
-      {label: "Monospace", id: 1},
-      {label: "Sans Serif", id: 2}
-    ]
+    const handleChangeFontSize = (e) => {
+      setFontSize(e.target.value);
+      setSettingPref('Editor Font Size', e.target.value.toString())
+    }
 
     const editorFontSizeOptions = [
-      {label: "10px", value: 1},
-      {label: "12px", value: 2},
-      {label: "14px", value: 3},
-      {label: "16px", value: 4}
+      {label: "12px", id: '12px'},
+      {label: "13px", id: '13px'},
+      {label: "14px", id: '14px'},
+      {label: "15px", id: '15px'},
+      {label: "16px", id: '16px'},
+      {label: "17px", id: '17px'},
+      {label: "18px", id: '18px'},
+
     ]
 
     const editorTabSizeOptions = [
-      {label: "2", value: 1},
-      {label: "3", value: 2},
-      {label: "4", value: 3},
+      {label: "2", id: '2'},
+      {label: "3", id: '3'},
+      {label: "4", id: '4'},
     ]
   
 
@@ -122,7 +131,7 @@ export const EditorSettingOption = () => {
                 onChange={handleChangeBracketMatching}
                 />
                 <p className="text-xs text-zinc-300">
-                  Wrap longer lines in the editor.
+                  Highlights cursor next to a bracket and the one it matches.
                 </p>
             </div>
             <h2 className="mb-2 font-bold truncate text-xl">Text Appearance</h2>
@@ -132,21 +141,14 @@ export const EditorSettingOption = () => {
                 <p>Font Size</p>
                 <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
               </div>
-              <NumberDropdown options={editorFontSizeOptions}/>
+              <NumberDropdown selectedOption={fontSize} OnChangeOption={handleChangeFontSize} options={editorFontSizeOptions}/>
             </div>
             <div className="my-2 flex space-x-16">
               <div>
                 <p>Tab Size</p>
                 <span className="text-xs text-zinc-300">Size of a tab (in spaces) in your editor</span>
               </div>
-              <NumberDropdown options={editorTabSizeOptions}/>
-            </div>
-            <div className="my-2 flex space-x-12">
-              <div>
-                <p>Font Family</p>
-                <span className="text-xs text-zinc-300">The font used in the Markdown editor</span>
-              </div>
-              <Dropdown selectedOption={fontFamily} OnChangeOption={handleChangeFontFamily} options={editorFontOptions}/>
+              <NumberDropdown selectedOption={tabSize} OnChangeOption={handleChangeTabSize} options={editorTabSizeOptions}/>
             </div>
         </div> 
         )

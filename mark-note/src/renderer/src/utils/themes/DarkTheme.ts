@@ -39,7 +39,6 @@ export const basicDarkTheme = EditorView.theme(
 
     '.cm-content': {
       caretColor: cursor,
-      fontSize: '15px',
     },
 
     '.cm-cursor, .cm-dropCursor': { borderLeftColor: cursor },

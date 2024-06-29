@@ -10,6 +10,11 @@ import { isEmpty } from 'lodash'
 import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
 
 export const settingsPrefsDefaults = [{
+    section: 'General',
+    title: 'Status Enabled',
+    prefValue: 'true',
+  },
+  {
     section: 'Themes',
     title: 'Editor Theme',
     prefValue: 'dark',
@@ -43,6 +48,21 @@ export const settingsPrefsDefaults = [{
     section: 'Editor',
     title: 'Bracket Matching',
     prefValue: 'true',
+  },
+  {
+    section: 'Editor',
+    title: 'Tab Size',
+    prefValue: '3',
+  },
+  {
+    section: 'Editor',
+    title: 'Editor Font Size',
+    prefValue: '15px',
+  },
+  {
+    section: 'Preview',
+    title: 'Preview Font Size',
+    prefValue: '16px',
   },
 ];
 

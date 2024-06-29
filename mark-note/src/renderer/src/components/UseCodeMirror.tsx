@@ -204,6 +204,20 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
       },
     })
 
+    const getTabSpacing = () => {
+      const tabSize = Number(getSettingPrefValueFromTitle('Tab Size'));
+
+        var tabText = "";
+
+        for (let i = 0; i < tabSize; i++) {
+            tabText = tabText + " ";
+        }
+
+        return tabText
+    }
+
+    const currentTabSize = getTabSpacing()
+
     const toolbarKeymap = [
       { key: 'Ctrl-b', run: (target: EditorView) => {InsertTextAroundInEditor("****", target, true) 
         return true;
@@ -257,7 +271,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
           return true;
         }
       },
-      { key: 'Tab', run: (target: EditorView) => {InsertTextAroundInEditor("  ", target, false)
+      { key: 'Tab', run: (target: EditorView) => {InsertTextAroundInEditor(currentTabSize, target, false)
         return true;
       }
     },
@@ -302,6 +316,14 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
       }
   }
 
+  const currentFontSize = getSettingPrefValueFromTitle('Editor Font Size')
+
+  const fontSizeTheme = EditorView.theme({
+    '.cm-content': {
+      fontSize: currentFontSize,
+    },
+  })
+
   const codeMirrorExtensions = [
     [keymap.of(toolbarKeymap), keymap.of(defaultKeymap), [keymap.of(historyKeymap)] ],
     lineNumberAction.of(toggleLineNumber()),
@@ -309,6 +331,7 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
     lineWrappingAction.of(toggleLineWrapping()),
     bracketMatchingAction.of(toggleBracketMatching()),
     editorThemeAction.of(toggleEditorTheme()),
+    fontSizeTheme,
     highlightActiveLineGutter(),
     history(),
     markdown({

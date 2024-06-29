@@ -8,6 +8,7 @@ import { MarkdownPreview } from "./components/MarkdownPreview";
 import { EditorView } from "@codemirror/view";
 import { NoteInfo } from "@shared/models";
 import { OnPasteLinkFormatPopUpModal } from "./components/EditorPopUps/OnPasteLinkFormatPopUp";
+import { getSettingPrefValueFromTitle } from "./hooks/useSettingsList";
 
 const App = () => {
 
@@ -72,8 +73,8 @@ const App = () => {
           </Editor>
         </Content>
 
-        <Content ref={contentContainerRef} className="border-l bg-zinc-900 border-l-white/20">
-            <FloatingNoteTitle/>
+        <Content ref={contentContainerRef} className="border-l border-l-white/20 bg-zinc-900" >
+            <FloatingNoteTitle className=""/>
             <Editor className="h-[calc(100vh-170px)] overflow-y-auto">
               <div>
               <MarkdownPreview markdownContent={markdownDoc}/>
