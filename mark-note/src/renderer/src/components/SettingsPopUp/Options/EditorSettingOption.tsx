@@ -134,6 +134,13 @@ export const EditorSettingOption = () => {
                   Highlights cursor next to a bracket and the one it matches.
                 </p>
             </div>
+            <div className="my-2 flex space-x-16">
+              <div>
+                <p>Tab Size</p>
+                <span className="text-xs text-zinc-300">Size of a tab (in spaces) in your editor</span>
+              </div>
+              <NumberDropdown selectedOption={tabSize} OnChangeOption={handleChangeTabSize} options={editorTabSizeOptions}/>
+            </div>
             <h2 className="mb-2 font-bold truncate text-xl">Text Appearance</h2>
             <hr></hr>
             <div className="my-2 flex space-x-24">
@@ -142,13 +149,6 @@ export const EditorSettingOption = () => {
                 <span className="text-xs text-zinc-300">Size of the font used in the editor</span>
               </div>
               <NumberDropdown selectedOption={fontSize} OnChangeOption={handleChangeFontSize} options={editorFontSizeOptions}/>
-            </div>
-            <div className="my-2 flex space-x-16">
-              <div>
-                <p>Tab Size</p>
-                <span className="text-xs text-zinc-300">Size of a tab (in spaces) in your editor</span>
-              </div>
-              <NumberDropdown selectedOption={tabSize} OnChangeOption={handleChangeTabSize} options={editorTabSizeOptions}/>
             </div>
         </div> 
         )
