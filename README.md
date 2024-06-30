@@ -23,7 +23,8 @@ There are several buttons in the UI, the table below explains what they do.
 | Delete Note     | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/4ff91910-c745-495e-94a4-d042b6304a11)|
 | Navigate Notes  | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/208c57ad-2f9c-4272-806d-1de142dbb4c2)|
 | Open Settings   | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/77565706-0558-4eca-b094-b166b48f2503)|
-| Change Status   | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/3ed51a50-b881-4ead-866c-6a8bd683ed28)|
+| Change Status   | ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/eb0c3c44-280e-49f7-8dc4-5d46af6d3611)
+|
 
 ## Settings
 
