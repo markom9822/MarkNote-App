@@ -421,7 +421,6 @@ const emojiList = [
   {type: 'objects', name: 'door',emoji: '🚪'},
   {type: 'objects', name: 'smoking',emoji: '🚬'},
   {type: 'objects', name: 'bomb',emoji: '💣'},
-  {type: 'objects', name: 'hammer',emoji: '🪓'},
   {type: 'objects', name: 'magnet',emoji: '🧲'},
   {type: 'objects', name: 'chains',emoji: '⛓️'},
   {type: 'objects', name: 'gun',emoji: '🔫'},

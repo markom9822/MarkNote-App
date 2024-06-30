@@ -11,6 +11,8 @@ module.exports = {
         textPrimary: "rgb(var(--color-textPrimary) / <alpha-value>)",
         textSecondary: "rgb(var(--color-textSecondary) / <alpha-value>)",
         iconPrimary: "rgb(var(--color-iconPrimary) / <alpha-value>)",
+        borderPrimary: "rgb(var(--color-borderPrimary) / <alpha-value>)",
+        borderSecondary: "rgb(var(--color-borderSecondary) / <alpha-value>)",
       }
     }
   },

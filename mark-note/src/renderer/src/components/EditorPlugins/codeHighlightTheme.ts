@@ -1,7 +1,7 @@
 
 export const codeStyle =  {
     "code[class*=\"language-\"]": {
-        "color": "white",
+        "color": "#09b6d9",
         "fontFamily": "\"Consolas\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace",
         "direction": "ltr",
         "textAlign": "left",
@@ -39,7 +39,7 @@ export const codeStyle =  {
         "backgroundColor": ""
     },
     "pre > code[class*=\"language-\"]": {
-        "fontSize": "1em"
+        "fontSize": "1em",
     },
     "pre[class*=\"language-\"]::-moz-selection": {
         "background": "#C1DEF1"

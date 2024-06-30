@@ -94,19 +94,22 @@ export const MarkdownEditorToolBar = ({editorView, uiTheme, className, ...props}
     const tableFormatPopUpModal = TableFormatPopUpModal({
         onClose: handleTableFormatOnClose,
         onClickInsert: handleClickTableInsert,
-        visible: showTableFormat
+        visible: showTableFormat,
+        uiTheme: uiTheme
     })
 
     const linkFormatPopUpModal = LinkFormatPopUpModal({
         onClose: handleLinkFormatOnClose,
         onClickInsert: handleClickLinkInsert,
-        visible: showLinkFormat
+        visible: showLinkFormat,
+        uiTheme: uiTheme
     })
 
     const imageFormatPopUpModal = ImageFormatPopUpModal({
         onClose: handleImageFormatOnClose,
         onClickInsert: handleClickImageInsert,
-        visible: showImageFormat
+        visible: showImageFormat,
+        uiTheme: uiTheme
     })
 
     const handleClickedTableOption = () => {

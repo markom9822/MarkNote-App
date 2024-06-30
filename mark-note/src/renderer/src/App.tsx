@@ -24,7 +24,34 @@ const App = () => {
   const [pastedLinkText, setPastedLinkText] = useState('')
 
   const uiThemeString = getSettingPrefValueFromTitle('UI Theme');
-  
+  const editorThemeString = getSettingPrefValueFromTitle('Editor Theme');
+  const previewThemeString = getSettingPrefValueFromTitle('Preview Theme');
+
+  const getEditorBkgColour = (themeString: string) => {
+    switch (themeString) {
+      case 'dark':
+        return "bg-zinc-800"
+      case 'light':
+        return "bg-white"
+      default:
+        return "bg-zinc-800"
+    }
+  }
+
+  const getPreviewBkgColour = (themeString: string) => {
+    switch (themeString) {
+      case 'dark':
+        return "bg-zinc-900"
+      case 'light':
+        return "bg-white"
+      default:
+        return "bg-zinc-900"
+    }
+  }
+
+  const editorClassName = "border-l border-l-borderSecondary " + getEditorBkgColour(editorThemeString)
+  const previewClassName = "border-l border-l-borderSecondary " + getPreviewBkgColour(previewThemeString)
+
   const handleSettingsOnClose = () => setShowSettings(false)
   
   const handleDocChange = useCallback(newDoc => {
@@ -58,17 +85,17 @@ const App = () => {
         <Sidebar className="bg-bkgPrimary/90 overflow-y-auto">
           <div className="flex justify-between my-2">
             <SettingsButton onClick={() => setShowSettings(true)}/>
-            <p className="text-lg text-textPrimary">Notes</p>
+            <p className="text-lg text-textPrimary/70 font-medium">Notes</p>
             <NewNoteButton />
           </div>
-          <hr className="h-px my-3 bg-zinc-700 border-0 " />
+          <hr className="h-px my-3 bg-borderSecondary border-0 " />
           <NotePreviewList className = "mt-3 pb-10 space-y-1" onSelect={resetScroll}/>
         </Sidebar>   
 
-        <Content ref={contentContainerRef} className="border-l bg-bkgSecondary border-l-white/20">
-          <EditorTopBar />
-          <EditorTitleBar/>
-          <hr className="h-px bg-zinc-700 border-0" />
+        <Content ref={contentContainerRef} className={editorClassName}>
+          <EditorTopBar className="bg-bkgSecondary" />
+          <EditorTitleBar className="bg-bkgSecondary"/>
+          <hr className="h-px bg-borderPrimary/70 border-0" />
           <MarkdownEditorToolBar uiTheme={uiThemeString} editorView={markdownEditor?.view} className="sticky top-0 z-10 pt-2"/>
           <Editor className="h-[calc(100vh-150px)] overflow-y-auto">
             <div className="pb-8">
@@ -77,8 +104,8 @@ const App = () => {
           </Editor>
         </Content>
 
-        <Content ref={contentContainerRef} className="border-l border-l-white/20 bg-bkgPrimary" >
-            <FloatingNoteTitle className=""/>
+        <Content ref={contentContainerRef} className={previewClassName} >
+            <FloatingNoteTitle/>
             <Editor className="h-[calc(100vh-170px)] overflow-y-auto">
               <div>
               <MarkdownPreview markdownContent={markdownDoc}/>

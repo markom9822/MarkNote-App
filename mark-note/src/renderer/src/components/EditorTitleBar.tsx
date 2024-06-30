@@ -35,7 +35,7 @@ export const EditorTitleBar = ({className, ...props}: ComponentProps<'div'>) => 
     }
 
    return (
-    <div className={twMerge('flex flex-col mx-4 my-2', className)} {...props}>
+    <div className={twMerge('flex flex-col px-2 py-2', className)} {...props}>
         <div>
             {titleToggle ? (
                 <h1 onDoubleClick={showInput} className = "text-2xl border-2 rounded border-bkgSecondary text-textSecondary hover:border-indigo-500/20">{selectedNote.title}</h1>

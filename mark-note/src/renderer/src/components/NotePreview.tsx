@@ -29,7 +29,7 @@ export const NotePreview = ({
 
     return( <div className={cn('cursor-pointer px-2.5 py-3 transition-colors duration-75', 
     {
-        'bg-bkgPrimary border-r-4 border-indigo-500': isActive,
+        'bg-bkgSecondary border-r-4 border-indigo-500': isActive,
         'hover:bg-bkgSecondary/75 text-textSecondary': !isActive,
     },
     className
