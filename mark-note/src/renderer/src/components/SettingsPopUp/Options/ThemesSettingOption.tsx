@@ -34,7 +34,8 @@ export const ThemesSettingOption = () => {
 
     const uiThemeOptions = [
         {label: "Default Dark UI", id: 'dark'},
-        {label: "Default Light UI", id: 'light'}
+        {label: "Default Light UI", id: 'light'},
+        {label: "Navy Style UI", id: 'navy'},
     ]
 
     const editorThemeOptions = [

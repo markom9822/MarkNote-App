@@ -30,6 +30,16 @@
         --color-borderSecondary: 161 161 170;
     }
 
+    .navy {
+        --color-bkgPrimary: 30 33 43;
+        --color-bkgSecondary: 48 53 69;
+        --color-textPrimary: 228 237 245;
+        --color-textSecondary: 211 227 242;
+        --color-iconPrimary: 193 202 212;
+        --color-borderPrimary: 182 201 222;
+        --color-borderSecondary: 63 63 70;
+    }
+
 
     html, 
     body {
