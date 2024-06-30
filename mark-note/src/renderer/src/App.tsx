@@ -74,7 +74,7 @@ const App = () => {
 
   return (
     <>
-    <body className={uiThemeString}>
+    <main className={uiThemeString}>
 
     <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings} uiTheme={uiThemeString}/>
     <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} visible={showOnPasteLinkFormat} pastedText={pastedLinkText} editorView={markdownEditor?.view} />
@@ -114,7 +114,7 @@ const App = () => {
         </Content>
 
       </RootLayout>
-      </body>
+      </main>
     </>
   )
 }

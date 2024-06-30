@@ -46,7 +46,7 @@ export const EmojiPickerPopUpModal  = ({
     if(!visible) return null
 
     return(createPortal(
-        <body className={uiTheme}>
+        <div className={uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10">
             <div className="w-40 h-36 overflow-auto ml-[550px] mt-[180px]">
                 <div className="bg-bkgPrimary rounded-md flex flex-col border border-indigo-500 divide-zinc-400 divide-y-2">
@@ -62,7 +62,7 @@ export const EmojiPickerPopUpModal  = ({
             </div>
             
         </div>
-        </body>, document.body 
+        </div>, document.body 
     ))
 }
 

@@ -80,8 +80,8 @@
   }
   
   .markdownBody mark {
-	background-color: rgba(187,128,9,0.15);
-	color: #e6edf3;
+    background-color: rgba(214, 148, 16, 0.438);
+    color: #18181B;
   }
   
   .markdownBody small {

@@ -45,7 +45,7 @@ export const LinkFormatPopUpModal  = ({
     if(!visible) return null
 
     const linkPopUp = createPortal(
-        <body className={uiTheme}>
+        <div className={uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2">
                 <div className="bg-bkgPrimary rounded-md flex flex-col gap-5 mx-4 border-2 border-zinc-500">
@@ -65,7 +65,7 @@ export const LinkFormatPopUpModal  = ({
             </div>
             
         </div>
-        </body>, document.body 
+        </div>, document.body 
     )
 
     return {

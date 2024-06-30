@@ -198,8 +198,8 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         if(pastedText !== undefined)
         if(pastedText.match(regex))
         {
-          onPastedLink(pastedText)
-          event.preventDefault()
+          //onPastedLink(pastedText)
+          //event.preventDefault()
         } 
       },
     })

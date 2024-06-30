@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown'
-import 'github-markdown-css/github-markdown.css'
+//import 'github-markdown-css/github-markdown.css'
 import remarkGfm from "remark-gfm"
 import remarkGemoji from 'remark-gemoji'
 import remarkMath from 'remark-math'
@@ -8,9 +8,8 @@ import rehypeRaw from 'rehype-raw';
 import { remarkAlert } from 'remark-github-blockquote-alert'
 import remarkToc from 'remark-toc'
 
-import { oneDarkHighlightStyle } from '@codemirror/theme-one-dark'
-import { Highlighter } from 'react-codemirror-runmode'
 
+import './githubAlert.css'
 import darkStyle from './darkpreview.module.css';
 import lightStyle from './lightpreview.module.css'
 import 'katex/dist/katex.min.css';
@@ -109,7 +108,7 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
   };
 
   return <div className={currentStylesheet.markdownBody} style={{ fontSize: previewThemeFontSize }}> 
-  <ReactMarkdown
+  <ReactMarkdown className="markdownBody"
   remarkPlugins={[remarkGfm, remarkGemoji, remarkMath, remarkAlert, remarkToc, underlinePlugin, highlightPlugin]} 
   rehypePlugins={[rehypeKatex, rehypeRaw]}
   components={{

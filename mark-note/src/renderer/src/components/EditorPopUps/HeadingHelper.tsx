@@ -53,7 +53,7 @@ export const HeadingHelperPopUpModal  = ({
     if(!visible) return null
 
     return(createPortal(
-        <body className={uiTheme}>
+        <div className={uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="absolute inset-0 bottom-0 left-0 right-0 w-full top-0 z-10">
             <div className="w-10 ml-[220px] mt-[180px]">
                 <div className="bg-bkgPrimary rounded-md flex flex-col border border-indigo-500">
@@ -67,7 +67,7 @@ export const HeadingHelperPopUpModal  = ({
             </div>
             
         </div>
-        </body>, document.body 
+        </div>, document.body 
     ))
 }
 

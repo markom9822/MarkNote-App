@@ -26,7 +26,7 @@ export const SettingsPopUpModal = (props) => {
     
 
     return createPortal(
-        <body className={props.uiTheme}>
+        <div className={props.uiTheme}>
         <div ref={menuRef} onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-70 flex justify-center z-20">
             <div className="mt-10 flex flex-col gap-2 text-white"> 
                 <div className="bg-bkgSecondary border-2 border-zinc-500 rounded-md flex flex-row gap-5 mx-4 h-[32rem]">
@@ -44,7 +44,7 @@ export const SettingsPopUpModal = (props) => {
             </div>
             
         </div>
-        </body>, document.body 
+        </div>, document.body 
     )
 }
 
