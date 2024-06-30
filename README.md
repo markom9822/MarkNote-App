@@ -10,7 +10,7 @@ This is a markdown based note taking app developed using:
 - [Codemirror 6](https://codemirror.net/)
 - [Remark](https://github.com/remarkjs/remark)
 
-![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/c58bf6b9-65b6-4790-9c07-01b0ae7996d8)
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/91c42abd-688f-4a45-af22-36a4ef52b887)
 
 ## How To
 
