@@ -41,7 +41,7 @@ You can customise the appearance of the preview.
 ### Keybindings
 You can find a list of the keybindings available to use.
 
-![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/33250402-0ee3-4fec-bb3e-7f3e4f499bbb)
+![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/483d14c6-7daf-40f3-b56a-96667a03a3e4)
 
 ## Markdown in MarkNote
 
