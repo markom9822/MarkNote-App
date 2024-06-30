@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: mark-note
+productName: MarkNote
 directories:
   buildResources: build
 files:
