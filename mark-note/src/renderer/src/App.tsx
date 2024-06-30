@@ -20,8 +20,6 @@ const App = () => {
 
   const [markdownDoc, setMarkdown] = useState<string>('');
   const [showSettings, setShowSettings] = useState(false)
-  const [showOnPasteLinkFormat, setShowOnPasteLinkFormat] = useState(false)
-  const [pastedLinkText, setPastedLinkText] = useState('')
 
   const uiThemeString = getSettingPrefValueFromTitle('UI Theme');
   const editorThemeString = getSettingPrefValueFromTitle('Editor Theme');
@@ -57,19 +55,11 @@ const App = () => {
   const handleDocChange = useCallback(newDoc => {
     setMarkdown(newDoc)
   }, [])
-  
-  const handlePastedLink = (pastedText: string) => {
-    setShowOnPasteLinkFormat(true)
-    setPastedLinkText(pastedText)
-  }
 
   const markdownEditor = MarkdownEditor({
     onChange: handleDocChange,
-    onPastedLink: handlePastedLink,
     editable: !showSettings,
   })
-  
-  const handleOnPasteLinkFormatOnClose = () => setShowOnPasteLinkFormat(false)
 
 
   return (
@@ -77,7 +67,6 @@ const App = () => {
     <main className={uiThemeString}>
 
     <SettingsPopUpModal onClose={handleSettingsOnClose} visible={showSettings} uiTheme={uiThemeString}/>
-    <OnPasteLinkFormatPopUpModal onClose={handleOnPasteLinkFormatOnClose} visible={showOnPasteLinkFormat} pastedText={pastedLinkText} editorView={markdownEditor?.view} />
 
     <DraggableTopBar/>
 

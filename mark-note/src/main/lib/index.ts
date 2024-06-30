@@ -1,6 +1,6 @@
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from "@shared/constants"
 import { NoteInfo, SettingPrefsInfo } from "@shared/models"
-import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp, SetSettingPref, GetSettingPrefValue, GetAllPrefs } from "@shared/types"
+import { GetNotes, ReadNote, WriteNote, CreateNote, DeleteNote, RenameNote, SetNoteStatus, CloseApp, MinimiseApp, SetSettingPref, GetAllPrefs } from "@shared/types"
 import { app, dialog } from "electron"
 import { readdir, stat, readFile, remove, rename } from "fs-extra"
 import { ensureDir, writeFile} from "fs-extra"

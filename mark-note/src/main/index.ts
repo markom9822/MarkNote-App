@@ -1,6 +1,6 @@
-import { closeApp, createNote, deleteNote, getNotes, minimiseApp, readNote, renameNote, setNoteStatus, writeNote, setSettingPref, getSettingPrefValue, getAllPrefs } from '@/lib'
+import { closeApp, createNote, deleteNote, getNotes, minimiseApp, readNote, renameNote, setNoteStatus, writeNote, setSettingPref, getAllPrefs } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { CloseApp, CreateNote, DeleteNote, GetAllPrefs, GetNotes, GetSettingPrefValue, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, SetSettingPref, WriteNote } from '@shared/types'
+import { CloseApp, CreateNote, DeleteNote, GetAllPrefs, GetNotes, MinimiseApp, ReadNote, RenameNote, SetNoteStatus, SetSettingPref, WriteNote } from '@shared/types'
 import { BrowserWindow, app, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/MarkNoteLogoPixel.png?asset'
