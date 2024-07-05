@@ -12,6 +12,8 @@ This is a markdown based note taking app developed using:
 
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/91c42abd-688f-4a45-af22-36a4ef52b887)
 
+If you would like to try out this app you can download the installer `.exe` file from the Releases section in this repo.
+
 ## How To
 
 You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time. Each note has a status to show your progress at a glance.
