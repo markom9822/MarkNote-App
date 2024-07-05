@@ -18,6 +18,9 @@ import { hyperLink } from '@uiw/codemirror-extensions-hyper-link';
 import { basicDark } from '@renderer/utils/themes/DarkTheme'
 import { basicLight } from '@renderer/utils/themes/LightTheme'
 import { solarizedDark } from '@renderer/utils/themes/SolarizedDark'
+import { solarizedLight } from '@renderer/utils/themes/SolarizedLight'
+import { nord } from '@renderer/utils/themes/NordTheme'
+
 
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
 import { InsertTextAroundInEditor, InsertTextAtStartInEditor } from './MarkdownEditorToolBar'
@@ -308,6 +311,12 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         return basicDark
       case 'light':
         return basicLight
+      case 'solarizedDark':
+        return solarizedDark
+      case 'solarizedLight':
+        return solarizedLight
+      case 'nord':
+        return nord
       default:
          return basicDark 
       }

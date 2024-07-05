@@ -28,7 +28,6 @@ export const EditorSettingOption = () => {
 
     const handleChangeLineNum = (e) => {
         setCheckedLineNum(e.target.checked);
-        console.info(`Line Numbers set to ${e.target.checked}`)
         setSettingPref('Line Numbers Visible', e.target.checked.toString())
     };
 

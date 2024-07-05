@@ -40,14 +40,16 @@ export const ThemesSettingOption = () => {
 
     const editorThemeOptions = [
         {label: "Default Dark Editor", id: 'dark'},
-        {label: "Default Light Editor", id: 'light'}
+        {label: "Default Light Editor", id: 'light'},
+        {label: "Solarized Dark Editor", id: 'solarizedDark'},
+        {label: "Solarized Light Editor", id: 'solarizedLight'},
+        {label: "Nord Editor", id: 'nord'},
     ]
 
     const previewThemeOptions = [
         {label: "Default Dark Preview", id: 'dark'},
         {label: "Default Light Preview", id: 'light'}
     ]
-
 
     return (
         <div>

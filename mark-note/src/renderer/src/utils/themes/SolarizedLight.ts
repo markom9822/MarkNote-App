@@ -3,14 +3,14 @@ import { Extension } from '@codemirror/state'
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { tags as t } from '@lezer/highlight'
 
-const base00 = '#002b36',
-  base01 = '#073642',
-  base02 = '#586e75',
-  base03 = '#657b83',
-  base04 = '#839496',
-  base05 = '#93a1a1',
-  base06 = '#eee8d5',
-  base07 = '#fdf6e3',
+const base00 = '#657b83',
+  base01 = '#586e75',
+  base02 = '#073642',
+  base03 = '#002b36',
+  base0 = '#839496',
+  base1 = '#93a1a1',
+  base2 = '#eee8d5',
+  base3 = '#fdf6e3',
   base_red = '#dc322f',
   base_orange = '#cb4b16',
   base_yellow = '#b58900',
@@ -21,25 +21,24 @@ const base00 = '#002b36',
   base_magenta = '#d33682'
 
 const invalid = '#d30102',
-  stone = base04,
-  darkBackground = '#00252f',
-  highlightBackground = '#173541',
-  background = base00,
-  codeBackground = '#011a21',
+  darkBackground = '#dfd9c8',
+  highlightBackground = darkBackground,
+  background = base3,
   tooltipBackground = base01,
-  selection = '#173541',
-  cursor = base04
+  selection = darkBackground,
+  codeBackground = '#dedfe0',
+  cursor = base01
 
-/// The editor theme styles for Solarized Dark.
-export const solarizedDarkTheme = EditorView.theme(
+/// The editor theme styles for Solarized Light.
+export const solarizedLightTheme = EditorView.theme(
   {
     '&': {
-      color: base05,
+      color: base00,
       backgroundColor: background
     },
 
     '.cm-content': {
-      caretColor: cursor,      
+      caretColor: cursor
     },
 
     '.cm-cursor, .cm-dropCursor': { borderLeftColor: cursor },
@@ -62,12 +61,12 @@ export const solarizedDarkTheme = EditorView.theme(
     '.cm-selectionMatch': { backgroundColor: '#aafe661a' },
 
     '&.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket': {
-      outline: `1px solid ${base06}`
+      outline: `1px solid ${base1}`
     },
 
     '.cm-gutters': {
-      backgroundColor: darkBackground,
-      color: stone,
+      backgroundColor: '#00000010',
+      color: base00,
       border: 'none'
     },
 
@@ -101,24 +100,24 @@ export const solarizedDarkTheme = EditorView.theme(
     },
     ".cm-line.cm-codeblock": {
       backgroundColor: codeBackground,
-      color: base05,
+      color: base03,
     },
     ".cm-line.cm-activeLine.cm-codeblock": {
       backgroundColor: "#4a4848",
-      color: base05,
+      color: base03,
     },
   },
-  { dark: true }
+  { dark: false }
 )
 
-/// The highlighting style for code in the Solarized Dark theme.
-export const solarizedDarkHighlightStyle = HighlightStyle.define([
+/// The highlighting style for code in the Solarized Light theme.
+export const solarizedLightHighlightStyle = HighlightStyle.define([
   { tag: t.keyword, color: base_green },
   {
     tag: [t.name, t.deleted, t.character, t.propertyName, t.macroName],
     color: base_cyan
   },
-  { tag: [t.variableName], color: base05 },
+  { tag: [t.variableName], color: base_blue },
   { tag: [t.function(t.variableName)], color: base_blue },
   { tag: [t.labelName], color: base_magenta },
   {
@@ -157,7 +156,7 @@ export const solarizedDarkHighlightStyle = HighlightStyle.define([
   },
   {
     tag: [t.attributeName],
-    color: base05
+    color: base1
   },
   {
     tag: [t.regexp],
@@ -182,42 +181,43 @@ export const solarizedDarkHighlightStyle = HighlightStyle.define([
   { tag: [t.comment], color: base02, fontStyle: 'italic' },
   {
     tag: t.monospace,
-    color: base05,
+    color: base01,
     background: codeBackground,
     borderRadius: '3px',
     padding: '1px'
   },
-  { tag: t.strong, fontWeight: 'bold', color: base06 },
+  { tag: t.strong, fontWeight: 'bold', color: base01 },
   { tag: t.emphasis, fontStyle: 'italic', color: base_green },
   { tag: t.strikethrough, textDecoration: 'line-through' },
   { tag: t.heading, fontWeight: 'bold', color: base_yellow },
   { 
-    tag: t.heading1,
-    fontWeight: 'bold',
-    color: base07,
+    tag: 
+    t.heading1, 
+    fontWeight: 'bold', 
+    color: base03,
     fontSize: '2.1em',
   },
   {
     tag: t.heading2,
-    color: base07,
+    color: base03,
     fontSize: '1.8em',
     fontWeight: 'bold',
   },
   {
     tag: t.heading3,
-    color: base07,
+    color: base03,
     fontSize: '1.5em',
     fontWeight: 'bold',
   },
   {
     tag: t.heading4,
-    color: base07,
+    color: base03,
     fontSize: '1.2em',
     fontWeight: 'bold',
   },
   {
     tag: [t.heading5, t.heading6],
-    color: base06
+    color: base03
   },
   { tag: [t.atom, t.bool, t.special(t.variableName)], color: base_magenta },
   {
@@ -231,9 +231,9 @@ export const solarizedDarkHighlightStyle = HighlightStyle.define([
   { tag: t.invalid, color: base02, borderBottom: `1px dotted ${base_red}` }
 ])
 
-/// Extension to enable the Solarized Dark theme (both the editor theme and
+/// Extension to enable the Solarized Light theme (both the editor theme and
 /// the highlight style).
-export const solarizedDark: Extension = [
-  solarizedDarkTheme,
-  syntaxHighlighting(solarizedDarkHighlightStyle)
+export const solarizedLight: Extension = [
+  solarizedLightTheme,
+  syntaxHighlighting(solarizedLightHighlightStyle)
 ]

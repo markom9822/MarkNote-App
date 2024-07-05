@@ -161,7 +161,7 @@ export type ToolBarButtonProps = ComponentProps<'button'> & {
 }
 
 export const ToolBarButton = ({editorView, className, children, ...props}: ToolBarButtonProps) => {
-    return <button className={twMerge('px-2 py-1 border border-bkgSecondary rounded-md hover:border-indigo-500 transition-colors duration-100 focus:outline focus:outline-indigo-500', className
+    return <button className={twMerge('px-2 py-1 border border-bkgSecondary/10 rounded-md hover:border-indigo-500 transition-colors duration-100 focus:outline focus:outline-indigo-500', className
     )} {...props}
     >
         {children}
