@@ -31,6 +31,12 @@ const App = () => {
         return "bg-zinc-800"
       case 'light':
         return "bg-white"
+      case 'solarizedDark':
+        return "bg-[#002b36]"
+      case 'solarizedLight':
+        return "bg-[#fdf6e3]"
+      case 'nord':
+        return "bg-[#2e3440]"
       default:
         return "bg-zinc-800"
     }
@@ -42,6 +48,8 @@ const App = () => {
         return "bg-zinc-900"
       case 'light':
         return "bg-white"
+      case 'navy':
+        return "bg-[#22262e]"
       default:
         return "bg-zinc-900"
     }

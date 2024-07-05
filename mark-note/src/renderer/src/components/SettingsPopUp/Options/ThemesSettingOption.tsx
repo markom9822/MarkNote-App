@@ -44,11 +44,14 @@ export const ThemesSettingOption = () => {
         {label: "Solarized Dark Editor", id: 'solarizedDark'},
         {label: "Solarized Light Editor", id: 'solarizedLight'},
         {label: "Nord Editor", id: 'nord'},
+        {label: "Gruvbox Dark Editor", id: 'gruvboxDark'},
+        {label: "Gruvbox Light Editor", id: 'gruvboxLight'},
     ]
 
     const previewThemeOptions = [
         {label: "Default Dark Preview", id: 'dark'},
-        {label: "Default Light Preview", id: 'light'}
+        {label: "Default Light Preview", id: 'light'},
+        {label: "Navy Preview", id: 'navy'},
     ]
 
     return (

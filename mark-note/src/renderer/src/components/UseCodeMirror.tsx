@@ -20,6 +20,8 @@ import { basicLight } from '@renderer/utils/themes/LightTheme'
 import { solarizedDark } from '@renderer/utils/themes/SolarizedDark'
 import { solarizedLight } from '@renderer/utils/themes/SolarizedLight'
 import { nord } from '@renderer/utils/themes/NordTheme'
+import { gruvboxDark} from '@renderer/utils/themes/GruvboxDark'
+import { gruvboxLight } from '@renderer/utils/themes/GruvboxLight'
 
 
 import { getEmojiFromText, getEmojiList } from '@renderer/store/emojisDatabase'
@@ -317,6 +319,10 @@ export const CodeMirrorEditor : React.FunctionComponent<EditorProps> = ({
         return solarizedLight
       case 'nord':
         return nord
+      case 'gruvboxDark':
+        return gruvboxDark
+      case 'gruvboxLight':
+        return gruvboxLight
       default:
          return basicDark 
       }

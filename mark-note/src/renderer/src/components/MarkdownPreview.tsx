@@ -11,7 +11,8 @@ import remarkToc from 'remark-toc'
 
 import './githubAlert.css'
 import darkStyle from './darkpreview.module.css';
-import lightStyle from './lightpreview.module.css'
+import lightStyle from './lightpreview.module.css';
+import navyStyle from './navypreview.module.css';
 import 'katex/dist/katex.min.css';
 
 
@@ -41,6 +42,9 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
       break;
     case 'light':
       currentStylesheet = lightStyle
+      break;
+    case 'navy':
+      currentStylesheet = navyStyle
       break;
     default:
       currentStylesheet = darkStyle
