@@ -13,11 +13,14 @@ import './githubAlert.css'
 import darkStyle from './darkpreview.module.css';
 import lightStyle from './lightpreview.module.css';
 import navyStyle from './navypreview.module.css';
+import gruvboxDarkStyle from './gruvboxdarkpreview.module.css'
+import gruvboxLightStyle from './gruvboxlightpreview.module.css'
 import 'katex/dist/katex.min.css';
 
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {codeStyle} from '@/components/EditorPlugins/codeHighlightTheme'
+import { lightCodeStyle } from './EditorPlugins/lightCodeHighlightTheme'
 
 import React from "react"
 import { useEffect } from 'react'
@@ -36,18 +39,28 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
   const previewThemeFontSize = getSettingPrefValueFromTitle('Preview Font Size');
 
   var currentStylesheet = darkStyle;
+  var currentCodeStyle = codeStyle;
   switch (previewThemeString) {
     case 'dark':
       currentStylesheet = darkStyle
+      currentCodeStyle = codeStyle
       break;
     case 'light':
       currentStylesheet = lightStyle
+      currentCodeStyle = lightCodeStyle
       break;
     case 'navy':
       currentStylesheet = navyStyle
       break;
+    case 'gruvboxDark':
+      currentStylesheet = gruvboxDarkStyle
+      break;
+    case 'gruvboxLight':
+      currentStylesheet = gruvboxLightStyle
+      break;
     default:
       currentStylesheet = darkStyle
+      currentCodeStyle = codeStyle
       break;
   }
 
@@ -125,7 +138,7 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
         PreTag="div" 
         children={String(children).replace(/\n$/, "")} 
         language={match[1]} 
-        style={codeStyle}
+        style={currentCodeStyle}
         />
       ) : (
         <code className={className} {...props}>

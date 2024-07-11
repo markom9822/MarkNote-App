@@ -11,8 +11,8 @@ const dark0 = '#282828',
   dark4_256 = '#7c6f64',
   gray_245 = '#928374',
   gray_244 = '#928374',
-  light0 = '#fcf7de',
-  light1 = '#ede0be',
+  light0 = '#faebd7',
+  light1 = '#ebcda7',
   light2 = '#d5c4a1',
   light3 = '#bdae93',
   light4 = '#a89984',
@@ -64,9 +64,9 @@ const invalid = red,
   highlightBackground = darkBackground,
   background = bg0,
   tooltipBackground = bg1,
-  selection = darkBackground,
+  selection = bg3,
   cursor = orange,
-  codeBackground = '#d4c58a'
+  codeBackground = '#f0d6b1'
 
 /// The editor theme styles for Gruvbox Light.
 export const gruvboxLightTheme = EditorView.theme(
@@ -145,11 +145,11 @@ export const gruvboxLightTheme = EditorView.theme(
     },
     ".cm-line.cm-codeblock": {
       backgroundColor: codeBackground,
-      color: fg3,
+      color: dark1,
     },
     ".cm-line.cm-activeLine.cm-codeblock": {
-      backgroundColor: "#4a4848",
-      color: fg3,
+      backgroundColor: "#e8c797",
+      color: dark1,
     },
   },
   { dark: false }
@@ -212,7 +212,7 @@ export const gruvboxLightHighlightStyle = HighlightStyle.define([
     tag: [t.quote],
     color: gray
   },
-  { tag: [t.string], color: fg1 },
+  { tag: [t.string], color: green },
   {
     tag: t.link,
     color: fg4,
@@ -227,7 +227,7 @@ export const gruvboxLightHighlightStyle = HighlightStyle.define([
   { tag: [t.comment], color: gray, fontStyle: 'italic' },
   {
     tag: t.monospace,
-    color: fg3,
+    color: dark1,
     background: codeBackground,
     borderRadius: '3px',
     padding: '1px'
@@ -245,7 +245,7 @@ export const gruvboxLightHighlightStyle = HighlightStyle.define([
   { 
     tag: t.heading2,
     fontWeight: 'bold',
-    color: red,
+    color: orange,
     fontSize: '1.8em',
   },
   {
@@ -257,7 +257,7 @@ export const gruvboxLightHighlightStyle = HighlightStyle.define([
   {
     tag: t.heading4,
     fontWeight: 'bold',
-    color: yellow,
+    color: green,
     fontSize: '1.2em',
   },
   {

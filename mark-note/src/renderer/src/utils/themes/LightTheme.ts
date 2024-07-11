@@ -129,7 +129,7 @@ export const basicLightHighlightStyle = HighlightStyle.define([
     tag: [t.name, t.deleted, t.character, t.propertyName, t.macroName],
     color: base0C
   },
-  { tag: [t.variableName], color: base0C },
+  { tag: [t.variableName], color: '#c46c51' },
   { tag: [t.function(t.variableName)], color: base0A },
   { tag: [t.labelName], color: base09 },
   {
@@ -144,7 +144,7 @@ export const basicLightHighlightStyle = HighlightStyle.define([
   },
   {
     tag: [t.number, t.changed, t.annotation, t.modifier, t.self, t.namespace],
-    color: base08
+    color: '#4da0b8'
   },
   {
     tag: [t.typeName, t.className],
@@ -152,7 +152,7 @@ export const basicLightHighlightStyle = HighlightStyle.define([
   },
   {
     tag: [t.operator, t.operatorKeyword],
-    color: base0E
+    color: '#4d5249'
   },
   {
     tag: [t.tagName],
@@ -178,7 +178,7 @@ export const basicLightHighlightStyle = HighlightStyle.define([
     tag: [t.quote],
     color: base01
   },
-  { tag: [t.string], color: base0C },
+  { tag: [t.string], color: '#3ca343' },
   {
     tag: t.link,
     color: base07,

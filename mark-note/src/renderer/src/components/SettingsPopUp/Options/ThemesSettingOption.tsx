@@ -52,6 +52,8 @@ export const ThemesSettingOption = () => {
         {label: "Default Dark Preview", id: 'dark'},
         {label: "Default Light Preview", id: 'light'},
         {label: "Navy Preview", id: 'navy'},
+        {label: "Gruvbox Dark Preview", id: 'gruvboxDark'},
+        {label: "Gruvbox Light Preview", id: 'gruvboxLight'}
     ]
 
     return (

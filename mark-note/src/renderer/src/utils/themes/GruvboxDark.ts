@@ -64,7 +64,7 @@ const invalid = red,
   highlightBackground = darkBackground,
   background = bg0,
   tooltipBackground = bg1,
-  selection = darkBackground,
+  selection = bg3,
   cursor = orange,
   codeBackground = '#151617'
 
@@ -212,7 +212,7 @@ export const gruvboxDarkHighlightStyle = HighlightStyle.define([
     tag: [t.quote],
     color: gray
   },
-  { tag: [t.string], color: fg1 },
+  { tag: [t.string], color: green },
   {
     tag: t.link,
     color: fg4,
@@ -227,7 +227,7 @@ export const gruvboxDarkHighlightStyle = HighlightStyle.define([
   { tag: [t.comment], color: gray, fontStyle: 'italic' },
   {
     tag: t.monospace,
-    color: aqua,
+    color: fg1,
     background: codeBackground,
     borderRadius: '3px',
     padding: '1px'
@@ -245,7 +245,7 @@ export const gruvboxDarkHighlightStyle = HighlightStyle.define([
   { 
     tag: t.heading2,
     fontWeight: 'bold',
-    color: red,
+    color: orange,
     fontSize: '1.8em',
   },
   {
@@ -257,7 +257,7 @@ export const gruvboxDarkHighlightStyle = HighlightStyle.define([
   {
     tag: t.heading4,
     fontWeight: 'bold',
-    color: yellow,
+    color: green,
     fontSize: '1.2em',
   },
   {

@@ -37,6 +37,10 @@ const App = () => {
         return "bg-[#fdf6e3]"
       case 'nord':
         return "bg-[#2e3440]"
+      case 'gruvboxDark':
+        return "bg-[#282828]"
+      case 'gruvboxLight':
+        return "bg-[#faebd7]"
       default:
         return "bg-zinc-800"
     }
@@ -50,6 +54,8 @@ const App = () => {
         return "bg-white"
       case 'navy':
         return "bg-[#22262e]"
+      case 'gruvboxDark':
+        return "bg-[#282828]"
       default:
         return "bg-zinc-900"
     }
