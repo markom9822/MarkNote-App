@@ -33,12 +33,22 @@ MarkNote has a number of settings that can be changed such as:
 
 ### Themes
 You can change the theme for the main UI, editor and preview.
+We have a variety of themes to choose, from dark and light mode to nord, solarized and gruvbox.
+
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/d9724432-1487-4357-8c38-8c1073d9484a" width="400">
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/1d64e5fb-2eff-4767-89e2-798020df0642" width="400">
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/6c5840ac-d2c7-4690-81ea-dad1b8411e15" width="400">
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/9aab7111-eb78-4102-835c-5fce659a5c65" width="400">
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/7b7c7e3d-333f-40fe-a7db-394093bfc354" width="400">
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/b2a66768-ea9a-414d-bc89-133c8569040a" width="400">
+<img src="https://github.com/markom9822/MarkNote-App/assets/96113848/6a5dee4e-b35e-41ff-bf0d-f6cc4788f2b6" width="400">
 
 ### Editor
-You can customise the interface and appearance of the markdown editor.
+You can customise the interface and appearance of the markdown editor. 
+You can toggle the toolbar, line wrapping, bracket matching and more. The tab size and font size can be customised too.
 
 ### Preview
-You can customise the appearance of the preview.
+You can customise the appearance of the preview. You can alter the font size in the preview.
 
 ### Keybindings
 You can find a list of the keybindings available to use.
