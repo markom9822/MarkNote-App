@@ -21,6 +21,9 @@ import 'katex/dist/katex.min.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {codeStyle} from '@/components/EditorPlugins/codeHighlightTheme'
 import { lightCodeStyle } from './EditorPlugins/lightCodeHighlightTheme'
+import { gruvboxDarkCodeStyle } from './EditorPlugins/gruvboxDarkHighlightTheme'
+import { gruvboxLightCodeStyle } from './EditorPlugins/gruvboxLightHighlightTheme'
+
 
 import React from "react"
 import { useEffect } from 'react'
@@ -51,12 +54,15 @@ export const MarkdownPreview: React.FC<MarkdownPreviewProps> =  (props) => {
       break;
     case 'navy':
       currentStylesheet = navyStyle
+      currentCodeStyle = codeStyle
       break;
     case 'gruvboxDark':
       currentStylesheet = gruvboxDarkStyle
+      currentCodeStyle = gruvboxDarkCodeStyle
       break;
     case 'gruvboxLight':
       currentStylesheet = gruvboxLightStyle
+      currentCodeStyle = gruvboxLightCodeStyle
       break;
     default:
       currentStylesheet = darkStyle

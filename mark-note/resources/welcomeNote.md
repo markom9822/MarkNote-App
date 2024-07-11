@@ -9,11 +9,17 @@ Following there's a quick overview of the supported Markdown syntax.
 ## Text formatting
 
 This is a **bold** text.
+
 This is an _italic_ text.
+
 ~~This text is striked through~~.
+
 __This text is underlined__
+
 **=This text is highlighted=**
+
 This is a <sub>subscript</sub> text
+
 This is a <sup>superscript</sup> text
 
 ## Headings

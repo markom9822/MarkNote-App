@@ -56,6 +56,8 @@ const App = () => {
         return "bg-[#22262e]"
       case 'gruvboxDark':
         return "bg-[#282828]"
+      case 'gruvboxLight':
+        return "bg-[#faebd7]"
       default:
         return "bg-zinc-900"
     }
