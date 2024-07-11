@@ -33,12 +33,14 @@ MarkNote has a number of settings that can be changed such as:
 
 ### Themes
 You can change the theme for the main UI, editor and preview.
+We have a variety of themes to choose, from dark and light mode to nord and gruvbox.
 
 ### Editor
-You can customise the interface and appearance of the markdown editor.
+You can customise the interface and appearance of the markdown editor. 
+You can toggle the toolbar, line wrapping, bracket matching and more. The tab size and font size can be customised too.
 
 ### Preview
-You can customise the appearance of the preview.
+You can customise the appearance of the preview. You can alter the font size in the preview.
 
 ### Keybindings
 You can find a list of the keybindings available to use.
