@@ -1,7 +1,10 @@
 # MarkNote App Project
 <img src="https://github.com/markom9822/MarkNote-App_V2/assets/96113848/d240f0d4-2f35-48dd-8fab-c27e48da6a69" width="600">
 
-This is a markdown based note taking app developed using:
+---
+
+## 🛠 Tech Stack
+
 - [Electron](https://www.electronjs.org/)
 - [React](https://react.dev/)
 - [Typescript](https://www.typescriptlang.org/)
@@ -10,11 +13,21 @@ This is a markdown based note taking app developed using:
 - [Codemirror 6](https://codemirror.net/)
 - [Remark](https://github.com/remarkjs/remark)
 
+---
+
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/91c42abd-688f-4a45-af22-36a4ef52b887)
 
-If you would like to try out this app you can download the installer `.exe` file from the Releases section in this repo.
+---
 
-## How To
+## 📦 Getting Started
+
+To run the project locally:
+
+1. You can download the installer `.exe` file from the Releases section in this repo.
+
+---
+
+## How To Guide
 
 You can create, edit and delete notes with a side by side editor and HTML preview which updates in real time. Each note has a status to show your progress at a glance.
 There are several buttons in the UI, the table below explains what they do.
@@ -263,7 +276,8 @@ Text below
 ```
 ![image](https://github.com/markom9822/MarkNote-App_V2/assets/96113848/6d12eb55-6411-476a-82a5-b0dc9956bfbb)
 
+---
 
+## 📎 Links
 
-
-
+- GitHub Repository: [https://github.com/markom9822/MarkNote-App](https://github.com/markom9822/MarkNote-App)
