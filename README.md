@@ -278,6 +278,13 @@ Text below
 
 ---
 
+## 🪪 License
+
+This project is licensed under the [MIT License](./LICENSE).  
+You’re free to use, modify, and distribute it — just include attribution.
+
+---
+
 ## 📎 Links
 
 - GitHub Repository: [https://github.com/markom9822/MarkNote-App](https://github.com/markom9822/MarkNote-App)
